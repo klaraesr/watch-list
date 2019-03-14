@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import model from "./Model";
 import './App.css';
+import LoginPage from "./Pages/LoginPage/LoginPage";
+import ProfilePage from "./Pages/ProfilePage/ProfilePage";
+import MovieDetailsPage from "./Pages/MovieDetailsPage/MovieDetailsPage";
+import SearchPage from "./Pages/SearchPage/SearchPage";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import LandingPage from "./Pages/LandingPage/LandingPage";
+import Header from "./Components/Header/Header";
+import Navbar from "./Components/Navbar/Navbar";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor() {
+        super()
+
+        this.state = {
+            user_id: null
+        }
+    }
+
+    handleLogin = (user_id) => {
+        this.setState({ user_id: user_id })
+    }
+
+    render() {
+
+        const navbar = <Navbar/>
+
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <div>
+                        <Header />
+                        <Switch>
+                            <Route exact path='/' component={LoginPage} handleLogin={this.handleLogin}/>
+                            <Route path='/profile/:id' render={({ location, match }) => <ProfilePage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/moviedetails/:id' render={({ location, match }) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/landing' render={() => <LandingPage model={model} navbar={navbar}/>}/>
+
+                        </Switch>
+                    </div>
+                </BrowserRouter>
+            </div>
+        );
+    }
 }
 
 export default App;
