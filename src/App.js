@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import model from "./Model";
-import './App.css';
-import LoginPage from "./Pages/LoginPage/LoginPage";
-import ProfilePage from "./Pages/ProfilePage/ProfilePage";
-import MovieDetailsPage from "./Pages/MovieDetailsPage/MovieDetailsPage";
-import SearchPage from "./Pages/SearchPage/SearchPage";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import LandingPage from "./Pages/LandingPage/LandingPage";
-import Header from "./Components/Header/Header";
-import Navbar from "./Components/Navbar/Navbar";
+import React, { Component } from 'react'
+import model from "./Model"
+import './App.css'
+import LoginPage from "./Pages/LoginPage/LoginPage"
+import ProfilePage from "./Pages/ProfilePage/ProfilePage"
+import MovieDetailsPage from "./Pages/MovieDetailsPage/MovieDetailsPage"
+import SearchPage from "./Pages/SearchPage/SearchPage"
+import {BrowserRouter, Route, Switch} from "react-router-dom"
+import LandingPage from "./Pages/LandingPage/LandingPage"
+import Header from "./Components/Header/Header"
+import Navbar from "./Components/Navbar/Navbar"
 
 class App extends Component {
     constructor() {

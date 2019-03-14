@@ -1,0 +1,34 @@
+#wrongPasswordId{
+    color: #ff2f25;
+}
+
+#loginContainer {
+    width: 30%;
+    margin-bottom: 50px;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: left;
+    border-radius: 20px;
+}
+
+#loginHeader {
+    text-align: center;
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1200px){
+    #loginContainer {
+        width: 40% !important;
+    }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 800px){
+    #loginContainer {
+        width: 50% !important;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #loginContainer {
+        width: 80% !important;
+    }
+}

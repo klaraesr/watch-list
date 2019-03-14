@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
 // Image, Title, IMDB-rating, Description in two columns
 class MovieDetails extends Component {
