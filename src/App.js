@@ -15,12 +15,12 @@ class App extends Component {
         super()
 
         this.state = {
-            user_id: null
+            userId: null
         }
     }
 
-    handleLogin = (user_id) => {
-        this.setState({ user_id: user_id })
+    handleLogin = (userId) => {
+        this.setState({ userId: userId })
     }
 
     render() {
