@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import './ProfileHeader.css'
 
-
-// Should contain the profile name, number of movies watched and movies to watch
 class ProfileHeader extends Component {
     render() {
         return (

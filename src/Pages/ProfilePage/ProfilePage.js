@@ -9,7 +9,8 @@ class ProfilePage extends Component {
             <div className="container appContainer">
                 {this.props.navbar}
                 <ProfileHeader/>
-                <WatchList/>
+                <WatchList mode="toWatch"/>
+                <WatchList mode="watched"/>
             </div>
 
         );
