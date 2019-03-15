@@ -1,11 +1,13 @@
 #leftCol {
-    text-align: right;
+    padding-top: 50px;
     padding-right: 20px;
+    text-align: right;
 }
 
 #rightCol {
-    padding-top: 65px;
-
+    padding-top: 50px;
+    text-align: left;
+    color: #96b17a;
 }
 
 .col-centered{
