@@ -28,8 +28,8 @@ class MovieDetails extends Component {
                         <p className="movie-desc">{description}</p>
                         <p className="movie-desc"><i>{title} had an estimated budget of ${budget} and a world wide gross of ${revenue}.</i></p>
 
-                        <button onClick={handleSetWatched} type="button" className={'btn btn-secondary add-to-list-btn ' + (inWatchedList ? 'active' : '')}>{inWatchedList ? 'This movie is in your watched list, click to remove it' : 'This movie is not in your watched list, click to add it'}</button>
-                        <button onClick={handleSetToWatch} type="button" className={'btn btn-secondary add-to-list-btn ' + (inToWatchList ? 'active' : '')}>{inToWatchList ? 'This movie is in your to-watch list, click to remove it' : 'This movie is not in your to-watch list, click to add it'}</button>
+                        <button onClick={handleSetWatched} type="button" className={'btn add-to-list-btn ' + (inWatchedList ? 'active' : '')}>{inWatchedList ? 'This movie is in your watched list, click to remove it' : 'This movie is not in your watched list, click to add it'}</button>
+                        <button onClick={handleSetToWatch} type="button" className={'btn add-to-list-btn ' + (inToWatchList ? 'active' : '')}>{inToWatchList ? 'This movie is in your to-watch list, click to remove it' : 'This movie is not in your to-watch list, click to add it'}</button>
                     </div>
                 </div>
             </div>

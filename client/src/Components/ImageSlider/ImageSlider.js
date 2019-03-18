@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ImageGallery from 'react-image-gallery'
 import "react-image-gallery/styles/css/image-gallery.css"
 import Loader from "react-loader-spinner";
+import './ImageSlider.css'
 
 // stateless component
 class ImageSlider extends Component {
