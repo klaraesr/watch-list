@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from "react-router-dom"
 import { DropTarget } from "react-dnd";
 
 class Target extends Component {
@@ -12,9 +11,23 @@ class Target extends Component {
   render() {
       const {listType, isOver, canDrop, connectDropTarget, droppedItem } = this.props
       let dropState = ''
+      if(isOver) {
+        dropState = 'over'
+      } else if (canDrop) {
+        dropState = 'possible'
+      }
       return connectDropTarget(
               <div className={`col-sm-6 target ${dropState}`}>
-                <span className='dropTitle'>{listType === 'toWatch' ? 'Watch later' : 'Already watched'}</span>
+
+                <span className='dropTitle'>{listType === 'toWatch' ?
+                <div>
+                { droppedItem ?
+                  JSON.stringify(droppedItem) :
+                  'Watch later'
+                }
+                </div>
+                : 'Already watched'}</span>
+
               </div>
           )
   }

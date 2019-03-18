@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Navbar from "../../Components/Navbar/Navbar"
-import ReactDOM from "react-dom";
 import GridItem from "../../Components/SearchGrid/GridItem"
 import Target from "../../Components/SearchGrid/Target"
 import { DragDropContext } from "react-dnd";

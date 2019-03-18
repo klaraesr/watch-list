@@ -56,14 +56,15 @@ class LandingPage extends Component {
     }
 
     handleClick = (e) => {
-        console.log(e.target.title) // actually gets the id
+        const ID = e.target.title // actually the id, not the title
+        this.props.history.push('/moviedetails/' + ID)
     }
 
     render() {
         return (
             <div className="container appContainer">
                 {this.props.navbar}
-                <ImageSlider movies={this.state.newReleases} loading={this.state.loading}/>
+                <ImageSlider movies={this.state.newReleases} loading={this.state.loading} handleClick={this.handleClick}/>
                 <Gallery movies={this.state.recommended} loading={this.state.loading}/>
             </div>
         );

@@ -25,7 +25,7 @@
 
 .title {
     color: rgba(0, 0, 0, 0.99);
-    font-size: 15px;
+    font-size: 18px;
     padding: 5px 5px;
 }
 
@@ -65,7 +65,7 @@
     }
 
     .title {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .release {
@@ -76,12 +76,12 @@
 
 @media only screen and (min-width: 0px) and (max-width: 500px) {
     .grid-container {
-        grid-template-columns: auto auto;
+        grid-template-columns: auto;
     }
     .title {
-        font-size: 10px;
+        font-size: 23px;
     }
     .release {
-        font-size: 8px;
+        font-size: 12px;
     }
 }

@@ -12,7 +12,6 @@ class GridItem extends Component {
   // }
 
     render() {
-      {console.log('grid item')}
         const {title, image, release, id, connectDragSource} = this.props
         return connectDragSource(
             <div>
