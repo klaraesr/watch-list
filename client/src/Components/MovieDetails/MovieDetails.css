@@ -1,0 +1,27 @@
+#movie-details-row {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.poster {
+    width: 100%;
+}
+
+.right {
+    text-align: left;
+    padding-left: 0;
+}
+
+.movie-desc {
+    font-size: 13px;
+}
+
+#movie-info-container {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 575px) {
+    #movie-info-container {
+        padding-top: 20px;
+    }
+}
