@@ -10,6 +10,12 @@ class DinnerModel extends Component {
         return fetch(url).then(this.processResponse);
     }
 
+    getRecommendedMovies() {
+        const MOVIE = '399579' // get latest movie added to list from database
+        const url = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`;
+        return fetch(url).then(this.processResponse);
+    }
+
     processResponse(response) {
         if (response.ok) {
             return response.json();

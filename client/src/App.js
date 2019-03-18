@@ -19,6 +19,13 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        fetch('/api/test')
+            .then(res => res.json())
+            .then(data => {console.log(data)})
+            .catch(e => console.log(e))
+    }
+
     handleLogin = (userId) => {
         this.setState({ userId: userId })
     }
