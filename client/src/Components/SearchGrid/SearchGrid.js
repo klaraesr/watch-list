@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import GridItem from './GridItem'
+import './SearchGrid.css'
 
 class SearchGrid extends Component {
+
     render() {
         return (
-
-            <div id="searchRow" className='row'>
-              {this.props.movies.map(movie =>
-                <GridItem title={movie.title} image={movie.poster_path} description={movie.overview} id={movie.id}/>
-              )}
+            <div className='grid'>
+                {this.props.movies.map(movie =>
+                  <GridItem className='grid-movie-item' title={movie.title} image={movie.poster_path} release={movie.release_date} id={movie.id} key={movie.id}/>
+                )}
             </div>
         );
     }

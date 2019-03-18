@@ -18,7 +18,7 @@ class Navbar extends Component {
     }
 
     handleSubmitBtn = () => {
-       console.log("search submitted")
+       this.props.callback(this.state.searchValue)
     }
 
     logOut = () => {
@@ -56,7 +56,7 @@ class Navbar extends Component {
                         {
                           callback === null ?
                           <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={"/search/" + 'marvel'} id='btnLink'>Search</Link></button> :
-                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit"  onClick={this.handleSubmitBtn}  id="searchBtn">Search</button>
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.handleSubmitBtn} id="searchBtn">Search</button>
                         }
 
                     </form>
