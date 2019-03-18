@@ -29,6 +29,17 @@ class DinnerModel extends Component {
         }
         throw response;
     }
+
+    searchMoviesWithQueryString(keyword, pageNr) {
+      const QUERY = keyword
+      let PAGE = 1
+      if(pageNr !== null) {
+        PAGE = pageNr
+      }
+      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
+      console.log(url)
+      return fetch(url).then(this.processResponse)
+    }
 }
 
 // Export an instance of DinnerModel

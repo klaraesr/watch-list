@@ -11,7 +11,7 @@ class Navbar extends Component {
         }
     }
 
-    handleSearchValue(event) {
+    handleSearchValue = (event) => {
         this.setState({
             searchValue: event.target.value,
         })
@@ -31,6 +31,10 @@ class Navbar extends Component {
 
 
     render() {
+      let callback = null
+      if(this.props.callback !== undefined) {
+        callback = this.props.callback
+      }
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to={"/profile/" + '1'}>Profile</Link>
@@ -49,7 +53,12 @@ class Navbar extends Component {
                     </ul>
                     <form className="form-inline my-2 my-lg-0" onSubmit={this.handleForm}>
                         <input className="form-control mr-sm-2" type="search"  value={this.state.searchValue} onChange={this.handleSearchValue} placeholder="Search" aria-label="Search" id="searchField"/>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit"  onClick={this.handleSubmitBtn}  id="searchBtn">Search</button>
+                        {
+                          callback === null ?
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={"/search/" + 'marvel'} id='btnLink'>Search</Link></button> :
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit"  onClick={this.handleSubmitBtn}  id="searchBtn">Search</button>
+                        }
+
                     </form>
                 </div>
             </nav>
@@ -60,4 +69,3 @@ class Navbar extends Component {
 Navbar.propTypes = {};
 
 export default withRouter(Navbar)
-

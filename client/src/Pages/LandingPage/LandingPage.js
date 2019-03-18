@@ -8,7 +8,7 @@ const IMG_BASE_URL = 'http://image.tmdb.org/t/p/original/'
 class LandingPage extends Component {
     constructor(props) {
         super(props);
-
+        
         this.state = {
             bool: true,
             newReleases: [],

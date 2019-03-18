@@ -1,0 +1,42 @@
+.movie-preview {
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+#movie-img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.text-block {
+  display: none;
+}
+
+.text-block:hover {
+  display: block;
+}
+
+.movie-preview:hover .text-block {
+  display: block;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  bottom: 0px;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.movie-preview:hover #movie-title {
+  opacity: 1;
+}
+
+#movie-title {
+  color: white;
+  font-size: 18px;
+}
+
+Link {
+  color: white; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
