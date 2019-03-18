@@ -2,50 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="126144d1-f156-45a1-9486-94861d43bb83" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/rest.controller.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/server.js" />
-      <change beforePath="$PROJECT_DIR$/.env" afterPath="$PROJECT_DIR$/.env" />
       <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/data.sql" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AddToList/AddToList.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AddToList/AddToList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MovieDetails/MovieDetails.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MovieDetails/MovieDetails.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Navbar/Navbar.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Navbar/Navbar.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ProfileHeader/ProfileHeader.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ProfileHeader/ProfileHeader.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SearchGrid/SearchGrid.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/SearchGrid/SearchGrid.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/WatchList/WatchList.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Components/WatchList/WatchList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Model.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPage/LandingPage.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LandingPage/LandingPage.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LoginPage/LoginPage.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LoginPage/LoginPage.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/MovieDetailsPage/MovieDetailsPage.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/MovieDetailsPage/MovieDetailsPage.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProfilePage/ProfilePage.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ProfilePage/ProfilePage.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/SearchPage/SearchPage.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/SearchPage/SearchPage.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/serviceWorker.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -69,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+              <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -89,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            <state relative-caret-position="240">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -153,7 +111,6 @@
         <option value="$PROJECT_DIR$/src/Pages/ProfilePage/ProfilePage.js" />
         <option value="$PROJECT_DIR$/src/Components/WatchList/WatchList.js" />
         <option value="$PROJECT_DIR$/src/config.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/Model.js" />
         <option value="$PROJECT_DIR$/src/Pages/LandingPage/LandingPage.js" />
@@ -163,6 +120,7 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/client/package.json" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -286,12 +244,12 @@
       <option name="presentableId" value="Default" />
       <updated>1552564497690</updated>
       <workItem from="1552564500666" duration="22004000" />
-      <workItem from="1552896663543" duration="1408000" />
+      <workItem from="1552896663543" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23412000" />
+    <option name="totallyTimeSpent" value="23680000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -598,14 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -625,7 +575,15 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="62" lean-forward="true" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+          <caret line="15" column="62" lean-forward="false" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
