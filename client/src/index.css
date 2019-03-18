@@ -15,9 +15,19 @@ code {
 }
 
 .appContainer {
+  max-width: none;
   width: 60%;
   background-color: white;
   padding: 0;
+  min-height: 500px;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 99%;
 }
 
 @media only screen and (min-width: 1100px) and (max-width: 1280px) {
@@ -26,13 +36,19 @@ code {
   }
 }
 
-@media only screen and (min-width: 701px) and (max-width: 1099px) {
+@media only screen and (min-width: 801px) and (max-width: 1099px) {
   .appContainer {
-    width: 80%;
+    width: 85%;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (min-width: 577px) and (max-width: 800px) {
+  .appContainer {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
   .appContainer {
     width: 95%;
   }

@@ -42,9 +42,9 @@ class App extends Component {
                         <Switch>
                             <Route exact path='/' component={LoginPage} handleLogin={this.handleLogin}/>
                             <Route path='/profile/:id' render={({ location, match }) => <ProfilePage model={model} params={match.params} navbar={navbar}/>}/>
-                            <Route path='/moviedetails/:id' render={({ location, match }) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
                             <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
-                            <Route path='/landing' render={() => <LandingPage model={model} navbar={navbar}/>}/>
+                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history}/>}/>
 
                         </Switch>
                     </div>

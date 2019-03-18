@@ -3,6 +3,13 @@
     padding-bottom: 20px;
 }
 
+.add-to-list-btn {
+    width: 100%;
+    font-size: 13px;
+    border-radius: 0;
+    margin-bottom: 2px;
+}
+
 .poster {
     width: 100%;
 }
@@ -23,5 +30,21 @@
 @media only screen and (max-width: 575px) {
     #movie-info-container {
         padding-top: 20px;
+    }
+
+    .add-to-list-btn {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 700px) {
+    .add-to-list-btn {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 940px) {
+    .add-to-list-btn {
+        font-size: 10px;
     }
 }
