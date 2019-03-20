@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import MovieDetails from "../../Components/MovieDetails/MovieDetails";
 import Loader from "react-loader-spinner";
-const IMG_BASE_URL = 'http://image.tmdb.org/t/p/original/'
+const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
 class MovieDetailsPage extends Component {
@@ -43,7 +43,7 @@ class MovieDetailsPage extends Component {
                         runtime: data.runtime,
                         voteCount: data.vote_count,
                         voteAverage: data.vote_average,
-                        poster: IMG_BASE_URL + data.poster_path,
+                        poster: IMG_BASE_URL_LARGE + data.poster_path,
                         IMDBId: data.imdb_id
                     }
                 })

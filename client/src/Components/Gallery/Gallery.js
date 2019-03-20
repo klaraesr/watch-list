@@ -34,6 +34,4 @@ class Gallery extends Component {
     }
 }
 
-Gallery.propTypes = {};
-
 export default Gallery;

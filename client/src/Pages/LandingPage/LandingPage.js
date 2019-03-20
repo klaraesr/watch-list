@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import Gallery from './../../Components/Gallery/Gallery.js'
 import './LandingPage.css'
 import ImageSlider from "../../Components/ImageSlider/ImageSlider";
-const IMG_BASE_URL = 'http://image.tmdb.org/t/p/original/'
+const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w300/'
+const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
 // statefull component
 class LandingPage extends Component {
@@ -32,7 +33,7 @@ class LandingPage extends Component {
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
                         originalTitle: movie.id, // the id instead of title so that we can get the movie from the api if clicked
-                        original: IMG_BASE_URL + movie.backdrop_path, // image
+                        original: IMG_BASE_URL_LARGE + movie.backdrop_path, // image
                         description: movie.title + ', release date: ' + movie.release_date, // shown on picture
                     }))
                 })
@@ -46,7 +47,7 @@ class LandingPage extends Component {
                 const movies = data.results.slice(0,9)
                 this.setState({
                     recommended: movies.map(movie => ({
-                        src: IMG_BASE_URL + movie.backdrop_path,
+                        src: IMG_BASE_URL_SMALL + movie.backdrop_path,
                         title: movie.title,
                         id: movie.id,
                         release: movie.release_date
