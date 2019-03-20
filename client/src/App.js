@@ -9,6 +9,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom"
 import LandingPage from "./Pages/LandingPage/LandingPage"
 import Header from "./Components/Header/Header"
 import Navbar from "./Components/Navbar/Navbar"
+import MovieListPage from "./Pages/MovieListPage/MovieListPage";
 
 class App extends Component {
     constructor() {
@@ -41,10 +42,11 @@ class App extends Component {
                         <Header />
                         <Switch>
                             <Route exact path='/' component={LoginPage} handleLogin={this.handleLogin}/>
-                            <Route path='/profile/:id' render={({ location, match }) => <ProfilePage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/profile/:id' render={({ location, match, history }) => <ProfilePage model={model} params={match.params} navbar={navbar} history={history}/>}/>
                             <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
                             <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
                             <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history}/>}/>
+                            <Route path='/movielist/:id' render={({location, match}) => <MovieListPage model={model} navbar={navbar} params={match.params}/>}/>
 
                         </Switch>
                     </div>
