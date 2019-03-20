@@ -40,6 +40,11 @@ class DinnerModel extends Component {
       console.log(url)
       return fetch(url).then(this.processResponse)
     }
+
+    addMovieToList(movieId, list) {
+      // TODO:
+      console.log('addMovieToList (todo): ', movieId, list)
+    }
 }
 
 // Export an instance of DinnerModel
