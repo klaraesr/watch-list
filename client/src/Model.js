@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = process.env.REACT_APP_API_KEY
 

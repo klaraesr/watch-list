@@ -18,7 +18,7 @@ class Navbar extends Component {
     }
 
     handleSubmitBtn = () => {
-       console.log("search submitted")
+       this.props.callback(this.state.searchValue)
     }
 
     logOut = () => {
@@ -37,7 +37,7 @@ class Navbar extends Component {
       }
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to={"/profile/" + '1'}>Profile</Link>
+                <Link className="navbar-brand" to={"/profile/1"}>Profile</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>
@@ -55,8 +55,8 @@ class Navbar extends Component {
                         <input className="form-control mr-sm-2" type="search"  value={this.state.searchValue} onChange={this.handleSearchValue} placeholder="Search" aria-label="Search" id="searchField"/>
                         {
                           callback === null ?
-                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={"/search/" + 'marvel'} id='btnLink'>Search</Link></button> :
-                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit"  onClick={this.handleSubmitBtn}  id="searchBtn">Search</button>
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={'/search/marvel'} id='btnLink'>Search</Link></button> :
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.handleSubmitBtn} id="searchBtn">Search</button>
                         }
 
                     </form>
