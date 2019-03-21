@@ -45,7 +45,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/landing">Home</Link>
+                            <Link className="nav-link" to="/landing">Discover</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to='/' onClick={this.logOut}>Log out</Link>

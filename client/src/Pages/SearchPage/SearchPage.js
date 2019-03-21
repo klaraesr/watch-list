@@ -6,7 +6,6 @@ import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
 import './SearchPage.css'
 
-// Design change: Make two columns.. the user should be able to drag and drop the searched item that they want to add på their list
 class SearchPage extends Component {
   constructor(props) {
       super(props)

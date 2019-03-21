@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Gallery from './../../Components/Gallery/Gallery.js'
 import './LandingPage.css'
 import ImageSlider from "../../Components/ImageSlider/ImageSlider";
-const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w300/'
+const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
 // statefull component

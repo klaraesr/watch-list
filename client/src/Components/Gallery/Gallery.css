@@ -45,6 +45,7 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+    width: 200px;
 }
 
 #recommended-desc {
@@ -65,11 +66,15 @@
     }
 
     .title {
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .release {
-        font-size: 9px;
+        font-size: 8px;
+    }
+
+    .overlay {
+        width: 140px;
     }
 }
 
@@ -77,11 +82,16 @@
 @media only screen and (min-width: 0px) and (max-width: 500px) {
     .grid-container {
         grid-template-columns: auto;
+        justify-content: unset;
     }
     .title {
-        font-size: 23px;
+        font-size: 19px;
     }
     .release {
         font-size: 12px;
+    }
+
+    .overlay {
+        width: 200px;
     }
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ProfileHeader from "../../Components/ProfileHeader/ProfileHeader"
-import WatchList from "../../Components/LatestList/LatestList"
+import LatestAddedList from "../../Components/LatestAddedList/LatestAddedList"
 import Loader from "react-loader-spinner";
 
 
@@ -33,8 +33,8 @@ class ProfilePage extends Component {
                 {this.state.loading && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loading &&
                 <div>
-                    <WatchList movies={watchedMovies} toWatch={false} handleClick={this.handleClick}/>
-                    <WatchList movies={toWatchMovies} toWatch={true} handleClick={this.handleClick}/>
+                    <LatestAddedList movies={watchedMovies} toWatch={false} handleClick={this.handleClick}/>
+                    <LatestAddedList movies={toWatchMovies} toWatch={true} handleClick={this.handleClick}/>
                 </div>}
             </div>
 
