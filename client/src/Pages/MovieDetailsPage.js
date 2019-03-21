@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import MovieDetails from "../../Components/MovieDetails/MovieDetails";
+import MovieDetails from "../Components/MovieDetails/MovieDetails";
 import Loader from "react-loader-spinner";
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 

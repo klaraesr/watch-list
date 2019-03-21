@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import ProfileHeader from "../../Components/ProfileHeader/ProfileHeader"
-import LatestAddedList from "../../Components/LatestAddedList/LatestAddedList"
+import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
+import LatestAddedList from "../Components/LatestAddedList/LatestAddedList"
 import Loader from "react-loader-spinner";
 
 

@@ -8,7 +8,7 @@ class Gallery extends Component {
 
     render() {
         return (
-            <div >
+            <div>
                 <h4 className="titles">Recommended for you</h4>
                 <p id="recommended-desc">Movies recommended for you based upon your lists.</p>
                 {this.props.loading && <Loader type="Oval" color="#FF9A00" height="100" width="100"/>   }
