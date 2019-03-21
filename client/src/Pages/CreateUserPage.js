@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import CreateUser from "../../Components/CreateUser/CreateUser";
-import * as config from "../../config";
+import CreateUser from "../Components/CreateUser/CreateUser";
+import * as config from "../config";
 import Redirect from "react-router-dom/es/Redirect";
 
 class CreateUserPage extends Component {

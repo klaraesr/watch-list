@@ -19,9 +19,9 @@ class Login extends Component {
                         <input type="password" onChange={this.props.handlePasswordUpdate} className="form-control" id="passwordInput" placeholder="Enter Password" required/>
                     </div>
                     {this.props.wrongPassword && <p id='wrongPasswordId'>Could not log in, please check your email or password.</p>}
-                    <button type="submit" onClick={this.props.handleLogin} className="btn btn-primary">Submit</button>
+                    <button type="submit" onClick={this.props.handleLogin} className="btn watchlistBtn">Submit</button>
                 </form>
-                <Link to="/createUser"> <button type="submit"  className="btn btn-primary" id="signUpBtn"> Sign Up</button></Link>
+                <Link to="/createUser"> <button type="submit" className="btn watchlistBtn" id="signUpBtn"> Sign Up</button></Link>
             </div>
         );
     }

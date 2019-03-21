@@ -56,8 +56,13 @@ class Target extends Component {
                       { !droppedItem.list &&
                         <div>
                           { toWatch ?
-                            'Add to watch list' :
-                            'Already watched'
+                              <div className="drag-container">
+                                  Add to watch list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
+                              </div>
+                              :
+                              <div className="drag-container">
+                                  Add to watched list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
+                              </div>
                           }
                         </div>
                       }
