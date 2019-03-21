@@ -1,5 +1,14 @@
 # Watch list
 
+The pages you can go to directly are:
+
+/ (the login page, will not work due to database not integrated yet)
+
+/landing (the first page after login)
+
+Then you can click around to the different paths and explore the application! :) 
+
+
 ### Description:
 Watch List is an application for finding and saving movies, either to a watched list or to a want-to-watch list. The users can search for different movies and when they click on a movie they find information about it. For example, the IMDB-rating of the movie will be displayed, together with a description of the movie. The user can add, move and remove movies from their lists. The users can also get recommendations on movies based on their lists.
 
