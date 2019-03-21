@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import './LoginPage.css'
 import Login from "../../Components/Login/Login"
+import Redirect from "react-router-dom/es/Redirect";
+
 
 // statefull component
 class LoginPage extends Component {
@@ -10,30 +12,77 @@ class LoginPage extends Component {
         this.state = {
             wrongPassword: false,
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         }
+
+        this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
+        this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleForm = this.handleForm.bind(this);
     }
 
-    handleLogin = () => {
-        console.log("Submit")
+    validateUser(username, password){
+        fetch('/api/validateuser', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+            .then(res => res.json())
+            .then(body => {
+                if (body.user !== "Invalid") {
+                    this.setState({ redirect: true, wrongPassword: false });
+                } else {
+                    this.setState({wrongPassword:true});
+                }
+            })
+            .catch(err => console.log(err))
     }
 
-    handleEmailUpdate = (e) => {
-        console.log(e.target.value)
+
+    handleUsernameUpdate = (e) => {
+        this.setState({
+            username: e.target.value,
+        })
     }
 
     handlePasswordUpdate = (e) => {
-        console.log(e.target.value)
+        this.setState({
+            password: e.target.value,
+        })
+    }
+
+    handleLogin() {
+        if(this.state.username === '' || this.state.password === ''){
+            this.setState({wrongPassword:true});
+
+        } else{
+            this.validateUser(this.state.username, this.state.password)
+        }
+    }
+
+    handleForm(e){
+        e.preventDefault();
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to='/landing'/>
+        }
         return (
             <div>
                 <Login
                     handlePasswordUpdate={this.handlePasswordUpdate}
-                    handleEmailUpdate={this.handleEmailUpdate}
+                    handleUsernameUpdate={this.handleUsernameUpdate}
+                    handleForm = {this.handleForm}
                     handleLogin={this.handleLogin}
-                    email={this.state.email}
+                    username={this.state.username}
                     wrongPassword={this.state.wrongPassword}/>
             </div>
         );

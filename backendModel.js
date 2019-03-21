@@ -2,6 +2,17 @@ const seq = require("./sequelize.js")
 const {User, ToWatchList, WatchedList, Movie, sequelize} = seq()
 
 
+exports.createUser = (username, password, image, deletehash) => {
+    return User.create({
+        username: username,
+        password: password,
+        image: image,
+        deletehash: deletehash
+    }).then(data => {
+        return data
+    }).catch(e => console.log(e))
+}
+
 exports.getAllUsers = () => {
     return User.findAll()
         .then(data => {
@@ -17,6 +28,20 @@ exports.getUser = (userID) => {
         })
         .catch(error => {console.log(error)})
 }
+
+exports.validateUser = (users, username, password) => {
+    var userToReturn;
+    users.forEach(function (user) {
+        if (user.dataValues.username === username && user.dataValues.password === password) {
+            userToReturn = user;
+        }
+    })
+    if(userToReturn === undefined){
+        return null;
+    }
+    else return userToReturn;
+}
+
 
 exports.getToWatchList = (userId) => { //Returnerar en användares to-watch-list baserat på användarens id
     return ToWatchList.findAll({
@@ -36,7 +61,10 @@ exports.getWatchedList = (userId) => { //Returnerar en användares watched-list 
         .error(e => console.log(e))
 }
 
+// skulle det gå att ta in userId här istället, och  möjligtvis en sträng/bool
+// som indikerar vilken lista det är? (istället för olika metoder)
 exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
+  console.log('adding ', movieName, ' to watch')
     return Movie.create({
         id: movieId,
         name: movieName,
@@ -112,4 +140,3 @@ exports.getMoviesFromWatchedList = (id) => {
         })
         .catch(error => {console.log(error)})
 }
-
