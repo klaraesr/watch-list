@@ -10,6 +10,8 @@ import LandingPage from "./Pages/LandingPage/LandingPage"
 import Header from "./Components/Header/Header"
 import Navbar from "./Components/Navbar/Navbar"
 import MovieListPage from "./Pages/MovieListPage/MovieListPage";
+import CreateUserPage from "./Pages/CreateUserPage/CreateUserPage";
+
 
 class App extends Component {
     constructor() {
@@ -47,7 +49,7 @@ class App extends Component {
                             <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
                             <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history}/>}/>
                             <Route path='/movielist/:id' render={({location, match}) => <MovieListPage model={model} navbar={navbar} params={match.params}/>}/>
-
+                            <Route path='/createuser' render={() => <CreateUserPage />}/>
                         </Switch>
                     </div>
                 </BrowserRouter>
