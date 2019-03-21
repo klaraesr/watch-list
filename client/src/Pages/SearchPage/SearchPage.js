@@ -35,13 +35,13 @@ class SearchPage extends Component {
 
   loadMovies = async (queryString, pg) => {
     let data = await this.searchAPIcall(queryString, pg)
-    this.setState(prevState => ({
+    this.setState({
       movies: data.results,
       numberOfResults: data.total_results,
       currentPage: data.page,
       numberOfPages: data.total_pages,
       currentQuery: queryString
-    }))
+    })
   }
 
   searchCallback = (queryString) => {
@@ -69,12 +69,17 @@ class SearchPage extends Component {
   Currently loads new movies each time, even if they have been loaded before...
   Optimally saves movies loaded previously
   **/
-  loadNextPage = () => {
+  loadNextPage = async() => {
     let alreadyLoadedMovies = this.state.movies
     let query = this.state.currentQuery
     let page = this.state.currentPage + 1
 
-    //this.loadMovies(query, page)
+    let data = await this.searchAPIcall(query, page)
+
+    this.setState({
+      movies: [alreadyLoadedMovies, data.results],
+      currentPage: data.page
+    })
   }
 
     render() {
