@@ -3,10 +3,6 @@
     height: 220px;
 }
 
-.image-gallery-slide .image-gallery-description {
-    bottom: unset !important;
-}
-
 .view-all {
     padding: 10px;
     font-size: 13px;
@@ -21,24 +17,4 @@
 
 .view-all:hover {
     background: #c78100;
-}
-
-.image-gallery {
-    height: 100%;
-}
-
-.image-gallery-content {
-    height: 100%;
-}
-
-.image-gallery-slide-wrapper {
-    height: 100%;
-}
-
-.image-gallery-swipe {
-    height: 100%;
-}
-
-.image-gallery-slides {
-    height: 100%;
 }

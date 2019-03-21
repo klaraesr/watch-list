@@ -21,8 +21,23 @@ code {
   padding: 0;
   min-height: 500px;
   position: relative;
-  padding-bottom: 20px;
   margin-bottom: 20px;
+}
+
+.watchlistBtn {
+  color: orange;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid orange;
+}
+
+.watchlistBtn:hover {
+  background-color: orange;
+  color: white;
+}
+
+a {
+  color: orange;
 }
 
 a:hover {
@@ -36,19 +51,56 @@ a:hover {
   width: 99%;
 }
 
+/* Setting for the Image Gallery  */
+.image-gallery-slide .image-gallery-description {
+  bottom: 10px !important;
+  font-size: 25px;
+  background-color: rgba(66, 66, 66, .8);
+  width: 100%;
+}
+
+.image-gallery {
+  height: 100%;
+}
+
+.image-gallery-image {
+  height: 100%;
+}
+
+.image-gallery-slide {
+  height: 100% !important;
+}
+
+.image-gallery-content {
+  height: 100%;
+}
+
+.image-gallery-slide-wrapper {
+  height: 100%;
+}
+
+.image-gallery-swipe {
+  height: 100%;
+}
+
+.image-gallery-slides {
+  height: 100%;
+}
+
+
 @media only screen and (min-width: 1100px) and (max-width: 1280px) {
   .appContainer {
     width: 75%;
   }
 }
 
-@media only screen and (min-width: 801px) and (max-width: 1099px) {
+@media only screen and (min-width: 810px) and (max-width: 1099px) {
   .appContainer {
     width: 85%;
   }
 }
 
-@media only screen and (min-width: 577px) and (max-width: 800px) {
+@media only screen and (min-width: 577px) and (max-width: 810px) {
   .appContainer {
     width: 95%;
   }
