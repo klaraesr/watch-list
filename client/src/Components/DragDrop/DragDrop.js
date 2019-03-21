@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Target from "../Target/Target";
+import './DragDrop.css'
 
 class DragDrop extends Component {
     render() {
