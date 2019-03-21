@@ -96,7 +96,7 @@ class SearchPage extends Component {
                   <Target droppedItem={watched} onDrop={this.onDrop} toWatch={false}/>
                 </div>
                 { movies ?
-                  <div className='grid'>
+                  <div>
                       {movies.map(movie =>
                         <GridItem className='grid-movie-item' key={movie.id} id={movie.id} title={movie.title} image={movie.poster_path} release={movie.release_date} summary={movie.overview}/>
                       )}
