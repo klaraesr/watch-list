@@ -56,7 +56,6 @@ class CreateUserPage extends Component {
                 if(data.success === true) {
                     this.setState({redirect: true, loading: false, error: false})
                 } else {
-                    console.log("GOT HERE")
                     this.setState({loading: false, error: true})
                 }
             })
