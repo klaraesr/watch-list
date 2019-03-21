@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Navbar from "../../Components/Navbar/Navbar"
-import GridItem from "../../Components/GridItem/GridItem"
+import SearchGrid from "../../Components/SearchGrid/SearchGrid"
 import Target from "../../Components/Target/Target"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
@@ -100,11 +100,7 @@ class SearchPage extends Component {
                   <Target droppedItem={watched} onDrop={this.onDrop} toWatch={false}/>
                 </div>
                 { movies ?
-                  <div>
-                      {movies.map(movie =>
-                        <GridItem className='grid-movie-item' key={movie.id} id={movie.id} title={movie.title} image={movie.poster_path} release={movie.release_date} summary={movie.overview}/>
-                      )}
-                  </div> :
+                  <SearchGrid movies={movies}/> :
                   'loading'
                 }
                 <div className='nextPrev'>
