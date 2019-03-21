@@ -29,7 +29,15 @@ module.exports = () => {
         },
         password: {
             type: Sequelize.STRING,
-        }}, {
+        },
+        image: {
+            type: Sequelize.STRING
+        },
+        deletehash: {
+            type: Sequelize.STRING
+        }},
+
+        {
         timestamps: false,
         underscored: true,
         freezeTableName: true,
