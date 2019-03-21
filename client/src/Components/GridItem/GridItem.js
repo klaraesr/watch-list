@@ -31,9 +31,9 @@ class GridItem extends Component {
                             </div>
                         }
                           <div className="hover-overlay">
-                              <div className='movie-title'>{title}</div>
-                              <div className='release-date'>{release.split('-', 1)}</div>
-                              <div className='movie-summary'>{summary}</div>
+                            <div className='movie-title'>{title}</div>
+                            <div className='release-date'>{release.split('-', 1)}</div>
+                            <div className='movie-summary'>{summary}</div>
                           </div>
                         </div>
                       </Link>

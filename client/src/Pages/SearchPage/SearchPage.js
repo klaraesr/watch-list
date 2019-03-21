@@ -76,9 +76,10 @@ class SearchPage extends Component {
     let data = await this.searchAPIcall(query, page)
 
     this.setState({
-      movies: [alreadyLoadedMovies, data.results],
+      movies: alreadyLoadedMovies.concat(data.results),
       currentPage: data.page
     })
+    console.log("movies: ", this.state.movies)
   }
 
     render() {
@@ -105,7 +106,7 @@ class SearchPage extends Component {
                 }
                 <div className='nextPrev'>
                 { currentPage < numberOfPages &&
-                  <button className="btn watchlistBtn my-2 my-sm-0" type="submit" onClick={this.loadNextPage} id="searchBtn">Load more</button>
+                  <button className="btn watchlistBtn" type="submit" onClick={this.loadNextPage} id="searchBtn">Load more</button>
                 }
                 </div>
             </div>
