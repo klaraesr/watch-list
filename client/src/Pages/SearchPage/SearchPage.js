@@ -24,19 +24,8 @@ class SearchPage extends Component {
     this.loadMovies(this.props.params.value)
   }
 
-<<<<<<< HEAD
-  loadMovies = (queryString, pg) => {
-    if(queryString !== this.state.currentQuery) {
-      this.setState({
-        movies: [],
-        currentPage: 0
-      })
-    }
-    this.props.model.searchMoviesWithQueryString(queryString, pg)
-=======
   searchAPIcall = (queryString, pg) => {
     return this.props.model.searchMoviesWithQueryString(queryString, pg)
->>>>>>> 2af82dc934638047d5199d816cb2f73bfa74639e
       .then(data => {
         return data
       })
