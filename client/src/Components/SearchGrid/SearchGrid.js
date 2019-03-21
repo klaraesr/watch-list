@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import GridItem from './GridItem'
+import GridItem from '../GridItem'
 import './SearchGrid.css'
 
 class SearchGrid extends Component {
