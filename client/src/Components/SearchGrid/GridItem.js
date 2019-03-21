@@ -49,7 +49,7 @@ class GridItem extends Component {
 
 const cardSource = {
   beginDrag(props, monitor, component) {
-    const item = { id: props.id, title: props.title }
+    const item = { id: props.id, title: props.title, image: props.image }
     return item
   }
 }

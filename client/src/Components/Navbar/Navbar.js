@@ -55,7 +55,7 @@ class Navbar extends Component {
                         <input className="form-control mr-sm-2" type="search"  value={this.state.searchValue} onChange={this.handleSearchValue} placeholder="Search" aria-label="Search" id="searchField"/>
                         {
                           callback === null ?
-                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={'/search/marvel'} id='btnLink'>Search</Link></button> :
+                          <button className="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchBtnLink"><Link to={'/search/' + this.state.searchValue} id='btnLink'>Search</Link></button> :
                           <button className="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={this.handleSubmitBtn} id="searchBtn">Search</button>
                         }
 

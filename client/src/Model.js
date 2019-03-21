@@ -33,7 +33,7 @@ class DinnerModel extends Component {
     searchMoviesWithQueryString(keyword, pageNr) {
       const QUERY = keyword
       let PAGE = 1
-      if(pageNr !== null) {
+      if(pageNr !== undefined) {
         PAGE = pageNr
       }
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
