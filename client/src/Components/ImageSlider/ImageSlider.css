@@ -7,3 +7,13 @@
 .image-gallery-slides {
     cursor: pointer;
 }
+
+#gallery-div {
+    height: 300px;
+}
+
+@media only screen and (max-width: 576px) {
+    #gallery-div {
+        height: 250px;
+    }
+}

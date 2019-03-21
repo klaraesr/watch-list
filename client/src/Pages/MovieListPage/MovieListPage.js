@@ -23,6 +23,26 @@ const watchedList = [
         id: 3,
         name: 'Avengers2',
         image: 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all'
+    },
+    {
+        id: 2,
+        name: 'Avengers',
+        image: 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all'
+    },
+    {
+        id: 3,
+        name: 'Avengers2',
+        image: 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all'
+    },
+    {
+        id: 2,
+        name: 'Avengers',
+        image: 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all'
+    },
+    {
+        id: 3,
+        name: 'Avengers2',
+        image: 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all'
     }
 ]
 
