@@ -69,11 +69,7 @@ class LoginPage extends Component {
         })
     }
 
-<<<<<<< HEAD
-    handleLogin = () => {
-=======
     handleSubmitBtn() {
->>>>>>> 81499e36d83cb4c964e190170968983f704b999e
         if(this.state.username === '' || this.state.password === ''){
             this.setState({wrongPassword:true});
 

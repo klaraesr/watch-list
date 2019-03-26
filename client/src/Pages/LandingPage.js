@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/Gallery/Gallery.js'
-import ImageSlider from "../Components/ImageSlider/ImageSlider";
+import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
+import ImageSlider from "../Components/LandingSlider/LandingSlider";
 import {Redirect} from "react-router-dom";
-
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
