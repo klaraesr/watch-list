@@ -1,24 +1,13 @@
-<<<<<<< HEAD
 const express = require('express')
 const model = require('./backendModel.js')
 const router = express.Router()
-=======
-const model = require("./backendModel.js");
-const express = require('express');
-const router = express.Router();
->>>>>>> 81499e36d83cb4c964e190170968983f704b999e
 
 router.get('/test', async function (req, res){
    //var users = await model.addMovieToWatchList(1, 1, 'Hitta nemo', 'http://www.clker.com/cliparts/e/d/7/b/13426765571224390078nemo-md.png');
-<<<<<<< HEAD
     var watchList = await model.getToWatchList(1);
     var watchListId = watchList[0].dataValues.id;
     var movies = await model.getAllMoviesFromToWatchList(watchList[0].dataValues.id);
     //var movie = await model.getLatestMovie(1);
-=======
-    var watchList = await model.getToWatchList(1)
-    var movies = await model.getAllMoviesFromToWatchList(watchList[0].dataValues.id)
->>>>>>> 96904d77b4f0136231c874ec80aa195a9b2bc2df
     res.json({
         res: movies
     })
