@@ -30,11 +30,11 @@ class CreateUser extends Component {
                             </div>
                             <button onClick={this.props.handleSubmitBtn}
                                     disabled={username === '' || password === '' || selectedFile === null} //The user need to have a username, password and a profile pic to submit
-                                    type="submit" className="btn btn-primary">Submit
+                                    type="submit" className="btn watchlistBtn">Submit
                             </button>
                         </form>
                         <Link to="/">
-                            <button type="submit" className="btn btn-primary" id="signUpBtn"> Back to login</button>
+                            <button type="submit" className="btn watchlistBtn" id="signUpBtn"> Back to login</button>
                         </Link>
                     </div>
                     }

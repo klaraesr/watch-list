@@ -1,25 +1,37 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
-import ImageSlider from "../Components/LandingSlider/LandingSlider";
+import Gallery from '../Components/Gallery/Gallery.js'
+import ImageSlider from "../Components/ImageSlider/ImageSlider";
+import {Redirect} from "react-router-dom";
+
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
+
 
 // statefull component
 class LandingPage extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             bool: true,
             newReleases: [],
             loading: true,
-            recommended: []
+            recommended: [],
+            mounted: false
         }
     }
 
     componentDidMount() {
         this.getNewMovies()
         this.getRecommendedMovies()
+
+        fetch('/api/getCurrentUser')
+            .then(res => res.json())
+            .then(data => {
+                this.props.handleLogin(data.userId) // either userId or ''
+                this.setState({mounted:true})
+            })
+            .catch(error => console.log(error))
     }
 
     // fills this.state.newReleases with 5 new movies
@@ -62,6 +74,9 @@ class LandingPage extends Component {
     }
 
     render() {
+        if (this.props.userId === '' && this.state.mounted) {
+            return <Redirect to='/'/>
+        }
         return (
             <div className="container appContainer">
                 {this.props.navbar}

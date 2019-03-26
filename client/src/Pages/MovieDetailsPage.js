@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import MovieDetails from "../Components/MovieDetails/MovieDetails";
 import Loader from "react-loader-spinner";
+import {Redirect} from "react-router-dom";
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
@@ -52,6 +53,9 @@ class MovieDetailsPage extends Component {
     }
 
     render() {
+        if (this.props.userId === '') {
+            return <Redirect to='/'/>
+        }
         return (
             <div className="container appContainer">
                 {this.props.navbar}
