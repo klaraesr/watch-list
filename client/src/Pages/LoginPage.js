@@ -57,7 +57,7 @@ class LoginPage extends Component {
         })
     }
 
-    handleLogin() {
+    handleLogin = () => {
         if(this.state.username === '' || this.state.password === ''){
             this.setState({wrongPassword:true});
 
@@ -66,7 +66,7 @@ class LoginPage extends Component {
         }
     }
 
-    handleForm(e){
+    handleForm = (e) => {
         e.preventDefault();
     }
 

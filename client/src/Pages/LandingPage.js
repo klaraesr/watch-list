@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/Gallery/Gallery.js'
-import ImageSlider from "../Components/ImageSlider/ImageSlider";
+import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
+import ImageSlider from "../Components/LandingSlider/LandingSlider";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
@@ -31,9 +31,10 @@ class LandingPage extends Component {
                     loading: false,
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
-                        originalTitle: movie.id, // the id instead of title so that we can get the movie from the api if clicked
+                        originalTitle: movie.title, // the id instead of title so that we can get the movie from the api if clicked
                         original: IMG_BASE_URL_LARGE + movie.backdrop_path, // image
                         description: movie.title + ', release date: ' + movie.release_date, // shown on picture
+                        originalAlt: movie.id
                     }))
                 })
             })
@@ -56,7 +57,7 @@ class LandingPage extends Component {
     }
 
     handleClick = (e) => {
-        const ID = e.target.title // actually the id, not the title
+        const ID = e.target.alt // actually the id, not the alt, movieDB works weird
         this.props.history.push('/moviedetails/' + ID)
     }
 
