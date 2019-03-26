@@ -1,4 +1,10 @@
-#logo {
-    margin-top: 50px;
-    color: white;
+#logoimg {
+    width: 250px;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 576px) {
+    #logoimg {
+        margin-top: 50px;
+    }
 }

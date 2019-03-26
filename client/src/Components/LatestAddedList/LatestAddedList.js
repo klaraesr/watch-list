@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './LatestList.css'
+import './LatestAddedList.css'
 import ImageGallery from "react-image-gallery";
 import {Link} from "react-router-dom";
 

@@ -10,7 +10,7 @@ const spec = {
   drop(props, monitor, component) {
     // Obtain the dragged item
     const item = monitor.getItem()
-    item.list = props.listType
+    item.toWatch = props.toWatch
     // do onDrop from DragDropContext (SearchPage)
     props.onDrop(item)
   }
@@ -34,7 +34,7 @@ function collect(connect, monitor) {
 class Target extends Component {
 
   render() {
-      const {listType, isOver, canDrop, connectDropTarget, droppedItem } = this.props
+      const {toWatch, isOver, canDrop, connectDropTarget, droppedItem } = this.props
       let dropState = ''
       if(isOver) {
         dropState = 'over'
@@ -55,9 +55,14 @@ class Target extends Component {
                       }
                       { !droppedItem.list &&
                         <div>
-                          { listType === 'toWatch' ?
-                            'Add to watch list' :
-                            'Already watched'
+                          { toWatch ?
+                              <div className="drag-container">
+                                  Add to watch list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
+                              </div>
+                              :
+                              <div className="drag-container">
+                                  Add to watched list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
+                              </div>
                           }
                         </div>
                       }

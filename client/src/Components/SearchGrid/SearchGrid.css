@@ -1,1 +1,19 @@
+#search-grid {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(4, 1fr);
+}
 
+@media only screen and (min-width: 500px) and (max-width: 1000px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 500px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}

@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import model from "./Model"
 import './App.css'
-import LoginPage from "./Pages/LoginPage/LoginPage"
-import ProfilePage from "./Pages/ProfilePage/ProfilePage"
-import MovieDetailsPage from "./Pages/MovieDetailsPage/MovieDetailsPage"
-import SearchPage from "./Pages/SearchPage/SearchPage"
+import LoginPage from "./Pages/LoginPage"
+import ProfilePage from "./Pages/ProfilePage"
+import MovieDetailsPage from "./Pages/MovieDetailsPage"
+import SearchPage from "./Pages/SearchPage"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import LandingPage from "./Pages/LandingPage/LandingPage"
+import LandingPage from "./Pages/LandingPage"
 import Header from "./Components/Header/Header"
 import Navbar from "./Components/Navbar/Navbar"
-import MovieListPage from "./Pages/MovieListPage/MovieListPage";
-import CreateUserPage from "./Pages/CreateUserPage/CreateUserPage";
+import MovieListPage from "./Pages/MovieListPage";
+import CreateUserPage from "./Pages/CreateUserPage";
 
 
 class App extends Component {

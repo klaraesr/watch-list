@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import './LoginPage.css'
-import Login from "../../Components/Login/Login"
+import Login from "../Components/Login/Login"
 import Redirect from "react-router-dom/es/Redirect";
 
 

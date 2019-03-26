@@ -12,8 +12,9 @@ class ImageSlider extends Component {
                 <h4 className="titles">Newest releases</h4>
                 {this.props.loading && <Loader type="Oval" color="#FF9A00" height="100" width="100"/>}
                 {!this.props.loading &&
+                <div id="gallery-div">
                 <ImageGallery items={this.props.movies} showThumbnails={false} showFullscreenButton={false}
-                              autoPlay={true} showPlayButton={false} onClick={this.props.handleClick} showNav={false}/>
+                              autoPlay={true} showPlayButton={false} onClick={this.props.handleClick} showNav={false}/></div>
                 }
             </div>
         );

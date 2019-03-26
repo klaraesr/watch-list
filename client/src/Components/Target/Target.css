@@ -1,0 +1,23 @@
+.target {
+  height: 100px;
+  background-color: white;
+  border: 2px dashed #c0c0c0;
+}
+.droppable {
+  border-style: dashed;
+}
+
+.over {
+  background-color: #c0c0c0;
+}
+
+.drag-drop-img {
+  width: 10%;
+  margin-left: 5px;
+}
+
+.drag-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}

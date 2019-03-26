@@ -21,7 +21,7 @@ class Login extends Component {
                     {this.props.wrongPassword && <p id='wrongPasswordId'>Could not log in, please check your email or password.</p>}
                     <button type="submit" onClick={this.props.handleSubmitBtn} className="btn btn-primary">Submit</button>
                 </form>
-                <Link to="/createUser"> <button type="submit"  className="btn btn-primary" id="signUpBtn"> Sign Up</button></Link>
+                <Link to="/createUser"> <button type="submit" className="btn watchlistBtn" id="signUpBtn"> Sign Up</button></Link>
             </div>
         );
     }

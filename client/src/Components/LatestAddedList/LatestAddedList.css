@@ -1,0 +1,20 @@
+.custom-gallery {
+    margin-top: 10px;
+    height: 220px;
+}
+
+.view-all {
+    padding: 10px;
+    font-size: 13px;
+    color: black;
+    background: #ff9a00;
+}
+
+.no-movies {
+    text-align: left;
+    padding: 20px;
+}
+
+.view-all:hover {
+    background: #c78100;
+}

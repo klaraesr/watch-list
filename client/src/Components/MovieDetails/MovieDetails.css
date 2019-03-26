@@ -3,25 +3,10 @@
     padding-bottom: 20px;
 }
 
-.add-to-list-btn {
+.add-btn {
     width: 100%;
     font-size: 13px;
-    border-radius: 0;
-    margin-bottom: 2px;
-    background-color: orange;
-    color: black;
-}
-
-.add-to-list-btn.active {
-    background-color: #c78100;
-}
-
-.add-to-list-btn.active:hover {
-    background-color: orange;
-}
-
-.add-to-list-btn:hover {
-    background-color: #c78100;
+    margin-top: 5px;
 }
 
 .poster {
