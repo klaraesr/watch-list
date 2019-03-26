@@ -49,9 +49,9 @@ class App extends Component {
                         <Switch>
                             <Route exact path='/' render={(props) => <LoginPage handleLogin={this.handleLogin}/>}/>
                             <Route path='/profile/:id' render={({ location, match, history }) => <ProfilePage model={model} params={match.params} navbar={navbar} history={history} userId={this.state.userId}/>}/>
-                            <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
+                            <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar} userId={this.state.userId}/>}/>
                             <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
-                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history} handleLogin={this.handleLogin}/>}/>
+                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history} handleLogin={this.handleLogin} userId={this.state.userId}/>}/>
                             <Route path='/movielist/:id' render={({location, match}) => <MovieListPage model={model} navbar={navbar} params={match.params}/>}/>
                             <Route path='/createuser' render={() => <CreateUserPage />}/>
                         </Switch>

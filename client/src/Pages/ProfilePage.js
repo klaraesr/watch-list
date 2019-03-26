@@ -3,7 +3,6 @@ import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
 import LatestAddedList from "../Components/LatestAddedList/LatestAddedList"
 import Loader from "react-loader-spinner";
 
-
 class ProfilePage extends Component {
     constructor(props) {
         super(props);
@@ -64,7 +63,6 @@ class ProfilePage extends Component {
         );
     }
 }
-
 
 // Mock data instead of database
 

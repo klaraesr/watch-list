@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import Gallery from '../Components/Gallery/Gallery.js'
 import ImageSlider from "../Components/ImageSlider/ImageSlider";
+import {Redirect} from "react-router-dom";
+
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
+
 
 // statefull component
 class LandingPage extends Component {
@@ -13,7 +16,8 @@ class LandingPage extends Component {
             bool: true,
             newReleases: [],
             loading: true,
-            recommended: []
+            recommended: [],
+            mounted: false
         }
     }
 
@@ -25,6 +29,7 @@ class LandingPage extends Component {
             .then(res => res.json())
             .then(data => {
                 this.props.handleLogin(data.userId) // either userId or ''
+                this.setState({mounted:true})
             })
             .catch(error => console.log(error))
     }
@@ -68,6 +73,9 @@ class LandingPage extends Component {
     }
 
     render() {
+        if (this.props.userId === '' && this.state.mounted) {
+            return <Redirect to='/'/>
+        }
         return (
             <div className="container appContainer">
                 {this.props.navbar}
