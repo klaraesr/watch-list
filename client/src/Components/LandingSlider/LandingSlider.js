@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import './LandingSlider.css'
 
 // stateless component
-class ImageSlider extends Component {
+class LandingSlider extends Component {
     render() {
         return (
             <div>
@@ -21,6 +21,4 @@ class ImageSlider extends Component {
     }
 }
 
-ImageSlider.propTypes = {};
-
-export default ImageSlider;
+export default LandingSlider;
