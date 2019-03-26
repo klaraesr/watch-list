@@ -11,12 +11,36 @@ class ProfilePage extends Component {
         this.state = {
             loading: false, // set to true from beginning when database is connected
             toWatchMovies: null,
-            watchedMovies: null
+            watchedMovies: null,
+            userId: this.props.userId,
+            username: '',
+            userImg: ''
         }
     }
 
     componentDidMount() {
+        fetch('/api/getUser/' + this.state.userId)
+            .then(res => res.json())
+            .then(data => {
+                if(data.userInfo !== 'Not logged in'){
+                    this.setState({username: data.username, userImg: data.userImg})
+                }
+            })
+            .catch(error => console.log(error))
         // get toWatchMovies, watchedMovies, profile name, and size of lists from database and set loading to false
+    }
+
+    componentWillReceiveProps(nextProps) {
+        fetch('/api/getUser/' + nextProps.userId)
+            .then(res => res.json())
+            .then(data => {
+                if(data.userInfo !== 'Not logged in'){
+                    this.setState({username: data.username, userImg: data.userImg})
+                }
+            })
+            .catch(error => console.log(error))
+
+        this.setState({userId:nextProps.userId})
     }
 
     handleClick = (e) => {
@@ -28,7 +52,7 @@ class ProfilePage extends Component {
         return (
             <div className="container appContainer">
                 {this.props.navbar}
-                <ProfileHeader userName={name} toWatch={toWatch} watched={watched}/>
+                <ProfileHeader userName={this.state.username} img={this.state.userImg} toWatch={toWatch} watched={watched}/>
 
                 {this.state.loading && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loading &&
@@ -45,7 +69,6 @@ class ProfilePage extends Component {
 
 // Mock data instead of database
 
-const name = 'Christina'
 const toWatch = 7
 const watched = 5
 
