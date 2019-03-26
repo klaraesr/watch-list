@@ -57,7 +57,6 @@ class LoginPage extends Component {
             .catch(err => console.log(err))
     }
 
-
     handleUsernameUpdate = (e) => {
         this.setState({
             username: e.target.value,
