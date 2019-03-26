@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './Gallery.css'
+import './RecommendedGallery.css'
 import {Link} from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 // stateless component
-class Gallery extends Component {
+class RecommendedGallery extends Component {
 
     render() {
         return (
@@ -34,4 +34,4 @@ class Gallery extends Component {
     }
 }
 
-export default Gallery;
+export default RecommendedGallery;

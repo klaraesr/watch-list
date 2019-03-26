@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Navbar from "../Components/Navbar/Navbar"
 import SearchGrid from "../Components/SearchGrid/SearchGrid"
+import Target from "../Components/Target/Target"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
 import DragDrop from "../Components/DragDrop/DragDrop";
@@ -95,7 +96,7 @@ class SearchPage extends Component {
         return (
             <div className="container appContainer">
                 <Navbar callback={this.searchCallback}/>
-                <DragDrop watch={watch} watched={watched} onDrop={this.onDrop}/>
+                <DragDrop watch={watch} watched={watched}/>
                 { movies ?
                   <SearchGrid movies={movies}/> :
                   'loading'

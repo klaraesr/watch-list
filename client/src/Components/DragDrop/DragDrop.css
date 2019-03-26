@@ -8,3 +8,9 @@
     top: 0;
     z-index: 2;
 }
+
+@media only screen and (max-width: 500px) {
+    .dropRow {
+        display: none;
+    }
+}
