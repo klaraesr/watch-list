@@ -18,8 +18,21 @@ class LoginPage extends Component {
 
         this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
         this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
+        this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
         this.handleForm = this.handleForm.bind(this);
+    }
+
+    componentDidMount() {
+        fetch('/api/getCurrentUser')
+            .then(res => res.json())
+            .then(data => {
+                if(data.userId !== ''){ // if logged in, redirect user to feed
+                    console.log(data.userId)
+                    this.props.handleLogin(data.userId)
+                    this.setState({ redirect:true })
+                }
+            })
+            .catch(error => console.log(error))
     }
 
     validateUser(username, password){
@@ -58,7 +71,7 @@ class LoginPage extends Component {
         })
     }
 
-    handleLogin() {
+    handleSubmitBtn() {
         if(this.state.username === '' || this.state.password === ''){
             this.setState({wrongPassword:true});
 
@@ -81,7 +94,7 @@ class LoginPage extends Component {
                     handlePasswordUpdate={this.handlePasswordUpdate}
                     handleUsernameUpdate={this.handleUsernameUpdate}
                     handleForm = {this.handleForm}
-                    handleLogin={this.handleLogin}
+                    handleSubmitBtn={this.handleSubmitBtn}
                     username={this.state.username}
                     wrongPassword={this.state.wrongPassword}/>
             </div>

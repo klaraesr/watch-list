@@ -18,7 +18,7 @@ class App extends Component {
         super()
 
         this.state = {
-            userId: null
+            userId: ''
         }
     }
 
@@ -30,12 +30,16 @@ class App extends Component {
     }
 
     handleLogin = (userId) => {
-        this.setState({ userId: userId })
+        this.setState({userId:userId})
+    }
+
+    handleLogout = () => {
+        this.setState({userId: ''})
     }
 
     render() {
 
-        const navbar = <Navbar/>
+        const navbar = <Navbar userId={this.state.userId} handleLogout={this.handleLogout}/>
 
         return (
             <div className="App">
@@ -43,11 +47,11 @@ class App extends Component {
                     <div>
                         <Header />
                         <Switch>
-                            <Route exact path='/' component={LoginPage} handleLogin={this.handleLogin}/>
-                            <Route path='/profile/:id' render={({ location, match, history }) => <ProfilePage model={model} params={match.params} navbar={navbar} history={history}/>}/>
+                            <Route exact path='/' render={(props) => <LoginPage handleLogin={this.handleLogin}/>}/>
+                            <Route path='/profile/:id' render={({ location, match, history }) => <ProfilePage model={model} params={match.params} navbar={navbar} history={history} userId={this.state.userId}/>}/>
                             <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar}/>}/>
                             <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
-                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history}/>}/>
+                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history} handleLogin={this.handleLogin}/>}/>
                             <Route path='/movielist/:id' render={({location, match}) => <MovieListPage model={model} navbar={navbar} params={match.params}/>}/>
                             <Route path='/createuser' render={() => <CreateUserPage />}/>
                         </Switch>

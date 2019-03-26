@@ -21,6 +21,13 @@ class LandingPage extends Component {
     componentDidMount() {
         this.getNewMovies()
         this.getRecommendedMovies()
+
+        fetch('/api/getCurrentUser')
+            .then(res => res.json())
+            .then(data => {
+                this.props.handleLogin(data.userId) // either userId or ''
+            })
+            .catch(error => console.log(error))
     }
 
     // fills this.state.newReleases with 5 new movies

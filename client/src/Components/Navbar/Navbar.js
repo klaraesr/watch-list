@@ -22,7 +22,19 @@ class Navbar extends Component {
     }
 
     logOut = () => {
-        console.log("Log out")
+        fetch('/api/logOut', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(res => res.json())
+            .then(() => {
+                this.props.handleLogout()
+            }) // set userId to '' in App, so that all pages will be redirected when not logged in
+            .catch()
+        return "/"
     }
 
     handleForm = (e) => {
@@ -37,7 +49,7 @@ class Navbar extends Component {
       }
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to={"/profile/1"}>Profile</Link>
+                <Link className="navbar-brand" to={"/profile/"+this.props.userId}>Profile</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>
