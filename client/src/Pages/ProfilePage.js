@@ -9,7 +9,7 @@ class ProfilePage extends Component {
         super(props);
 
         this.state = {
-            loading: false, // set to true from beginning when database is connected
+            loading: true, // set to true from beginning when database is connected
             toWatchMovies: null,
             watchedMovies: null,
             userId: this.props.userId,
@@ -23,7 +23,7 @@ class ProfilePage extends Component {
             .then(res => res.json())
             .then(data => {
                 if(data.userInfo !== 'Not logged in'){
-                    this.setState({username: data.username, userImg: data.userImg})
+                    this.setState({username: data.username, userImg: data.userImg, loading: false})
                 }
             })
             .catch(error => console.log(error))
@@ -35,7 +35,7 @@ class ProfilePage extends Component {
             .then(res => res.json())
             .then(data => {
                 if(data.userInfo !== 'Not logged in'){
-                    this.setState({username: data.username, userImg: data.userImg})
+                    this.setState({username: data.username, userImg: data.userImg, loading: false})
                 }
             })
             .catch(error => console.log(error))
@@ -52,11 +52,10 @@ class ProfilePage extends Component {
         return (
             <div className="container appContainer">
                 {this.props.navbar}
-                <ProfileHeader userName={this.state.username} img={this.state.userImg} toWatch={toWatch} watched={watched}/>
-
                 {this.state.loading && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loading &&
                 <div>
+                    <ProfileHeader userName={this.state.username} img={this.state.userImg} toWatch={toWatch} watched={watched}/>
                     <LatestAddedList movies={watchedMovies} toWatch={false} handleClick={this.handleClick}/>
                     <LatestAddedList movies={toWatchMovies} toWatch={true} handleClick={this.handleClick}/>
                 </div>}
