@@ -70,7 +70,7 @@ class DinnerModel extends ObservableModel {
         }).then(this.processResponse)
     }
 
-    // Create a user
+    // Create a user to the database
     createUser(username, password, link, deletehash) {
         return fetch('/api/createuser', {
             method: 'POST',

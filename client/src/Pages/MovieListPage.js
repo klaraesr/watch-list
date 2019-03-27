@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ListItem from "../Components/ListItem/ListItem";
 import Navbar from "../Components/Navbar/Navbar";
+import MovieList from "../Components/MovieList/MovieList";
 
 class MovieListPage extends Component {
 
@@ -8,7 +8,7 @@ class MovieListPage extends Component {
         return (
             <div className="container appContainer">
                 <Navbar/>
-                {watchedList.map((movie) => (<ListItem movie={movie}/>))}
+                <MovieList watchedList={watchedList} />
             </div>
         );
     }

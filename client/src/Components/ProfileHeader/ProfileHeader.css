@@ -1,8 +1,8 @@
 #profileHeader {
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
-@media only screen and (max-width: 574px) {
+#info-circle {
 }
 
 #leftCol {
@@ -11,7 +11,8 @@
 }
 
 #rightCol {
-    padding-top: 65px;
+    padding-top: 45px;
+    text-align: left;
 
 }
 
@@ -32,6 +33,10 @@
     #leftCol {
         text-align: center;
         padding: 0;
+    }
+
+    #info-circle {
+        margin: 0 auto;
     }
 
     #rightCol {
