@@ -50,6 +50,7 @@ router.post('/addToWatch', async function (req, res) {
 })
 
 router.post('/addWatched', async function (req, res) {
+    console.log('doing add watched')
     const userId = req.session.userId
     const list = await model.getWatchedList(userId)
     const { movieId, title, image } = req.body

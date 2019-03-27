@@ -8,8 +8,12 @@ exports.createUser = (username, password, image, deletehash) => {
         password: password,
         image: image,
         deletehash: deletehash
-    }).then(data => {
-        return data
+    }).then(async (user) => {
+        const toWatch = await ToWatchList.create()
+        const watched = await WatchedList.create()
+        user.setToWatchList(toWatch)
+        user.setWatchedList(watched)
+        return user
     }).catch(e => console.log(e))
 }
 
@@ -74,6 +78,8 @@ exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
       if(error.name === 'SequelizeUniqueConstraintError') {
         console.log('contraint error')
         return error.errors[0].message
+      } else {
+
       }
     })
 }

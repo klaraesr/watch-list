@@ -25,19 +25,6 @@ class SearchPage extends Component {
     this.loadMovies(this.props.params.value)
   }
 
-  addToWatchBackend = (movieId, title, image) => {
-    modelInstance.addToList(true, movieId, title, image)
-      .then(data => {
-        console.log(data)
-      })
-  }
-  addWatchedBackend = (movieId, title, image) => {
-    modelInstance.addToList(false, movieId, title, image)
-    .then(data => {
-      console.log(data)
-    })
-  }
-
   searchAPIcall = (queryString, pg) => {
     return model.searchMoviesWithQueryString(queryString, pg)
       .then(data => {
@@ -70,10 +57,17 @@ class SearchPage extends Component {
     this.setState({
       droppedItem: item
     })
+    console.log(item)
     if(item.toWatch) {
-      this.addToWatchBackend(item.id, item.title, item.image)
+      modelInstance.addToList(true, item.id, item.title, item.image)
+        .then(data => {
+          console.log(data)
+        })
     } else {
-      this.addWatchedBackend(item.id, item.title, item.image)
+      modelInstance.addToList(false, item.id, item.title, item.image)
+        .then(data => {
+          console.log(data)
+        })
     }
   }
 
