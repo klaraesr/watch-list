@@ -27,6 +27,12 @@ router.get('/getCurrentUser', async function (req, res){
     }
 })
 
+router.post('/addToWatch', async function (req, res) {
+    const userId = req.session.usedId
+    const listId = await model.getToWatchList(userId)
+    // model.addMovieToWatchList(...)
+})
+
 router.get('/getUser/:id', async function (req, res){
     if(req.session.loggedIn){ //If user is logged in
         const userId = req.params.id;
@@ -75,6 +81,6 @@ router.post('/validateuser', async function (req, res) {
 router.post('/logOut', async function (req, res) {
     req.session.destroy();
     return res.json({data: "loggedOut"});
-});
+})
 
 module.exports = router;
