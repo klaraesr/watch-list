@@ -2,7 +2,7 @@
     height: 85px;
     width: 100%;
     margin: 5px 0 0;
-    background: #eeeeee;
+    background: rgba(209, 204, 214, 0.38);
 }
 
 .container-item {
@@ -17,7 +17,8 @@
 }
 
 .list-btn {
-    margin-right: 10px;
+    margin: 0 !important;
+    margin-right: 10px !important;
     font-size: 13px;
     width: 155px;
  }
@@ -33,6 +34,6 @@
     }
 
     .list-btn {
-        margin-top: 3px;
+        margin-bottom: 5px !important;
     }
 }

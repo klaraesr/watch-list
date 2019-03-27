@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
-import ImageSlider from "../Components/LandingSlider/LandingSlider";
-import {Redirect} from "react-router-dom";
+import ImageSlider from "../Components/LandingSlider/LandingSlider"
+import model from './../Model.js'
+import Navbar from "../Components/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
-
 
 // statefull component
 class LandingPage extends Component {
@@ -16,26 +16,17 @@ class LandingPage extends Component {
             newReleases: [],
             loading: true,
             recommended: [],
-            mounted: false
         }
     }
 
     componentDidMount() {
         this.getNewMovies()
         this.getRecommendedMovies()
-
-        fetch('/api/getCurrentUser')
-            .then(res => res.json())
-            .then(data => {
-                this.props.handleLogin(data.userId) // either userId or ''
-                this.setState({mounted:true})
-            })
-            .catch(error => console.log(error))
     }
 
     // fills this.state.newReleases with 5 new movies
     getNewMovies = () => {
-        this.props.model.getMoviesInTheatre()
+        model.getMoviesInTheatre()
             .then(data => {
                 const movies = data.results.slice(0,5)
                 this.setState({
@@ -53,7 +44,7 @@ class LandingPage extends Component {
     }
 
     getRecommendedMovies = () => {
-        this.props.model.getRecommendedMovies()
+       model.getRecommendedMovies()
             .then(data => {
                 const movies = data.results.slice(0,9)
                 this.setState({
@@ -73,12 +64,9 @@ class LandingPage extends Component {
     }
 
     render() {
-        if (this.props.userId === '' && this.state.mounted) {
-            return <Redirect to='/'/>
-        }
         return (
             <div className="container appContainer">
-                {this.props.navbar}
+                <Navbar/>
                 <ImageSlider movies={this.state.newReleases} loading={this.state.loading} handleClick={this.handleClick}/>
                 <Gallery movies={this.state.recommended} loading={this.state.loading}/>
             </div>

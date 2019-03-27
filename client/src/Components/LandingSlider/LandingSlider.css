@@ -12,6 +12,10 @@
     height: 300px;
 }
 
+#loader-center {
+    text-align: center;
+}
+
 @media only screen and (max-width: 576px) {
     #gallery-div {
         height: 250px;

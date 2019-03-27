@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import ListItem from "../Components/ListItem/ListItem";
+import Navbar from "../Components/Navbar/Navbar";
+import MovieList from "../Components/MovieList/MovieList";
 
 class MovieListPage extends Component {
 
     render() {
         return (
             <div className="container appContainer">
-                {this.props.navbar}
-                {watchedList.map((movie) => (<ListItem movie={movie}/>))}
+                <Navbar/>
+                <MovieList watchedList={watchedList} />
             </div>
         );
     }

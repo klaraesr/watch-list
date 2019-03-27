@@ -1,13 +1,15 @@
-import React, {Component} from 'react';
-import { Link } from "react-router-dom";
+import React, {Component} from 'react'
+import { Link } from "react-router-dom"
+import Loader from "react-loader-spinner"
+
 
 class CreateUser extends Component {
     render() {
-        const { username, password, selectedFile} = this.props;
+        const { username, password} = this.props;
         return (
             <div>
                 <div className="container" id="loginContainer">
-                    {this.props.loading && "LOADING!"}
+                    {this.props.loading && <div id="loader-center"><Loader id="loader-center" type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                     {!this.props.loading &&
                     <div>
                         <h3 id="loginHeader">CREATE USER</h3>
@@ -29,7 +31,7 @@ class CreateUser extends Component {
                                 <input type="file" onChange={this.props.handleFileChange}/>
                             </div>
                             <button onClick={this.props.handleSubmitBtn}
-                                    disabled={username === '' || password === '' || selectedFile === null} //The user need to have a username, password and a profile pic to submit
+                                    disabled={username === '' || password === ''} //The user need to have a username, password
                                     type="submit" className="btn watchlistBtn">Submit
                             </button>
                         </form>
