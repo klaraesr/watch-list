@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import model from './../Model.js'
 import CreateUser from "../Components/CreateUser/CreateUser";
 import * as config from "../config";
 import Redirect from "react-router-dom/es/Redirect";
@@ -38,23 +39,11 @@ class CreateUserPage extends Component {
 
 
     createUser(username, password, link, deletehash) {
-        fetch('/api/createuser', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-                link: link,
-                deletehash: deletehash
-            })
-        })
+        model.createUser(username, password, link, deletehash)
             .then(res => res.json())
             .then(data => {
                 if(data.success === true) {
-                    this.setState({redirect: true, loading: false, error: false})
+                    this.setState({loading: false, error: false})
                 } else {
                     this.setState({loading: false, error: true})
                 }

@@ -5,41 +5,61 @@ import LoginPage from "./Pages/LoginPage"
 import ProfilePage from "./Pages/ProfilePage"
 import MovieDetailsPage from "./Pages/MovieDetailsPage"
 import SearchPage from "./Pages/SearchPage"
-import {BrowserRouter, Route, Switch} from "react-router-dom"
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
 import LandingPage from "./Pages/LandingPage"
 import Header from "./Components/Header/Header"
-import Navbar from "./Components/Navbar/Navbar"
-import MovieListPage from "./Pages/MovieListPage";
-import CreateUserPage from "./Pages/CreateUserPage";
+import MovieListPage from "./Pages/MovieListPage"
+import CreateUserPage from "./Pages/CreateUserPage"
 
+const LoginRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        model.getCurrentUser() !== null
+            ? <Redirect to='/landing' />
+            : <LoginPage />
+    )} />
+)
+
+
+const CreateUserRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        model.getCurrentUser() !== null
+            ? <Redirect to='/landing' />
+            : <CreateUserPage />
+    )} />
+)
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={({props, history, location, match}) => (
+        model.getCurrentUser() !== null
+            ? <Component {...props} params={match.params} history={history} userId={model.getCurrentUser()}/>
+            : <Redirect to='/' />
+    )} />
+)
+
+const RedirectPath = () => (
+    <Route render={() => (
+        model.getCurrentUser() !== null
+            ? <Redirect to='/landing' />
+            : <Redirect to='/' />
+    )} />
+)
 
 class App extends Component {
     constructor() {
         super()
 
-        this.state = {
-            userId: ''
-        }
+        console.log(model.getCurrentUser())
     }
 
     componentDidMount() {
-        fetch('/api/test')
-            .then(res => res.json())
-            .then(data => {console.log(data)})
-            .catch(e => console.log(e))
+        model.addObserver(this)
     }
 
-    handleLogin = (userId) => {
-        this.setState({userId:userId})
-    }
-
-    handleLogout = () => {
-        this.setState({userId: ''})
+    updateUser() {
+        this.forceUpdate()
     }
 
     render() {
-
-        const navbar = <Navbar userId={this.state.userId} handleLogout={this.handleLogout}/>
 
         return (
             <div className="App">
@@ -47,13 +67,15 @@ class App extends Component {
                     <div>
                         <Header />
                         <Switch>
-                            <Route exact path='/' render={(props) => <LoginPage handleLogin={this.handleLogin}/>}/>
-                            <Route path='/profile/:id' render={({ location, match, history }) => <ProfilePage model={model} params={match.params} navbar={navbar} history={history} userId={this.state.userId}/>}/>
-                            <Route path='/moviedetails/:id' render={({ location, match}) => <MovieDetailsPage model={model} params={match.params} navbar={navbar} userId={this.state.userId}/>}/>
-                            <Route path='/search/:value' render={({ location, match }) => <SearchPage model={model} params={match.params} navbar={navbar}/>}/>
-                            <Route path='/landing' render={({history}) => <LandingPage model={model} navbar={navbar} history={history} handleLogin={this.handleLogin} userId={this.state.userId}/>}/>
-                            <Route path='/movielist/:id' render={({location, match}) => <MovieListPage model={model} navbar={navbar} params={match.params}/>}/>
-                            <Route path='/createuser' render={() => <CreateUserPage />}/>
+                            <LoginRoute exact path='/' component={<LoginPage/>}/>
+                            <CreateUserRoute path='/createuser' component={CreateUserPage}/>
+
+                            <PrivateRoute path='/profile' component={ProfilePage}/>
+                            <PrivateRoute path='/moviedetails/:id' component={MovieDetailsPage}/>
+                            <PrivateRoute path='/search/:value' component={SearchPage}/>
+                            <PrivateRoute path='/landing' component={LandingPage}/>
+                            <PrivateRoute path='/movielist/:id' component={MovieListPage}/>
+                            <RedirectPath path='/*'/>
                         </Switch>
                     </div>
                 </BrowserRouter>

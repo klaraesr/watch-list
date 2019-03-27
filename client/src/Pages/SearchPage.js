@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
 import SearchGrid from "../Components/SearchGrid/SearchGrid"
 import Target from "../Components/Target/Target"
@@ -25,7 +26,7 @@ class SearchPage extends Component {
   }
 
   searchAPIcall = (queryString, pg) => {
-    return this.props.model.searchMoviesWithQueryString(queryString, pg)
+    return model.searchMoviesWithQueryString(queryString, pg)
       .then(data => {
         return data
       })

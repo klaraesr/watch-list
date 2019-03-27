@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
 import LatestAddedList from "../Components/LatestAddedList/LatestAddedList"
 import Loader from "react-loader-spinner";
+import model from './../Model.js'
+import Navbar from "../Components/Navbar/Navbar";
 
 class ProfilePage extends Component {
     constructor(props) {
@@ -18,15 +20,8 @@ class ProfilePage extends Component {
     }
 
     componentDidMount() {
-        fetch('/api/getUser/' + this.state.userId)
-            .then(res => res.json())
-            .then(data => {
-                if(data.userInfo !== 'Not logged in'){
-                    this.setState({username: data.username, userImg: data.userImg, loading: false})
-                }
-            })
-            .catch(error => console.log(error))
-        // get toWatchMovies, watchedMovies, profile name, and size of lists from database and set loading to false
+        model.getUser()
+            .then(data => this.setState({username: data.username, userImg: data.userImg, loading: false}))
     }
 
     handleClick = (e) => {
@@ -37,7 +32,7 @@ class ProfilePage extends Component {
     render() {
         return (
             <div className="container appContainer">
-                {this.props.navbar}
+                <Navbar/>
                 {this.state.loading && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loading &&
                 <div>

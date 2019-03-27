@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import MovieDetails from "../Components/MovieDetails/MovieDetails";
-import Loader from "react-loader-spinner";
-import {Redirect} from "react-router-dom";
+import MovieDetails from "../Components/MovieDetails/MovieDetails"
+import model from './../Model.js'
+import Loader from "react-loader-spinner"
+import {Redirect} from "react-router-dom"
+import Navbar from "../Components/Navbar/Navbar";
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
@@ -18,7 +20,6 @@ class MovieDetailsPage extends Component {
 
     componentDidMount() {
         this.getMovie(this.props.params.id)
-        //Set inWatchList and inToWatchList by checking with database
     }
 
     handleSetWatched = () => {
@@ -30,7 +31,7 @@ class MovieDetailsPage extends Component {
     }
 
     getMovie = (movieId) => {
-        this.props.model.getMovie(movieId)
+        model.getMovie(movieId)
             .then(data => {
                 this.setState({
                     loading: false,
@@ -58,7 +59,7 @@ class MovieDetailsPage extends Component {
         }
         return (
             <div className="container appContainer">
-                {this.props.navbar}
+                <Navbar/>
                 {this.state.loading && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loading && <MovieDetails movie={this.state.movie} inWatchedList={false} inToWatchList={true} handleSetWatched={this.handleSetWatched} handleSetToWatch={this.handleSetToWatch} loading={this.state.loading}/>}
             </div>
