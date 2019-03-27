@@ -138,3 +138,28 @@ exports.getMoviesFromWatchedList = (id) => {
         })
         .catch(error => {console.log(error)})
 }
+
+//Returnerar id till användarens senast tillagda film
+exports.getLatestMovie  = async (userId) => {
+    var toWatchList = await this.getToWatchList(userId)
+    if(toWatchList.length === 0){
+        var watchedList = await this.getWatchedList(userId)
+        var id = watchedList[0].dataValues.id
+        if(watchedList.length != 0){
+            return Movie.findAll({where:{watchedlist_id: id}, limit: 1, order: [['created_at', 'DESC']]})
+                .then(movie => {
+                    return movie[0].dataValues.id
+                })
+                .catch(error => {console.log(error)})
+        }
+    }
+    else{
+        var id = toWatchList[0].dataValues.id
+        return Movie.findAll({where:{watchedlist_id: id}, limit: 1, order: [['created_at', 'DESC']]})
+            .then(movie => {
+                return movie[0].dataValues.id
+            })
+            .catch(error => {console.log(error)})
+    }
+    return null
+}

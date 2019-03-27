@@ -29,19 +29,6 @@ class ProfilePage extends Component {
         // get toWatchMovies, watchedMovies, profile name, and size of lists from database and set loading to false
     }
 
-    componentWillReceiveProps(nextProps) {
-        fetch('/api/getUser/' + nextProps.userId)
-            .then(res => res.json())
-            .then(data => {
-                if(data.userInfo !== 'Not logged in'){
-                    this.setState({username: data.username, userImg: data.userImg, loading: false})
-                }
-            })
-            .catch(error => console.log(error))
-
-        this.setState({userId:nextProps.userId})
-    }
-
     handleClick = (e) => {
         const ID = e.target.title // actually the id, not the title
         this.props.history.push('/moviedetails/' + ID)
