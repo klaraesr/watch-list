@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
 import SearchGrid from "../Components/SearchGrid/SearchGrid"
-import Target from "../Components/Target/Target"
+import SearchFooter from "../Components/SearchFooter/SearchFooter"
+import DragDrop from "../Components/DragDrop/DragDrop";
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
-import DragDrop from "../Components/DragDrop/DragDrop";
 
 class SearchPage extends Component {
   constructor(props) {
@@ -60,6 +60,7 @@ class SearchPage extends Component {
     })
     if(item.toWatch) {
       console.log('to watch')
+      
     } else {
       console.log('watched')
     }
@@ -85,28 +86,16 @@ class SearchPage extends Component {
 
     render() {
       let {droppedItem, movies, numberOfResults, numberOfPages, currentPage} = this.state
-      let watch = {}
-      let watched = {}
-      if(droppedItem) {
-        if(droppedItem.list === 'toWatch') {
-          watch = droppedItem
-        } else {
-          watched = droppedItem
-        }
-      }
+
         return (
             <div className="container appContainer">
                 <Navbar callback={this.searchCallback}/>
-                <DragDrop watch={watch} watched={watched}/>
+                <DragDrop droppedItem={droppedItem} onDrop={this.onDrop}/>
                 { movies ?
                   <SearchGrid movies={movies}/> :
                   'loading'
                 }
-                <div className='nextPrev'>
-                { currentPage < numberOfPages &&
-                  <button className="btn watchlistBtn" type="submit" onClick={this.loadNextPage} id="searchBtn">Load more</button>
-                }
-                </div>
+                <SearchFooter currentPage={currentPage} numberOfPages={numberOfPages} loadNextPage={this.loadNextPage}/>
             </div>
 
         );

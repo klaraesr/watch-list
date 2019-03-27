@@ -38,6 +38,12 @@ router.post('/getUser', async function (req, res){
     })
 })
 
+router.post('/addToWatch', async function (req, res) {
+    const userId = req.session.usedId
+    const listId = await model.getToWatchList(userId)
+    // model.addMovieToWatchList(...)
+})
+
 router.post('/logOut', async function (req, res) {
     req.session.destroy();
     return res.json({data: "loggedOut"});
@@ -70,6 +76,6 @@ router.post('/validateuser', async function (req, res) {
 router.post('/logOut', async function (req, res) {
     req.session.destroy();
     return res.json({data: "loggedOut"});
-});
+})
 
 module.exports = router;

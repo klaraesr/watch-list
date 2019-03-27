@@ -61,8 +61,6 @@ exports.getWatchedList = (userId) => { //Returnerar en användares watched-list 
         .error(e => console.log(e))
 }
 
-// skulle det gå att ta in userId här istället, och  möjligtvis en sträng/bool
-// som indikerar vilken lista det är? (istället för olika metoder)
 exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
   console.log('adding ', movieName, ' to watch')
     return Movie.create({

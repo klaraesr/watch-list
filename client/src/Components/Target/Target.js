@@ -34,7 +34,7 @@ function collect(connect, monitor) {
 class Target extends Component {
 
   render() {
-      const {toWatch, isOver, canDrop, connectDropTarget, droppedItem } = this.props
+      const { toWatch, isOver, canDrop, connectDropTarget, droppedItem } = this.props
       let dropState = ''
       if(isOver) {
         dropState = 'over'
@@ -47,13 +47,13 @@ class Target extends Component {
                 <div className={`target ${dropState}`}>
                   <span className='dropTitle'>
                     <div>
-                      { droppedItem && droppedItem.list === 'toWatch' &&
+                      { droppedItem && droppedItem.toWatch &&
                         'You added ' + JSON.stringify(droppedItem.title) + ' to watch later'
                       }
-                      { droppedItem && droppedItem.list === 'watched' &&
+                      { droppedItem && !droppedItem.toWatch &&
                         'You added ' + JSON.stringify(droppedItem.title) + ' to watched'
                       }
-                      { !droppedItem.list &&
+                      { !droppedItem &&
                         <div>
                           { toWatch ?
                               <div className="drag-container">
