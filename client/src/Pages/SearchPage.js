@@ -6,6 +6,7 @@ import SearchFooter from "../Components/SearchFooter/SearchFooter"
 import DragDrop from "../Components/DragDrop/DragDrop";
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
+import modelInstance from "../Model"
 
 class SearchPage extends Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class SearchPage extends Component {
           userId: null,
           movies: [],
           currentPage: 1,
-          numberOfResults: 0,
           numberOfPages: 0,
           currentQuery: ''
       }
@@ -37,7 +37,6 @@ class SearchPage extends Component {
     let data = await this.searchAPIcall(queryString, pg)
     this.setState({
       movies: data.results,
-      numberOfResults: data.total_results,
       currentPage: data.page,
       numberOfPages: data.total_pages,
       currentQuery: queryString
@@ -58,11 +57,17 @@ class SearchPage extends Component {
     this.setState({
       droppedItem: item
     })
+    console.log(item)
     if(item.toWatch) {
-      console.log('to watch')
-      
+      modelInstance.addToList(true, item.id, item.title, item.image)
+        .then(data => {
+          console.log(data)
+        })
     } else {
-      console.log('watched')
+      modelInstance.addToList(false, item.id, item.title, item.image)
+        .then(data => {
+          console.log(data)
+        })
     }
   }
 
@@ -85,7 +90,7 @@ class SearchPage extends Component {
   }
 
     render() {
-      let {droppedItem, movies, numberOfResults, numberOfPages, currentPage} = this.state
+      let {droppedItem, movies, numberOfPages, currentPage, addMsg} = this.state
 
         return (
             <div className="container appContainer">

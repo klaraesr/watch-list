@@ -76,7 +76,8 @@ module.exports = () => {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
-            defaultValue: Sequelize.UUIDV1
+            defaultValue: Sequelize.UUIDV1,
+            unique: {args: true, msg: "Movie already in list"}
         },
         name: {
             type: Sequelize.STRING

@@ -8,8 +8,12 @@ exports.createUser = (username, password, image, deletehash) => {
         password: password,
         image: image,
         deletehash: deletehash
-    }).then(data => {
-        return data
+    }).then(async (user) => {
+        const toWatch = await ToWatchList.create()
+        const watched = await WatchedList.create()
+        user.setToWatchList(toWatch)
+        user.setWatchedList(watched)
+        return user
     }).catch(e => console.log(e))
 }
 
@@ -44,7 +48,7 @@ exports.validateUser = (users, username, password) => {
 
 
 exports.getToWatchList = (userId) => { //Returnerar en användares to-watch-list baserat på användarens id
-    return ToWatchList.findAll({
+    return ToWatchList.findOne({
         where:{
             user_id : userId
         }
@@ -53,7 +57,7 @@ exports.getToWatchList = (userId) => { //Returnerar en användares to-watch-list
 }
 
 exports.getWatchedList = (userId) => { //Returnerar en användares watched-list baserat på användarens id
-    return WatchedList.findAll({
+    return WatchedList.findOne({
         where:{
             user_id : userId
         }
@@ -62,14 +66,21 @@ exports.getWatchedList = (userId) => { //Returnerar en användares watched-list 
 }
 
 exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
-  console.log('adding ', movieName, ' to watch')
     return Movie.create({
         id: movieId,
         name: movieName,
         image: imgSrc,
         watchlist_id: listId
-    }).then(movie => { //Returns a movie that is connected to an watchlist
+    }).then(movie => { //Returns a movie that is connected to a watchlist
         return movie
+    })
+    .catch(error => {
+      if(error.name === 'SequelizeUniqueConstraintError') {
+        console.log('contraint error')
+        return error.errors[0].message
+      } else {
+
+      }
     })
 }
 
@@ -79,8 +90,16 @@ exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
         name: movieName,
         image: imgSrc,
         watchedlist_id: listId
-    }).then(movie => { //Returns a movie that is connected to an watchedlist
+    }).then(movie => { //Returns a movie that is connected to a watchedlist
         return movie
+    })
+    .catch(error => {
+      if(error.name === 'SequelizeUniqueConstraintError') {
+        console.log('contraint error')
+        return error.errors[0]
+      } else {
+        //console.log(error)
+      }
     })
 }
 

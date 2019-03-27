@@ -3,6 +3,12 @@ import ObservableModel from "./ObservableModel";
 import * as config from "./config";
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = process.env.REACT_APP_API_KEY
+const HEADER =  {
+  method: 'POST',
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  }}
 
 class DinnerModel extends ObservableModel {
     constructor(props) {
@@ -110,6 +116,27 @@ class DinnerModel extends ObservableModel {
             },
             body: selectedFile
         }).then(this.processResponse)
+    }
+
+    addToList(toWatch, movieId, title, image) {
+      let PATH = ''
+      if(toWatch) {
+        PATH = '/api/addToWatch'
+      } else {
+        PATH = '/api/addWatched'
+      }
+      return fetch(PATH, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          movieId,
+          title,
+          image
+        })})
+        .then(this.processResponse)
     }
 
     processResponse(response) {
