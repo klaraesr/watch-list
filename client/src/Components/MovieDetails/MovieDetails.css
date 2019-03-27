@@ -6,7 +6,8 @@
 .add-btn {
     width: 100%;
     font-size: 13px;
-    margin-top: 5px;
+    margin: 0px !important;
+    margin-top: 10px !important;
 }
 
 .poster {
@@ -31,19 +32,19 @@
         padding-top: 20px;
     }
 
-    .add-to-list-btn {
+    .add-btn {
         font-size: 12px;
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 700px) {
-    .add-to-list-btn {
-        font-size: 8px;
+    .add-btn {
+        font-size: 9px;
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 940px) {
-    .add-to-list-btn {
-        font-size: 10px;
+    .add-btn {
+        font-size: 11px;
     }
 }

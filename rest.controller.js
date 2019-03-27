@@ -50,7 +50,7 @@ router.post('/logOut', async function (req, res) {
 });
 
 router.post('/createuser', async function (req, res){
-    const user = await model.createUser(req.body.username, req.body.password, req.body.link, req.body.deletehash)
+    const user = await model.createUser(req.body.username.toLowerCase(), req.body.password, req.body.link, req.body.deletehash)
     if(!user){
         res.json({success: false})
     } else {
@@ -60,7 +60,7 @@ router.post('/createuser', async function (req, res){
 
 router.post('/validateuser', async function (req, res) {
     var users = await model.getAllUsers() //Gets all the users from the db
-    var validUser = await model.validateUser(users, req.body.username, req.body.password) //Function that returns the user if its valid
+    var validUser = await model.validateUser(users, req.body.username.toLowerCase(), req.body.password) //Function that returns the user if its valid
     if(validUser !== null){
         req.session.loggedIn = true;
         req.session.userId = validUser.dataValues.id;

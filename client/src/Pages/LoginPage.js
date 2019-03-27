@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Login from "../Components/Login/Login"
-import Redirect from "react-router-dom/es/Redirect"
 import model from './../Model.js'
 
 
@@ -12,17 +11,8 @@ class LoginPage extends Component {
         this.state = {
             wrongPassword: false,
             username: '',
-            password: '',
-            redirect: false
+            password: ''
         }
-
-        this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
-        this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
-        this.handleSubmitBtn = this.handleSubmitBtn.bind(this);
-        this.handleForm = this.handleForm.bind(this);
-    }
-
-    componentDidMount() {
     }
 
     handleUsernameUpdate = (e) => {
@@ -37,7 +27,7 @@ class LoginPage extends Component {
         })
     }
 
-    handleSubmitBtn() {
+    handleSubmitBtn = () => {
         if(this.state.username === '' || this.state.password === ''){
             this.setState({wrongPassword:true});
         } else{
@@ -57,9 +47,6 @@ class LoginPage extends Component {
     }
 
     render() {
-        if (this.state.redirect) {
-            return <Redirect to='/landing'/>
-        }
         return (
             <div>
                 <Login

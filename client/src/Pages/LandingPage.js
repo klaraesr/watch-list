@@ -2,11 +2,9 @@ import React, {Component} from 'react'
 import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
 import ImageSlider from "../Components/LandingSlider/LandingSlider"
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar";
+import Navbar from "../Components/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
-
-
 
 // statefull component
 class LandingPage extends Component {

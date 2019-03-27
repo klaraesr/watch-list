@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import model from './../Model.js'
 import CreateUser from "../Components/CreateUser/CreateUser";
-import * as config from "../config";
 import Redirect from "react-router-dom/es/Redirect";
 
 class CreateUserPage extends Component {
@@ -22,35 +21,31 @@ class CreateUserPage extends Component {
         this.setState({redirect: false})
     }
 
+    // Called on submit
     setUser = () => {
-        fetch('https://api.imgur.com/3/image/', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Client-ID ${config.client}`
-            },
-            body: this.state.selectedFile
-        })
-            .then(res => res.json())
-            .then(img => {
-                this.createUser(this.state.username, this.state.password, img.data.link, img.data.deletehash)
-            })
-            .catch(e => console.log(e))
+        if(this.state.selectedFile === null){ // if no image
+            this.createUser(this.state.username, this.state.password, 'https://i.imgur.com/A8UolBd.png', 'w3mM2pWg0wbu75L')
+        } else {
+            model.uploadImage(this.state.selectedFile)
+                .then(img => {
+                    this.createUser(this.state.username, this.state.password, img.data.link, img.data.deletehash) // if no image
+                })
+                .catch(e => console.log(e))
         }
+    }
 
-
+    // Called from setUser
     createUser(username, password, link, deletehash) {
         model.createUser(username, password, link, deletehash)
-            .then(res => res.json())
             .then(data => {
                 if(data.success === true) {
-                    this.setState({loading: false, error: false})
+                    this.setState({loading: false, error: false, redirect: true})
                 } else {
                     this.setState({loading: false, error: true})
                 }
             })
             .catch(error => console.log(error))
     }
-
 
     handleFileChange = (event) => {
         this.setState({ selectedFile: event.target.files[0] })
@@ -68,7 +63,6 @@ class CreateUserPage extends Component {
         })
     }
 
-    // deletehash is if we want to delete the image from imgur. You do this with https://api.imgur.com/3/image/{id}, where {id} is the deletehash.
     handleSubmitBtn = () => {
         this.setState({loading: true})
         this.setUser()

@@ -13,7 +13,7 @@ image varchar(128),
 deletehash varchar(64)
 );
 
-insert into user values ('1','Christine', 'hej123','http://www.clker.com/cliparts/e/d/7/b/13426765571224390078nemo-md.png','test');
+insert into user values ('1','christine', 'hej123','http://www.clker.com/cliparts/e/d/7/b/13426765571224390078nemo-md.png','test');
 
 create table toWatchList (
 id varchar(36) NOT NULL,

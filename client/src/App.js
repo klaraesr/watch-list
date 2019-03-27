@@ -19,7 +19,6 @@ const LoginRoute = ({ component: Component, ...rest }) => (
     )} />
 )
 
-
 const CreateUserRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
         model.getCurrentUser() !== null

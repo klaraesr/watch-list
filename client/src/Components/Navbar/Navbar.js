@@ -38,7 +38,7 @@ class Navbar extends Component {
       }
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to={"/profile"}>Profile</Link>
+                <Link className="navbar-brand" to={"/landing"}>Discover</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>
@@ -46,7 +46,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/landing">Discover</Link>
+                            <Link className="nav-link" to="/profile">Profile</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to='/' onClick={this.handleLogOut}>Log out</Link>

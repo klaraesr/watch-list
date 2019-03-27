@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ObservableModel from "./ObservableModel";
+import * as config from "./config";
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -83,6 +84,19 @@ class DinnerModel extends ObservableModel {
                 link,
                 deletehash
             })
+        }).then(this.processResponse)
+    }
+
+    // Uploads an image to the Imgur-API, returns the link and the deletehash
+    // the deletehash is for if we want to delete the image from imgur.
+    // You do this with https://api.imgur.com/3/image/{id}, where {id} is the deletehash.
+    uploadImage(selectedFile) {
+        return fetch('https://api.imgur.com/3/image/', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Client-ID ${config.client}`
+            },
+            body: selectedFile
         }).then(this.processResponse)
     }
 
