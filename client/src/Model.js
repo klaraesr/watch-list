@@ -1,6 +1,12 @@
 import { Component } from 'react'
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = process.env.REACT_APP_API_KEY
+const HEADER =  {
+  method: 'POST',
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  }}
 
 class DinnerModel extends Component {
 
@@ -21,6 +27,27 @@ class DinnerModel extends Component {
         const MOVIE = '399579' // get latest movie added to list from database
         const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`;
         return fetch(URL).then(this.processResponse);
+    }
+
+    addToList(toWatch, movieId, title, image) {
+      let PATH = ''
+      if(toWatch) {
+        PATH = '/api/addToWatch'
+      } else {
+        PATH = '/api/addWatched'
+      }
+      return fetch(PATH, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          movieId,
+          title,
+          image
+        })})
+        .then(this.processResponse)
     }
 
     processResponse(response) {

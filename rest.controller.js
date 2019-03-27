@@ -29,10 +29,26 @@ router.get('/getCurrentUser', async function (req, res){
     }
 })
 
+// vet ej om detta är bra eller ejjj, asså om det är duplicate
 router.post('/addToWatch', async function (req, res) {
-    const userId = req.session.usedId
-    const listId = await model.getToWatchList(userId)
-    // model.addMovieToWatchList(...)
+  console.log('doing add to watch')
+    const userId = req.session.userId
+    const list = await model.getToWatchList(userId)
+    const { movieId, title, image } = req.body
+    const movie = await model.addMovieToWatchList(list.dataValues.id, movieId, title, image)
+    res.json({
+        data: movie
+    })
+})
+
+router.post('/addWatched', async function (req, res) {
+    const userId = req.session.userId
+    const list = await model.getWatchedList(userId)
+    const { movieId, title, image } = req.body
+    const movie = await model.addMovieToWatchedList(list.dataValues.id, movieId, title, image)
+    res.json({
+        data: movie
+    })
 })
 
 router.get('/getUser/:id', async function (req, res){
