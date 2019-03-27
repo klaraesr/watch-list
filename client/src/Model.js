@@ -51,11 +51,17 @@ class DinnerModel extends ObservableModel {
             body: JSON.stringify({
                 id: this.getCurrentUser()
             })
-        }).then(res => res.json())
+        })
+            .then(res => res.json())
             .then(data => {
-                const MOVIE = data.movieId
-                const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
-                return fetch(URL).then(this.processResponse)
+                if(data.movieId !== null) {
+                    const MOVIE = data.movieId
+                    const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
+                    return fetch(URL).then(this.processResponse)
+                } else {
+                    console.log("model got null")
+                    return null
+                }
             })
     }
 

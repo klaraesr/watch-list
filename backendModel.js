@@ -74,14 +74,14 @@ exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
     }).then(movie => { //Returns a movie that is connected to a watchlist
         return movie
     })
-    .catch(error => {
-      if(error.name === 'SequelizeUniqueConstraintError') {
-        console.log('contraint error')
-        return error.errors[0].message
-      } else {
+        .catch(error => {
+            if(error.name === 'SequelizeUniqueConstraintError') {
+                console.log('contraint error')
+                return error.errors[0].message
+            } else {
 
-      }
-    })
+            }
+        })
 }
 
 exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
@@ -93,14 +93,14 @@ exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
     }).then(movie => { //Returns a movie that is connected to a watchedlist
         return movie
     })
-    .catch(error => {
-      if(error.name === 'SequelizeUniqueConstraintError') {
-        console.log('contraint error')
-        return error.errors[0]
-      } else {
-        //console.log(error)
-      }
-    })
+        .catch(error => {
+            if(error.name === 'SequelizeUniqueConstraintError') {
+                console.log('contraint error')
+                return error.errors[0]
+            } else {
+                //console.log(error)
+            }
+        })
 }
 
 exports.deleteMovieFromToWatchList = (movieId, listId) => {
@@ -160,25 +160,17 @@ exports.getMoviesFromWatchedList = (id) => {
 
 //Returnerar id till användarens senast tillagda film
 exports.getLatestMovie  = async (userId) => {
-    var toWatchList = await this.getToWatchList(userId)
-    if(toWatchList.length === 0){
-        var watchedList = await this.getWatchedList(userId)
-        var id = watchedList[0].dataValues.id
-        if(watchedList.length != 0){
-            return Movie.findAll({where:{watchedlist_id: id}, limit: 1, order: [['created_at', 'DESC']]})
-                .then(movie => {
-                    return movie[0].dataValues.id
-                })
-                .catch(error => {console.log(error)})
-        }
-    }
-    else{
-        var id = toWatchList[0].dataValues.id
-        return Movie.findAll({where:{watchedlist_id: id}, limit: 1, order: [['created_at', 'DESC']]})
-            .then(movie => {
+    const watchedList = await this.getWatchedList(userId)
+    return Movie.findAll({
+        where: {watchedlist_id: watchedList.dataValues.id},
+        limit: 1,
+        order: [['created_at', 'DESC']]
+    })
+        .then(movie => {
+            if(movie.length !== 0){
                 return movie[0].dataValues.id
-            })
-            .catch(error => {console.log(error)})
-    }
-    return null
+            } else {
+                return null
+            }
+        })
 }
