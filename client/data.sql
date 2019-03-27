@@ -39,7 +39,7 @@ updated_at datetime,
 created_at datetime
 );
 
-insert into movie values ('1','Taken','https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all','1','1', null, null);
+insert into movie values ('424783','Bumblebee','/fw02ONlDhrYjTSZV8XO6hhU3ds3.jpg','1','1', null, null);
 
 SELECT * FROM user;
 SELECT * FROM toWatchList;

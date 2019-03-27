@@ -36,9 +36,21 @@ class DinnerModel extends ObservableModel {
 
     // Returns 20 movies based upon a movie id (hårdkodat for now)
     getRecommendedMovies() {
-        const MOVIE = '399579' // get latest movie added to list from database
-        const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
-        return fetch(URL).then(this.processResponse)
+        return fetch('api/getLatestAddedMovie', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: this.getCurrentUser()
+            })
+        }).then(res => res.json())
+            .then(data => {
+                const MOVIE = data.movieId
+                const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
+                return fetch(URL).then(this.processResponse)
+            })
     }
 
     // Get the username and image from user

@@ -29,6 +29,15 @@ router.get('/getCurrentUser', async function (req, res){
     }
 })
 
+
+router.post('/getLatestAddedMovie', async function (req, res){
+    const userId = req.body.id
+    const movieId = await model.getLatestMovie(userId)
+    res.json({
+        movieId
+    })
+})
+
 router.post('/getUser', async function (req, res){
     const userId = req.body.id
     let user = await model.getUser(userId);
@@ -51,6 +60,7 @@ router.post('/logOut', async function (req, res) {
 
 router.post('/createuser', async function (req, res){
     const user = await model.createUser(req.body.username.toLowerCase(), req.body.password, req.body.link, req.body.deletehash)
+    console.log(user)
     if(!user){
         res.json({success: false})
     } else {
