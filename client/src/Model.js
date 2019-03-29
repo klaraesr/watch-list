@@ -40,6 +40,12 @@ class DinnerModel extends ObservableModel {
         return fetch(URL).then(this.processResponse)
     }
 
+    // Gets the 5 latest movies from each list
+    getLatestAddedToLists() {
+        const URL = 'api/getLatestMoviesFromList/' + this.getCurrentUser()
+        return fetch(URL).then(this.processResponse)
+    }
+
     // Returns 20 movies based upon a movie id (hårdkodat for now)
     getRecommendedMovies() {
         return fetch('api/getLatestAddedMovie', {
@@ -65,18 +71,10 @@ class DinnerModel extends ObservableModel {
             })
     }
 
-    // Get the username and image from user
+    // Get the username, image, numberofwatched and numberoftowatch from user
     getUser() {
-        return fetch('/api/getUser', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: this.getCurrentUser()
-            })
-        }).then(this.processResponse)
+        const URL = 'api/getUser/' + this.getCurrentUser()
+        return fetch(URL).then(this.processResponse)
     }
 
     // Validate user

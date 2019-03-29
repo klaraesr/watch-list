@@ -35,7 +35,7 @@ class LandingPage extends Component {
                     loading: false,
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
-                        originalTitle: movie.title, // the id instead of title so that we can get the movie from the api if clicked
+                        originalTitle: movie.title,
                         original: IMG_BASE_URL_LARGE + movie.backdrop_path, // image
                         description: movie.title + ', release date: ' + movie.release_date, // shown on picture
                         originalAlt: movie.id

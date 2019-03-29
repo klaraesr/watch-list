@@ -38,12 +38,26 @@ router.post('/getLatestAddedMovie', async function (req, res){
     })
 })
 
-router.post('/getUser', async function (req, res){
-    const userId = req.body.id
-    let user = await model.getUser(userId);
+router.get('/getLatestMoviesFromList/:userid', async function (req, res){
+    const userId = req.params.userid
+    const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id')
+    const watchedMovies = await model.getMoviesFromList(userId, 'watchedlist_id')
+    res.json({
+        toWatchMovies,
+        watchedMovies
+    })
+})
+
+router.get('/getUser/:userid', async function (req, res){
+    const userId = req.params.userid
+    let user = await model.getUser(userId)
+    let toWatchCount = await model.getListLength(userId, true)
+    let watchedCount = await model.getListLength(userId, false)
     res.json({
         username: user.dataValues.username,
-        userImg: user.dataValues.image
+        userImg: user.dataValues.image,
+        toWatchCount,
+        watchedCount
     })
 })
 
@@ -76,7 +90,6 @@ router.post('/logOut', async function (req, res) {
 
 router.post('/createuser', async function (req, res){
     const user = await model.createUser(req.body.username.toLowerCase(), req.body.password, req.body.link, req.body.deletehash)
-    console.log(user)
     if(!user){
         res.json({success: false})
     } else {

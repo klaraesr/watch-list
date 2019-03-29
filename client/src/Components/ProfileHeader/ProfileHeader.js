@@ -5,6 +5,7 @@ import './ProfileHeader.css'
 class ProfileHeader extends Component {
     render() {
         const {userName, img, watched, toWatch} = this.props
+        console.log(img)
         return (
             <div id="profileHeader" className="row no-gutters">
                 <div className="col-sm-6 col-xs-6" id="leftCol">
