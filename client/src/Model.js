@@ -46,7 +46,7 @@ class DinnerModel extends ObservableModel {
         return fetch(URL).then(this.processResponse)
     }
 
-    // Returns 20 movies based upon a movie id (hårdkodat for now)
+    // Returns 20 movies based upon a the latest movie added to the current user's watched-list
     getRecommendedMovies() {
         return fetch('api/getLatestAddedMovie', {
             method: 'POST',
@@ -60,6 +60,7 @@ class DinnerModel extends ObservableModel {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if(data.movieId !== null) {
                     const MOVIE = data.movieId
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
@@ -69,6 +70,12 @@ class DinnerModel extends ObservableModel {
                     return null
                 }
             })
+    }
+
+    // Check if movie with id is in lists, returns a json-object with inWatchlist: false/true and inToWatchList: false/true
+    checkMovieInLists(movieId) {
+        const URL = '/api/checkMovieInLists/' + movieId + '/' + this.getCurrentUser()
+        return fetch(URL).then(this.processResponse)
     }
 
     // Get the username, image, numberofwatched and numberoftowatch from user
@@ -156,9 +163,9 @@ class DinnerModel extends ObservableModel {
       if(pageNr !== undefined) {
         PAGE = pageNr
       }
-      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
-      console.log(url)
-      return fetch(url).then(this.processResponse)
+      const URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
+      console.log(URL)
+      return fetch(URL).then(this.processResponse)
     }
 
     addMovieToList(movieId, list) {

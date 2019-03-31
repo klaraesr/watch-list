@@ -14,7 +14,7 @@ class RecommendedGallery extends Component {
 
                 {!this.props.noMovies && <div>
 
-                        <p className="recommended-desc">Movies recommended for you based upon your lists.</p>
+                    <p className="recommended-desc">Movies recommended for you based upon your lists.</p>
                     {this.props.loading && <Loader type="Oval" color="#FF9A00" height="100" width="100"/>}
                     {!this.props.loading &&
                         <div>

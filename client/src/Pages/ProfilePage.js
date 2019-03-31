@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
-import LatestAddedList from "../Components/LatestAddedList/LatestAddedList"
+import LatestAddedSlider from "../Components/LatestAddedSlider/LatestAddedSlider"
 import Loader from "react-loader-spinner"
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
@@ -54,12 +54,12 @@ class ProfilePage extends Component {
         return (
             <div className="container appContainer">
                 <Navbar/>
-                {this.state.loadingHeader || this.state.loadingSliders && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
+                {(this.state.loadingHeader || this.state.loadingSliders) && <div className="loader"><Loader type="Oval" color="#FF9A00" height="100" width="100"/></div>}
                 {!this.state.loadingSliders && !this.state.loadingHeader &&
                 <div>
                     <ProfileHeader userName={this.state.username} img={this.state.userImg} watched={this.state.watchedCount} toWatch={this.state.toWatchCount}/>
-                    {this.state.toWatchMovies !== null && <LatestAddedList movies={this.state.toWatchMovies} toWatch={false} handleClick={this.handleClick}/>}
-                    {this.state.watchedMovies !== null && <LatestAddedList movies={this.state.watchedMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={false} handleClick={this.handleClick}/>}
+                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={true} handleClick={this.handleClick}/>}
                 </div>}
             </div>
 

@@ -38,6 +38,19 @@ router.post('/getLatestAddedMovie', async function (req, res){
     })
 })
 
+router.get('/checkMovieInLists/:movieid/:userid', async function (req, res){
+    const movieId = req.params.movieid
+    const userId = req.params.userid
+
+    const inWatchList = await model.checkMovieInList(movieId, userId, 'watchedList')
+    const inToWatchList = await model.checkMovieInList(movieId, userId, 'toWatchList')
+
+    res.json({
+        inWatchList,
+        inToWatchList
+    })
+})
+
 router.get('/getLatestMoviesFromList/:userid', async function (req, res){
     const userId = req.params.userid
     const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id')

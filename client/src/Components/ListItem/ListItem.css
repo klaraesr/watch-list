@@ -1,13 +1,16 @@
 .list-item {
-    height: 85px;
+    height: 35px;
     width: 100%;
     margin: 5px 0 0;
-    background: rgba(209, 204, 214, 0.38);
 }
 
 .container-item {
-    padding: 10px;
     text-align: left;
+    margin-top: 8px;
+}
+
+#right {
+    text-align: right;
 }
 
 .list-img {
@@ -18,9 +21,10 @@
 
 .list-btn {
     margin: 0 !important;
-    margin-right: 10px !important;
+    margin-right: 5px !important;
     font-size: 13px;
     width: 155px;
+    height: 35px;
  }
 
 @media only screen and (max-width: 600px) {
@@ -30,7 +34,7 @@
     }
 
     .list-item {
-        height: 120px;
+        height: 80px;
     }
 
     .list-btn {

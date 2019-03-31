@@ -147,6 +147,29 @@ exports.deleteMovieFromWatchedList = (movieId, listId) => {
     })
 }
 
+exports.checkMovieInList = (movieId, userId, list) => {
+    return User.findByPk(userId)
+        .then(user => {
+            if(list === 'toWatchList') {
+                return user.getToWatchList()
+                    .then(toWatchList => {
+                        return Movie.count({where: {id: movieId, watchlist_id: toWatchList.dataValues.id}})
+                            .then(count => {
+                                return count !== 0; // return true if not 0
+                            })
+                    })
+            } else if(list === 'watchedList') {
+                return user.getWatchedList()
+                    .then(watchedList => {
+                        return Movie.count({where: {id: movieId, watchedlist_id: watchedList.dataValues.id}})
+                            .then(count => {
+                                return count !== 0; // return true if not 0
+                            })
+                    })
+            }
+        })
+}
+
 exports.getAllMoviesFromToWatchList = (id) => {
     return ToWatchList.findByPk(id)
         .then( list => {

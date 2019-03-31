@@ -3,10 +3,12 @@ import ListItem from "../ListItem/ListItem"
 import './MovieList.css'
 
 class MovieList extends Component {
+
     render() {
+        const {fullList} = this.props
         return (
             <div id="list-container">
-                {this.props.watchedList.map((movie) => (<ListItem movie={movie}/>))}
+                {fullList.map((movie) => (<ListItem movie={movie}/>))}
             </div>
         );
     }

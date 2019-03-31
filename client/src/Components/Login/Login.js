@@ -5,9 +5,11 @@ import {Link} from "react-router-dom";
 
 // stateless component
 class Login extends Component {
+
     render() {
         return (
             <div className="container" id="loginContainer">
+                {this.props.createdAccount && <p>Your account has been created. You can now log in!</p>}
                 <h3 id="loginHeader">LOGIN</h3>
                 <form onSubmit={this.props.handleForm}>
                     <div className="form-group">

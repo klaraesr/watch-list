@@ -11,7 +11,15 @@ class LoginPage extends Component {
         this.state = {
             wrongPassword: false,
             username: '',
-            password: ''
+            password: '',
+            createdAccount: false
+        }
+    }
+
+    componentDidMount(){
+        if(this.props.location.state !== undefined) {
+            this.setState({createdAccount: true})
+            setTimeout(() => this.setState({createdAccount: false}), 3000)
         }
     }
 
@@ -50,6 +58,8 @@ class LoginPage extends Component {
         return (
             <div>
                 <Login
+                    createdAccount={this.state.createdAccount}
+                    handleMessage={this.handleMessage}
                     handlePasswordUpdate={this.handlePasswordUpdate}
                     handleUsernameUpdate={this.handleUsernameUpdate}
                     handleForm = {this.handleForm}

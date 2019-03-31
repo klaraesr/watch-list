@@ -11,11 +11,12 @@ import Header from "./Components/Header/Header"
 import MovieListPage from "./Pages/MovieListPage"
 import CreateUserPage from "./Pages/CreateUserPage"
 
+// Different settings for routes
 const LoginRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
+    <Route {...rest} render={(props, history, location, match) => (
         model.getCurrentUser() !== null
             ? <Redirect to='/landing' />
-            : <LoginPage />
+            : <LoginPage {...props}/>
     )} />
 )
 
@@ -73,7 +74,7 @@ class App extends Component {
                             <PrivateRoute path='/moviedetails/:id' component={MovieDetailsPage}/>
                             <PrivateRoute path='/search/:value' component={SearchPage}/>
                             <PrivateRoute path='/landing' component={LandingPage}/>
-                            <PrivateRoute path='/movielist/:id' component={MovieListPage}/>
+                            <PrivateRoute path='/towatchlist' component={MovieListPage} list="towatchlist"/>
                             <RedirectPath path='/*'/>
                         </Switch>
                     </div>

@@ -5,7 +5,7 @@ import StarRatings from "react-star-ratings"
 // stateless column
 class MovieDetails extends Component {
     render() {
-        const {poster, title, description, status, runtime, voteAverage, voteCount, budget, revenue} = this.props.movie
+        const {poster, title, description, status, runtime, voteAverage, voteCount, budget, revenue, release} = this.props.movie
         const {inWatchedList, inToWatchList, handleSetWatched, handleSetToWatch} = this.props
         return (
             <div id="movie-details-row" className="row no-gutters">
@@ -26,6 +26,7 @@ class MovieDetails extends Component {
                         }
                         <p className="movie-desc">Runtime: {runtime} minutes.</p>
                         <p className="movie-desc">{description}</p>
+                        {status !== 'Released' && <p className="movie-desc"><b>Release date is {release}.</b></p>}
                         {budget !== 0 && revenue !== 0 && <p className="movie-desc"><i>{title} had an estimated budget of ${budget} and a world wide gross of ${revenue}.</i></p>}
                         {budget === 0 || revenue === 0 && <p className="movie-desc"><i>Check in later to find out the budget and the world wide gross of {title}.</i></p>}
 
