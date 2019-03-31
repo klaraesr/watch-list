@@ -17,10 +17,6 @@ class CreateUserPage extends Component {
         }
     }
 
-    componentDidMount(){
-        this.setState({redirect: false})
-    }
-
     // Called on submit
     setUser = () => {
         if(this.state.selectedFile === null){ // if no image
@@ -74,7 +70,7 @@ class CreateUserPage extends Component {
 
     render() {
         if (this.state.redirect) {
-            return <Redirect to='/'/>
+            return <Redirect to={{pathname: '/', state: { createdAccount: true }}} />
         }
 
         return (

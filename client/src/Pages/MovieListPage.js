@@ -4,11 +4,15 @@ import MovieList from "../Components/MovieList/MovieList";
 
 class MovieListPage extends Component {
 
+    componentDidMount() {
+        console.log(this.props.list)
+    }
+
     render() {
         return (
             <div className="container appContainer">
                 <Navbar/>
-                <MovieList watchedList={watchedList} />
+                <MovieList fullList={watchedList}/>
             </div>
         );
     }

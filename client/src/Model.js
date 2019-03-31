@@ -40,16 +40,15 @@ class Model extends ObservableModel {
         return fetch(URL).then(this.processResponse)
     }
 
-    // Returns 20 movies based upon a movie id (hårdkodat for now)
-    getRecommendedMovies() {
-        const MOVIE = '399579' // get latest movie added to list from database
-        const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
+    // Gets the 5 latest movies from each list
+    getLatestAddedToLists() {
+        const URL = 'api/getLatestMoviesFromList/' + this.getCurrentUser()
         return fetch(URL).then(this.processResponse)
     }
 
-    // Get the username and image from user
-    getUser() {
-        return fetch('/api/getUser', {
+    // Returns 20 movies based upon a the latest movie added to the current user's watched-list
+    getRecommendedMovies() {
+        return fetch('api/getLatestAddedMovie', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -58,7 +57,31 @@ class Model extends ObservableModel {
             body: JSON.stringify({
                 id: this.getCurrentUser()
             })
-        }).then(this.processResponse)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(data.movieId !== null) {
+                    const MOVIE = data.movieId
+                    const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
+                    return fetch(URL).then(this.processResponse)
+                } else {
+                    console.log("model got null")
+                    return null
+                }
+            })
+    }
+
+    // Check if movie with id is in lists, returns a json-object with inWatchlist: false/true and inToWatchList: false/true
+    checkMovieInLists(movieId) {
+        const URL = '/api/checkMovieInLists/' + movieId + '/' + this.getCurrentUser()
+        return fetch(URL).then(this.processResponse)
+    }
+
+    // Get the username, image, numberofwatched and numberoftowatch from user
+    getUser() {
+        const URL = 'api/getUser/' + this.getCurrentUser()
+        return fetch(URL).then(this.processResponse)
     }
 
     // Validate user
@@ -140,9 +163,9 @@ class Model extends ObservableModel {
       if(pageNr !== undefined) {
         PAGE = pageNr
       }
-      const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
-      console.log(url)
-      return fetch(url).then(this.processResponse)
+      const URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
+      console.log(URL)
+      return fetch(URL).then(this.processResponse)
     }
 
     addMovieToList(movieId, list) {

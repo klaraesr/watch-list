@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from "react-router-dom"
 import Loader from "react-loader-spinner"
-
+import './CreateUser.css'
 
 class CreateUser extends Component {
     render() {
@@ -32,11 +32,11 @@ class CreateUser extends Component {
                             </div>
                             <button onClick={this.props.handleSubmitBtn}
                                     disabled={username === '' || password === ''} //The user need to have a username, password
-                                    type="submit" className="btn watchlistBtn">Submit
+                                    type="submit" className="btn watchlistBtn no-margin">Submit
                             </button>
                         </form>
                         <Link to="/">
-                            <button type="submit" className="btn watchlistBtn" id="signUpBtn"> Back to login</button>
+                            <button type="submit" className="btn watchlistBtn no-margin"> Back to login</button>
                         </Link>
                     </div>
                     }

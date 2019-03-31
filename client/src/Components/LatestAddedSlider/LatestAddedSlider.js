@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import './LatestAddedList.css'
+import './LatestAddedSlider.css'
 import ImageGallery from "react-image-gallery";
 import {Link} from "react-router-dom";
 
 
 // stateless component
-class WatchList extends Component {
+class LatestAddedSlider extends Component {
     render() {
         return (
             <div>
@@ -18,7 +18,7 @@ class WatchList extends Component {
                             <ImageGallery items={this.props.movies} showThumbnails={false} showFullscreenButton={false}
                                       autoPlay={false} showPlayButton={false} onClick={this.props.handleClick} showNav={true}/>
                         </div>
-                        <Link to="/movielist/1"><div className="view-all">Click here to view your full {this.props.toWatch ? 'to-watch' : 'watched'} list</div></Link>
+                        <Link to="/towatchlist"><div className="view-all">Click here to view your full {this.props.toWatch ? 'to-watch' : 'watched'} list</div></Link>
                     </div>}
             </div>
         );
@@ -28,4 +28,4 @@ class WatchList extends Component {
 
 const items = ['https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all', 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all']
 const labelsArr = ['hej', 'hej2', 'hej3']
-export default WatchList;
+export default LatestAddedSlider;

@@ -1,4 +1,19 @@
 #list-container {
     padding-bottom: 10px;
     background-color: white;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    #list-container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #list-container {
+        width: 100%;
+    }
 }

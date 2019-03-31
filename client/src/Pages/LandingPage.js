@@ -3,6 +3,7 @@ import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
 import ImageSlider from "../Components/LandingSlider/LandingSlider"
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
+import RecommendedGallery from "../Components/RecommendedGallery/RecommendedGallery";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
@@ -16,6 +17,7 @@ class LandingPage extends Component {
             newReleases: [],
             loading: true,
             recommended: [],
+            noMovies: false
         }
     }
 
@@ -33,7 +35,7 @@ class LandingPage extends Component {
                     loading: false,
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
-                        originalTitle: movie.title, // the id instead of title so that we can get the movie from the api if clicked
+                        originalTitle: movie.title,
                         original: IMG_BASE_URL_LARGE + movie.backdrop_path, // image
                         description: movie.title + ', release date: ' + movie.release_date, // shown on picture
                         originalAlt: movie.id
@@ -46,15 +48,20 @@ class LandingPage extends Component {
     getRecommendedMovies = () => {
        model.getRecommendedMovies()
             .then(data => {
-                const movies = data.results.slice(0,9)
-                this.setState({
-                    recommended: movies.map(movie => ({
-                        src: IMG_BASE_URL_SMALL + movie.backdrop_path,
-                        title: movie.title,
-                        id: movie.id,
-                        release: movie.release_date
-                    }))
-                })
+                if(data !== null) {
+                    const movies = data.results.slice(0, 9)
+                    this.setState({
+                        recommended: movies.map(movie => ({
+                            src: IMG_BASE_URL_SMALL + movie.backdrop_path,
+                            title: movie.title,
+                            id: movie.id,
+                            release: movie.release_date
+                        }))
+                    })
+                } else {
+                    console.log("NO MOVIES!")
+                    this.setState({noMovies: true})
+                }
             })
     }
 
@@ -68,7 +75,7 @@ class LandingPage extends Component {
             <div className="container appContainer">
                 <Navbar/>
                 <ImageSlider movies={this.state.newReleases} loading={this.state.loading} handleClick={this.handleClick}/>
-                <Gallery movies={this.state.recommended} loading={this.state.loading}/>
+                <RecommendedGallery movies={this.state.recommended} loading={this.state.loading} noMovies={this.state.noMovies}/>
             </div>
         );
     }
