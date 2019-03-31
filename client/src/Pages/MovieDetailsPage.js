@@ -24,23 +24,23 @@ class MovieDetailsPage extends Component {
     }
 
     handleSetWatched = () => {
-        this.setState({inWatchedList: !this.state.inWatchedList})
-
         if(this.state.inWatchedList){
             //TODO: Ta bort film från watchedlist i databasen
         } else {
             //TODO: Lägg till film i watchedlist i databasen
         }
+
+        this.setState({inWatchedList: !this.state.inWatchedList})
     }
 
     handleSetToWatch = () => {
-        this.setState({inToWatchList: !this.state.inToWatchList})
-        
         if(this.state.inToWatchList){
             //TODO: Ta bort film från towatchlist i databasen
         } else {
             //TODO: Lägg till film till towatchlist i databasen
         }
+
+        this.setState({inToWatchList: !this.state.inToWatchList})
     }
 
     getMovie = (movieId) => {
