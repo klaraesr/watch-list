@@ -10,11 +10,12 @@ if (process.env.DATABASE_URL) {
         logging: true
     })
 }
-else{
+
+else {
     sequelize = new Sequelize('rosquis', 'rosquisadmin', 'upa6fooBie', {
         //host: 'mysql-vt2019.csc.kth.se',
         host: '2001:6b0:1:1300:250:56ff:fe01:25a',
-        dialect: 'mysql',
+        dialect: 'postgres',
         operatorsAliases: false,
         logging: false,
 
