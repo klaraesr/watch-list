@@ -15,7 +15,8 @@ class LandingPage extends Component {
         this.state = {
             bool: true,
             newReleases: [],
-            loading: true,
+            loadingNew: true,
+            loadingRec: true,
             recommended: [],
             noMovies: false
         }
@@ -26,13 +27,14 @@ class LandingPage extends Component {
         this.getRecommendedMovies()
     }
 
+
     // fills this.state.newReleases with 5 new movies
     getNewMovies = () => {
         model.getMoviesInTheatre()
             .then(data => {
                 const movies = data.results.slice(0,5)
                 this.setState({
-                    loading: false,
+                    loadingNew: false,
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
                         originalTitle: movie.title,
@@ -45,12 +47,14 @@ class LandingPage extends Component {
             .catch(e => console.log(e))
     }
 
+    //TODO: Add a stock image if the image doesn't have stockphoto (if it's null)
     getRecommendedMovies = () => {
        model.getRecommendedMovies()
             .then(data => {
                 if(data !== null) {
                     const movies = data.results.slice(0, 9)
                     this.setState({
+                        loadingRec: false,
                         recommended: movies.map(movie => ({
                             src: IMG_BASE_URL_SMALL + movie.backdrop_path,
                             title: movie.title,
@@ -75,7 +79,7 @@ class LandingPage extends Component {
             <div className="container appContainer">
                 <Navbar/>
                 <ImageSlider movies={this.state.newReleases} loading={this.state.loading} handleClick={this.handleClick}/>
-                <RecommendedGallery movies={this.state.recommended} loading={this.state.loading} noMovies={this.state.noMovies}/>
+                <RecommendedGallery movies={this.state.recommended} loading={this.state.loadingRec} noMovies={this.state.noMovies}/>
             </div>
         );
     }

@@ -1,18 +1,31 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('rosquis', 'rosquisadmin', 'upa6fooBie', {
-    host: 'mysql-vt2019.csc.kth.se',
-    //host: '2001:6b0:1:1300:250:56ff:fe01:25a',
-    dialect: 'mysql',
-    operatorsAliases: false,
-    logging: false,
+const Sequelize = require('sequelize')
+let sequelize = null
 
-    pool: {
-        max: 100,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    },
-});
+if (process.env.DATABASE_URL) {
+    sequelize = new Sequelize(process.env.DATABASE_URL, {
+        dialect:  'postgres',
+        protocol: 'postgres',
+        port: 5432,
+        host: 'ec2-46-137-113-157.eu-west-1.compute.amazonaws.com',
+        logging: true
+    })
+}
+else{
+    sequelize = new Sequelize('rosquis', 'rosquisadmin', 'upa6fooBie', {
+        //host: 'mysql-vt2019.csc.kth.se',
+        host: '2001:6b0:1:1300:250:56ff:fe01:25a',
+        dialect: 'mysql',
+        operatorsAliases: false,
+        logging: false,
+
+        pool: {
+            max: 100,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        },
+    });
+}
 
 module.exports = () => {
 
