@@ -58,8 +58,8 @@ class ProfilePage extends Component {
                 {!this.state.loadingSliders && !this.state.loadingHeader &&
                 <div>
                     <ProfileHeader userName={this.state.username} img={this.state.userImg} watched={this.state.watchedCount} toWatch={this.state.toWatchCount}/>
-                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={false} handleClick={this.handleClick}/>}
-                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={false} handleClick={this.handleClick}/>}
                 </div>}
             </div>
 

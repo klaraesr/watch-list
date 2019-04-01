@@ -9,13 +9,12 @@ if (process.env.DATABASE_URL) {
         host: 'ec2-54-225-113-7.compute-1.amazonaws.com',
         logging: true
     })
-}
-
-else {
+} else {
+    console.log('Running on local database..')
     sequelize = new Sequelize('rosquis', 'rosquisadmin', 'upa6fooBie', {
         //host: 'mysql-vt2019.csc.kth.se',
         host: '2001:6b0:1:1300:250:56ff:fe01:25a',
-        dialect: 'postgres',
+        dialect: 'mysql',
         operatorsAliases: false,
         logging: false,
 

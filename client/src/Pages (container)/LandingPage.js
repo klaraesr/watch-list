@@ -56,7 +56,7 @@ class LandingPage extends Component {
                     this.setState({
                         loadingRec: false,
                         recommended: movies.map(movie => ({
-                            src: IMG_BASE_URL_SMALL + movie.backdrop_path,
+                            src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : 'https://scontent-arn2-1.xx.fbcdn.net/v/t1.15752-9/55887819_2220670091594527_9023561787353595904_n.png?_nc_cat=111&_nc_ht=scontent-arn2-1.xx&oh=418a1e4737c2afc7da8eac2e79926373&oe=5D46F540' ),
                             title: movie.title,
                             id: movie.id,
                             release: movie.release_date
