@@ -60,7 +60,6 @@ class Model extends ObservableModel {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if(data.movieId !== null) {
                     const MOVIE = data.movieId
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
@@ -129,32 +128,58 @@ class Model extends ObservableModel {
         }).then(this.processResponse)
     }
 
-    addToList(toWatch, movieId, title, image) {
-      let PATH = ''
-      if(toWatch) {
-        PATH = '/api/addToWatch'
-      } else {
-        PATH = '/api/addWatched'
-      }
-      return fetch(PATH, {
+    addMovieToWatchList(userId, movieId, movieTitle, moviePoster) {
+      const path = '/api/addToWatch'
+      return this.addMovieToList(path, userId, movieId, movieTitle, moviePoster)
+        .then(this.processResponse)
+    }
+
+    addMovieToWatchedList(userId, movieId, movieTitle, moviePoster) {
+      const path = '/api/addWatched'
+      return this.addMovieToList(path, userId, movieId, movieTitle, moviePoster)
+        .then(this.processResponse)
+    }
+
+    addMovieToList(path, userId, movieId, movieTitle, moviePoster) {
+      return fetch(path, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          userId,
           movieId,
-          title,
-          image
-        })})
+          movieTitle,
+          moviePoster
+        })
+      })
+    }
+
+    deleteMovieFromToWatchList(userId, movieId) {
+      const path = '/api/deleteFromToWatch'
+      return this.deleteMovieFromList(path, userId, movieId)
         .then(this.processResponse)
     }
 
-    processResponse(response) {
-        if (response.ok) {
-            return response.json();
-        }
-        throw response;
+    deleteMovieFromWatchedList(userId, movieId) {
+      const path = '/api/deleteFromWatched'
+      return this.deleteMovieFromList(path, userId, movieId)
+        .then(this.processResponse)
+    }
+
+    deleteMovieFromList(path, userId, movieId) {
+      return fetch(path, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            movieId
+          })
+      })
     }
 
     searchMoviesWithQueryString(keyword, pageNr) {
@@ -168,9 +193,11 @@ class Model extends ObservableModel {
       return fetch(URL).then(this.processResponse)
     }
 
-    addMovieToList(movieId, list) {
-      // TODO:
-      console.log('addMovieToList (todo): ', movieId, list)
+    processResponse(response) {
+        if (response.ok) {
+            return response.json();
+        }
+        throw response;
     }
 }
 
