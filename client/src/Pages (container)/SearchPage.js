@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar"
-import SearchGrid from "../Components/SearchGrid/SearchGrid"
-import SearchFooter from "../Components/SearchFooter/SearchFooter"
-import DragDrop from "../Components/DragDrop/DragDrop";
+import Navbar from "../Components (presentational)/Navbar/Navbar"
+import SearchGrid from "../Components (presentational)/SearchGrid/SearchGrid"
+import SearchFooter from "../Components (presentational)/SearchFooter/SearchFooter"
+import DragDrop from "../Components (presentational)/DragDrop/DragDrop";
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
 import modelInstance from "../Model"

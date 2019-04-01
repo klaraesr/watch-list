@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import MovieDetails from "../Components/MovieDetails/MovieDetails"
+import MovieDetails from "../Components (presentational)/MovieDetails/MovieDetails"
 import model from './../Model.js'
 import Loader from "react-loader-spinner"
-import Navbar from "../Components/Navbar/Navbar";
+import Navbar from "../Components (presentational)/Navbar/Navbar";
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component

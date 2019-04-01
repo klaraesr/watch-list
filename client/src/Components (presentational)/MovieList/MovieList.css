@@ -3,7 +3,28 @@
     background-color: white;
     width: 70%;
     margin: 0 auto;
+}
 
+#title {
+    width: 190px;
+    height: 190px;
+    margin: 10px auto 20px;
+    padding: 20px;
+    color: white;
+    background-color: #e29200;
+    border-radius: 50%;
+}
+
+#title:hover span {
+    display:none;
+}
+
+#title:hover {
+    content: 'HEY';
+}
+
+#inside-title {
+    margin-top: 60px;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 900px) {

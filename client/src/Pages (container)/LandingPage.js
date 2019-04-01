@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
-import ImageSlider from "../Components/LandingSlider/LandingSlider"
+import Gallery from '../Components (presentational)/RecommendedGallery/RecommendedGallery.js'
+import ImageSlider from "../Components (presentational)/LandingSlider/LandingSlider"
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar"
-import RecommendedGallery from "../Components/RecommendedGallery/RecommendedGallery";
+import Navbar from "../Components (presentational)/Navbar/Navbar"
+import RecommendedGallery from "../Components (presentational)/RecommendedGallery/RecommendedGallery";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
