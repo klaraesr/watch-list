@@ -6,7 +6,7 @@ if (process.env.DATABASE_URL) {
         dialect:  'postgres',
         protocol: 'postgres',
         port: 5432,
-        host: 'ec2-46-137-113-157.eu-west-1.compute.amazonaws.com',
+        host: 'ec2-54-225-113-7.compute-1.amazonaws.com',
         logging: true
     })
 }
