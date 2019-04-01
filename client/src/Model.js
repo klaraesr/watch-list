@@ -10,7 +10,7 @@ const HEADER =  {
       'Content-Type': 'application/json',
   }}
 
-class DinnerModel extends ObservableModel {
+class Model extends ObservableModel {
     constructor(props) {
         super(props);
     }
@@ -175,5 +175,5 @@ class DinnerModel extends ObservableModel {
 }
 
 // Export an instance of DinnerModel
-const modelInstance = new DinnerModel();
+const modelInstance = new Model();
 export default modelInstance;

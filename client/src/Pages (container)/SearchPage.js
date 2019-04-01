@@ -3,7 +3,8 @@ import model from './../Model.js'
 import Navbar from "../Components (presentational)/Navbar/Navbar"
 import SearchGrid from "../Components (presentational)/SearchGrid/SearchGrid"
 import SearchFooter from "../Components (presentational)/SearchFooter/SearchFooter"
-import DragDrop from "../Components (presentational)/DragDrop/DragDrop";
+import DragDrop from "../Components (presentational)/DragDrop/DragDrop"
+import Loader from "react-loader-spinner"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
 import modelInstance from "../Model"
@@ -14,7 +15,7 @@ class SearchPage extends Component {
 
       this.state = {
           userId: null,
-          movies: [],
+          loading: true,
           currentPage: 1,
           numberOfPages: 0,
           currentQuery: ''
@@ -37,6 +38,7 @@ class SearchPage extends Component {
     let data = await this.searchAPIcall(queryString, pg)
     this.setState({
       movies: data.results,
+      loading: false,
       currentPage: data.page,
       numberOfPages: data.total_pages,
       currentQuery: queryString
@@ -44,6 +46,9 @@ class SearchPage extends Component {
   }
 
   searchCallback = (queryString) => {
+    this.setState({
+      loading: true
+    })
     this.loadMovies(queryString)
   }
 
@@ -90,17 +95,19 @@ class SearchPage extends Component {
   }
 
     render() {
-      const {droppedItem, movies, numberOfPages, currentPage, addMsg} = this.state
+      const {droppedItem, movies, numberOfPages, currentPage, addMsg, loading} = this.state
 
         return (
             <div className="container appContainer">
                 <Navbar callback={this.searchCallback}/>
                 <DragDrop droppedItem={droppedItem} onDrop={this.onDrop}/>
-                { movies ?
-                  <SearchGrid movies={movies}/> :
-                  'loading'
+                { loading ?
+                  <Loader type="Oval" color="#FF9A00" height="100" width="100"/> :
+                  <div>
+                    <SearchGrid movies={movies}/>
+                    <SearchFooter currentPage={currentPage} numberOfPages={numberOfPages} loadNextPage={this.loadNextPage}/>
+                  </div>
                 }
-                <SearchFooter currentPage={currentPage} numberOfPages={numberOfPages} loadNextPage={this.loadNextPage}/>
             </div>
 
         );
