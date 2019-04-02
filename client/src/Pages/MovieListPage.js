@@ -6,6 +6,9 @@ import MovieListFooter from "../Components/MovieListFooter/MovieListFooter";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/v8ND5Ui.png'
 
+
+//TODO: Fix states for all movie buttons so that they show changes directly instead of onload
+
 class MovieListPage extends Component {
     constructor() {
         super()
@@ -52,6 +55,28 @@ class MovieListPage extends Component {
             .catch(e => console.log(e))
     }
 
+    handleToWatchListBtn = (movieId, title, image, action) => {
+        console.log(action)
+        if(action === 'add'){
+            console.log("Lets add movie with id to TOWATCHLIST: ", movieId)
+            model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
+        } else if(action === 'remove') {
+            console.log("Lets REMOVE movie with id to TOWATCHLIST: ", movieId)
+            model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
+        }
+    }
+
+    handleWatchedListBtn = (movieId, title, image, action) => {
+        console.log(action)
+        if(action === 'add'){
+            console.log("Lets add movie with id to WATCHEDLIST: ", movieId)
+            model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
+        } else if(action === 'remove') {
+            console.log("Lets REMOVE movie with id to WATCHEDLIST: ", movieId)
+            model.deleteMovieFromWatchedList(movieId).then(data => console.log(data))
+        }
+    }
+
     handleLoadMore = () => {
         this.loadContent(this.state.offset)
     }
@@ -62,8 +87,13 @@ class MovieListPage extends Component {
                 <Navbar/>
                 {!this.state.loading &&
                 <div>
-                    <MovieList movieList={this.state.movieList} listType={this.props.listType}/>
-                    <MovieListFooter handleLoadMore={this.handleLoadMore} noMoreEntries={this.state.noMoreEntries}/>
+                    <MovieList movieList={this.state.movieList}
+                               listType={this.props.listType}
+                               handleToWatchListBtn={this.handleToWatchListBtn}
+                               handleWatchedListBtn={this.handleWatchedListBtn}/>
+
+                    <MovieListFooter handleLoadMore={this.handleLoadMore}
+                                     noMoreEntries={this.state.noMoreEntries}/>
                 </div>}
             </div>
         );

@@ -11,8 +11,8 @@ class RecommendedGallery extends Component {
             <div>
                 <h4 className="titles">Recommended for you</h4>
                 {this.props.noMovies && <p className="recommended-desc">
-                    You don't have any movies in your lists yet.
-                    Start adding movies to your watched list to get recommendations!
+                    You don't have any movies in your lists that we can recommend
+                    movies upon yet. <br /> Start adding movies to your lists to get recommendations!
                 </p>}
 
                 {!this.props.noMovies && <div>

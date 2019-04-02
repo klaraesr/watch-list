@@ -3,6 +3,8 @@ import MovieDetails from "../Components/MovieDetails/MovieDetails"
 import model from './../Model.js'
 import Loader from "react-loader-spinner"
 import Navbar from "../Components/Navbar/Navbar";
+const REPLACEMENT_IMG_POSTER = 'https://i.imgur.com/M1gUEMQ.png'
+const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
 class MovieDetailsPage extends Component {
@@ -59,9 +61,10 @@ class MovieDetailsPage extends Component {
     getMovie = (movieId) => {
         model.getMovie(movieId)
             .then(data => {
+                console.log(data.poster_path === null)
                 this.setState({
                     loading: false,
-                    movie: {
+                    movie: ({
                         id: data.id,
                         title: data.title,
                         description: data.overview,
@@ -71,11 +74,11 @@ class MovieDetailsPage extends Component {
                         runtime: data.runtime,
                         voteCount: data.vote_count,
                         voteAverage: data.vote_average,
-                        poster: data.poster_path,
+                        poster: (data.poster_path === null ? REPLACEMENT_IMG_POSTER : IMG_BASE_URL_LARGE + data.poster_path),
                         backdrop: data.backdrop_path,
                         IMDBId: data.imdb_id,
                         release: data.release_date
-                    }
+                    })
                 })
             })
             .catch(e => console.log(e))

@@ -5,6 +5,8 @@ import Navbar from "../Components/Navbar/Navbar"
 import RecommendedGallery from "../Components/RecommendedGallery/RecommendedGallery";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
+const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/XW7A8o3.png'
+const REPLACEMENT_IMG_LARGE = 'https://i.imgur.com/4aUT01r.png'
 
 // statefull component
 class LandingPage extends Component {
@@ -37,7 +39,7 @@ class LandingPage extends Component {
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
                         originalTitle: movie.title,
-                        original: IMG_BASE_URL_LARGE + movie.backdrop_path, // image
+                        original: (movie.backdrop_path !== null ? IMG_BASE_URL_LARGE + movie.backdrop_path : REPLACEMENT_IMG_LARGE),
                         description: movie.title + ', release date: ' + movie.release_date, // shown on picture
                         originalAlt: movie.id
                     }))
@@ -46,7 +48,6 @@ class LandingPage extends Component {
             .catch(e => console.log(e))
     }
 
-    //TODO: Add a stock image if the image doesn't have stockphoto (if it's null)
     getRecommendedMovies = () => {
        model.getRecommendedMovies()
             .then(data => {
@@ -55,17 +56,15 @@ class LandingPage extends Component {
                     this.setState({
                         loadingRec: false,
                         recommended: movies.map(movie => ({
-                            src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : 'https://scontent-arn2-1.xx.fbcdn.net/v/t1.15752-9/55887819_2220670091594527_9023561787353595904_n.png?_nc_cat=111&_nc_ht=scontent-arn2-1.xx&oh=418a1e4737c2afc7da8eac2e79926373&oe=5D46F540' ),
+                            src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : REPLACEMENT_IMG_SMALL),
                             title: movie.title,
                             id: movie.id,
                             release: movie.release_date
                         }))
                     })
                 } else {
-                    console.log("NO MOVIES!")
                     this.setState({noMovies: true})
-                }
-            })
+                }})
     }
 
     handleClick = (e) => {

@@ -48,13 +48,8 @@ class Model extends ObservableModel {
 
     // Returns 20 movies based upon a the latest movie added to the current user's watched-list
     getRecommendedMovies() {
-        return fetch('api/getLatestAddedMovie', {
-            method: 'POST',
-            headers: JSON_HEADERS,
-            body: JSON.stringify({
-                id: this.getCurrentUser()
-            })
-        })
+        const URL = 'api/getLatestAddedMovie/' + this.getCurrentUser()
+        return fetch(URL)
             .then(res => res.json())
             .then(data => {
                 if(data.movieId !== null) {
@@ -62,14 +57,13 @@ class Model extends ObservableModel {
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
                     return fetch(URL).then(this.processResponse)
                 } else {
-                    console.log("model got null")
                     return null
                 }
             })
     }
 
     getMoviesFromToWatchList(){
-        const URL = '/api/getMoviesFromToWatchList/' + this.getCurrentUser();
+        const URL = '/api/getMoviesFromToWatchList/' + this.getCurrentUser()
         fetch(URL)
             .then(res => res.json())
             .then(movies => {

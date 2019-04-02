@@ -79,10 +79,6 @@ class SearchPage extends Component {
     }
   }
 
-  /**
-  Currently loads new movies each time, even if they have been loaded before...
-  Optimally saves movies loaded previously
-  **/
   loadNextPage = async() => {
     let alreadyLoadedMovies = this.state.movies
     let query = this.state.currentQuery
