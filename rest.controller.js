@@ -53,11 +53,25 @@ router.get('/checkMovieInLists/:movieid/:userid', async function (req, res){
 
 router.get('/getLatestMoviesFromList/:userid', async function (req, res){
     const userId = req.params.userid
-    const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id')
-    const watchedMovies = await model.getMoviesFromList(userId, 'watchedlist_id')
+    const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id', 0, 5)
+    const watchedMovies = await model.getMoviesFromList(userId, 'watchedlist_id', 0, 5)
+
+    console.log("latest movies, profile page: ", toWatchMovies.length)
     res.json({
         toWatchMovies,
         watchedMovies
+    })
+})
+
+router.get('/getMoviesFromList/:userid/:list/:offset/:limit', async function (req, res){
+    const userId = req.params.userid
+    const list = req.params.list
+    const offset = req.params.offset
+    const limit = req.params.limit
+
+    const movies = await model.getMoviesFromList(userId, list, offset, limit)
+    res.json({
+        movies
     })
 })
 

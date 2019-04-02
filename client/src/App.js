@@ -31,7 +31,7 @@ const CreateUserRoute = ({ component: Component, ...rest }) => (
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={({props, history, location, match}) => (
         model.getCurrentUser() !== null
-            ? <Component {...props} list={rest.list} params={match.params} history={history} userId={model.getCurrentUser()}/>
+            ? <Component {...props} listType={rest.listType} params={match.params} history={history} userId={model.getCurrentUser()}/>
             : <Redirect to='/' />
     )} />
 )
@@ -67,15 +67,15 @@ class App extends Component {
                     <div>
                         <Header />
                         <Switch>
-                            <LoginRoute exact path='/' component={<LoginPage/>}/>
+                            <LoginRoute exact path='/' component={LoginPage}/>
                             <CreateUserRoute path='/createuser' component={CreateUserPage}/>
 
                             <PrivateRoute path='/profile' component={ProfilePage}/>
                             <PrivateRoute path='/moviedetails/:id' component={MovieDetailsPage}/>
                             <PrivateRoute path='/search/:value' component={SearchPage}/>
                             <PrivateRoute path='/landing' component={LandingPage}/>
-                            <PrivateRoute path='/towatchlist' component={MovieListPage} list="toWatchList"/>
-                            <PrivateRoute path='/watchedlist' component={MovieListPage} list="watchedList"/>
+                            <PrivateRoute path='/towatchlist' component={MovieListPage} listType="To Watch List"/>
+                            <PrivateRoute path='/watchedlist' component={MovieListPage} listType="Watched List"/>
                             <RedirectPath path='/*'/>
                         </Switch>
                     </div>

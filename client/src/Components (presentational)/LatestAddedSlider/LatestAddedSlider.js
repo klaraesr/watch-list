@@ -18,7 +18,7 @@ class LatestAddedSlider extends Component {
                             <ImageGallery items={this.props.movies} showThumbnails={false} showFullscreenButton={false}
                                       autoPlay={false} showPlayButton={false} onClick={this.props.handleClick} showNav={true}/>
                         </div>
-                        <Link to="/towatchlist"><div className="view-all">Click here to view your full {this.props.toWatch ? 'to-watch' : 'watched'} list</div></Link>
+                        <Link to={this.props.toWatch ? '/towatchlist' : '/watchedlist'}><div className="view-all">Click here to view your full {this.props.toWatch ? 'to-watch' : 'watched'} list</div></Link>
                     </div>}
             </div>
         );

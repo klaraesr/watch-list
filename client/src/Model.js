@@ -46,6 +46,13 @@ class Model extends ObservableModel {
         return fetch(URL).then(this.processResponse)
     }
 
+    // Hämta filmer från lista med limit och offset och userId (från get current user)
+    getMoviesFromList(list, offset, limit) {
+        const URL = '/api/getMoviesFromList/' + this.getCurrentUser() + '/' + list + '/' + offset + '/' + limit
+        console.log("models url: ", URL)
+        return fetch(URL).then(this.processResponse)
+    }
+
     // Returns 20 movies based upon a the latest movie added to the current user's watched-list
     getRecommendedMovies() {
         return fetch('api/getLatestAddedMovie', {
@@ -60,7 +67,6 @@ class Model extends ObservableModel {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if(data.movieId !== null) {
                     const MOVIE = data.movieId
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`

@@ -189,17 +189,17 @@ exports.getAllMoviesFromWatchedList = (id) => {
         .catch(error => {console.log(error)})
 }
 
-//Tar ut dom 5 senaste filmerna från någon lista
-exports.getMoviesFromList = (id, idName) => {
+//Tar ut dom limit senaste med en offset på offset, från användare med id och där listnameid = watchlist_id eller watchlisted_id beroende på vilken man ska ha
+exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
     return User.findByPk(id)
         .then(async (user) => {
             let listId = null
-            if(idName === 'watchedlist_id'){
+            if(ListNameId === 'watchedlist_id'){
                 listId = await user.getWatchedList()
             } else {
                 listId = await user.getToWatchList()
             }
-            return Movie.findAll({where:{[idName]: listId.dataValues.id}, limit: 5, order: [['created_at', 'DESC']]})
+            return Movie.findAll({where:{[ListNameId]: listId.dataValues.id}, limit: parseInt(limit), offset: parseInt(offset), order: [['created_at', 'DESC']]})
                 .then(movies => {
                     return movies
                 })
