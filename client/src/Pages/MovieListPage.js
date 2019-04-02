@@ -56,17 +56,23 @@ class MovieListPage extends Component {
     }
 
     handleToWatchListBtn = (movieId, title, image, action) => {
+        console.log(action)
         if(action === 'add'){
+            console.log("Lets add movie with id to TOWATCHLIST: ", movieId)
             model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
         } else if(action === 'remove') {
+            console.log("Lets REMOVE movie with id to TOWATCHLIST: ", movieId)
             model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
         }
     }
 
     handleWatchedListBtn = (movieId, title, image, action) => {
+        console.log(action)
         if(action === 'add'){
+            console.log("Lets add movie with id to WATCHEDLIST: ", movieId)
             model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
         } else if(action === 'remove') {
+            console.log("Lets REMOVE movie with id to WATCHEDLIST: ", movieId)
             model.deleteMovieFromWatchedList(movieId).then(data => console.log(data))
         }
     }
