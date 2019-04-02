@@ -13,14 +13,16 @@
 }
 
 .grid-item {
+    height: 150px;
     position: relative;
 }
 
 .grid-images {
     opacity: 1;
     display: block;
+    object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .title {
@@ -81,9 +83,10 @@
 
 @media only screen and (min-width: 0px) and (max-width: 500px) {
     .grid-container {
-        grid-template-columns: auto;
+        grid-template-columns: auto auto;
         justify-content: unset;
     }
+
     .title {
         font-size: 19px;
     }

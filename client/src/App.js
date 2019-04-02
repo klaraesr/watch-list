@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import model from "./Model"
 import './App.css'
-import LoginPage from "./Pages/LoginPage"
-import ProfilePage from "./Pages/ProfilePage"
-import MovieDetailsPage from "./Pages/MovieDetailsPage"
-import SearchPage from "./Pages/SearchPage"
+import LoginPage from "./Pages (container)/LoginPage"
+import ProfilePage from "./Pages (container)/ProfilePage"
+import MovieDetailsPage from "./Pages (container)/MovieDetailsPage"
+import SearchPage from "./Pages (container)/SearchPage"
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
-import LandingPage from "./Pages/LandingPage"
-import Header from "./Components/Header/Header"
-import MovieListPage from "./Pages/MovieListPage"
-import CreateUserPage from "./Pages/CreateUserPage"
+import LandingPage from "./Pages (container)/LandingPage"
+import Header from "./Components (presentational)/Header/Header"
+import MovieListPage from "./Pages (container)/MovieListPage"
+import CreateUserPage from "./Pages (container)/CreateUserPage"
 
 // Different settings for routes
 const LoginRoute = ({ component: Component, ...rest }) => (
@@ -31,7 +31,7 @@ const CreateUserRoute = ({ component: Component, ...rest }) => (
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={({props, history, location, match}) => (
         model.getCurrentUser() !== null
-            ? <Component {...props} params={match.params} history={history} userId={model.getCurrentUser()}/>
+            ? <Component {...props} list={rest.list} params={match.params} history={history} userId={model.getCurrentUser()}/>
             : <Redirect to='/' />
     )} />
 )
@@ -74,7 +74,8 @@ class App extends Component {
                             <PrivateRoute path='/moviedetails/:id' component={MovieDetailsPage}/>
                             <PrivateRoute path='/search/:value' component={SearchPage}/>
                             <PrivateRoute path='/landing' component={LandingPage}/>
-                            <PrivateRoute path='/towatchlist' component={MovieListPage} list="towatchlist"/>
+                            <PrivateRoute path='/towatchlist' component={MovieListPage} list="toWatchList"/>
+                            <PrivateRoute path='/watchedlist' component={MovieListPage} list="watchedList"/>
                             <RedirectPath path='/*'/>
                         </Switch>
                     </div>

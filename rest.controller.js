@@ -45,6 +45,7 @@ router.get('/getCurrentUser', async function (req, res){
 router.post('/getLatestAddedMovie', async function (req, res){
     const userId = req.body.id
     const movieId = await model.getLatestMovie(userId)
+    console.log(movieId)
     res.json({
         movieId
     })

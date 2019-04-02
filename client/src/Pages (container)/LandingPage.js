@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
-import ImageSlider from "../Components/LandingSlider/LandingSlider"
+import Gallery from '../Components (presentational)/RecommendedGallery/RecommendedGallery.js'
+import ImageSlider from "../Components (presentational)/LandingSlider/LandingSlider"
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar"
-import RecommendedGallery from "../Components/RecommendedGallery/RecommendedGallery";
+import Navbar from "../Components (presentational)/Navbar/Navbar"
+import RecommendedGallery from "../Components (presentational)/RecommendedGallery/RecommendedGallery";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w1280/'
 
@@ -15,7 +15,8 @@ class LandingPage extends Component {
         this.state = {
             bool: true,
             newReleases: [],
-            loading: true,
+            loadingNew: true,
+            loadingRec: true,
             recommended: [],
             noMovies: false
         }
@@ -26,13 +27,14 @@ class LandingPage extends Component {
         this.getRecommendedMovies()
     }
 
+
     // fills this.state.newReleases with 5 new movies
     getNewMovies = () => {
         model.getMoviesInTheatre()
             .then(data => {
                 const movies = data.results.slice(0,5)
                 this.setState({
-                    loading: false,
+                    loadingNew: false,
                     newReleases: movies.map(movie => ({
                         // for the slider, thereby the little strange names
                         originalTitle: movie.title,
@@ -45,14 +47,16 @@ class LandingPage extends Component {
             .catch(e => console.log(e))
     }
 
+    //TODO: Add a stock image if the image doesn't have stockphoto (if it's null)
     getRecommendedMovies = () => {
        model.getRecommendedMovies()
             .then(data => {
                 if(data !== null) {
                     const movies = data.results.slice(0, 9)
                     this.setState({
+                        loadingRec: false,
                         recommended: movies.map(movie => ({
-                            src: IMG_BASE_URL_SMALL + movie.backdrop_path,
+                            src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : 'https://scontent-arn2-1.xx.fbcdn.net/v/t1.15752-9/55887819_2220670091594527_9023561787353595904_n.png?_nc_cat=111&_nc_ht=scontent-arn2-1.xx&oh=418a1e4737c2afc7da8eac2e79926373&oe=5D46F540' ),
                             title: movie.title,
                             id: movie.id,
                             release: movie.release_date
@@ -75,7 +79,7 @@ class LandingPage extends Component {
             <div className="container appContainer">
                 <Navbar/>
                 <ImageSlider movies={this.state.newReleases} loading={this.state.loading} handleClick={this.handleClick}/>
-                <RecommendedGallery movies={this.state.recommended} loading={this.state.loading} noMovies={this.state.noMovies}/>
+                <RecommendedGallery movies={this.state.recommended} loading={this.state.loadingRec} noMovies={this.state.noMovies}/>
             </div>
         );
     }

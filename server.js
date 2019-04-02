@@ -1,5 +1,7 @@
 const express = require('express')
 const http = require('http');
+const seq = require('./sequelize.js')
+const {sequelize} = seq()
 
 const expressSession = require('express-session')
 const sharedSession = require('express-socket.io-session')
@@ -53,8 +55,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/public/index.html'))
 })
 
-
-//Start server
-app.listen(port, (req, res) => {
-    console.log(`server listening on port: ${port}`)
-});
+sequelize.sync().then(function() {
+    app.listen(port, (req, res) => {
+        console.log(`server listening on port: ${port}`)
+    })
+})

@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import MovieDetails from "../Components/MovieDetails/MovieDetails"
+import MovieDetails from "../Components (presentational)/MovieDetails/MovieDetails"
 import model from './../Model.js'
 import Loader from "react-loader-spinner"
-import Navbar from "../Components/Navbar/Navbar";
+import Navbar from "../Components (presentational)/Navbar/Navbar";
+const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
 class MovieDetailsPage extends Component {
@@ -18,22 +19,19 @@ class MovieDetailsPage extends Component {
 
     componentDidMount() {
         const movieId = this.props.params.id
-        this.setState({
-          userId: model.getCurrentUser()
-        })
         this.getMovie(movieId)
         model.checkMovieInLists(movieId).then(res => this.setState({inWatchedList: res.inWatchedList, inToWatchList: res.inToWatchList}))
     }
 
     handleSetWatched = () => {
-        const { userId, movie } = this.state
+        const { movie } = this.state
         if(this.state.inWatchedList){
-            model.deleteMovieFromWatchedList(userId, movie.id)
+            model.deleteMovieFromWatchedList(movie.id)
               .then(data => {
                 console.log(data)
               })
         } else {
-            model.addMovieToWatchedList(userId, movie.id, movie.title, movie.poster)
+            model.addMovieToWatchedList(movie.id, movie.title, movie.poster)
               .then(data => {
                 console.log(data)
               })
@@ -43,14 +41,14 @@ class MovieDetailsPage extends Component {
     }
 
     handleSetToWatch = () => {
-        const { userId, movie } = this.state
+        const { movie } = this.state
         if(this.state.inToWatchList){
-            model.deleteMovieFromToWatchList(userId, movie.id)
+            model.deleteMovieFromToWatchList(movie.id)
                 .then(data => {
                   console.log(data)
                 })
         } else {
-            model.addMovieToWatchList(userId, movie.id, movie.title, movie.poster)
+            model.addMovieToWatchList(movie.id, movie.title, movie.poster)
               .then(data => {
                 console.log(data)
               })

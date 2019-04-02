@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar"
-import SearchGrid from "../Components/SearchGrid/SearchGrid"
-import SearchFooter from "../Components/SearchFooter/SearchFooter"
-import DragDrop from "../Components/DragDrop/DragDrop";
+import Navbar from "../Components (presentational)/Navbar/Navbar"
+import SearchGrid from "../Components (presentational)/SearchGrid/SearchGrid"
+import SearchFooter from "../Components (presentational)/SearchFooter/SearchFooter"
+import DragDrop from "../Components (presentational)/DragDrop/DragDrop"
 import Loader from "react-loader-spinner"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
@@ -13,7 +13,6 @@ class SearchPage extends Component {
       super(props)
 
       this.state = {
-          userId: null,
           loading: true,
           currentPage: 1,
           numberOfPages: 0,
@@ -22,9 +21,6 @@ class SearchPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({
-      userId: model.getCurrentUser()
-    })
     this.loadMovies(this.props.params.value)
   }
 
@@ -65,14 +61,13 @@ class SearchPage extends Component {
       droppedItem: item
     })
     const { movieId, movieTitle, moviePoster } = item
-    const userId = this.state.userId
     if(item.toWatch) {
-      model.addMovieToWatchList(userId, movieId, movieTitle, moviePoster)
+      model.addMovieToWatchList(movieId, movieTitle, moviePoster)
         .then(data => {
           console.log(data)
         })
     } else {
-      model.addMovieToWatchedList(userId, movieId, movieTitle, moviePoster)
+      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
         .then(data => {
           console.log(data)
         })

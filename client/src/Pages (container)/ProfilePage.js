@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
-import LatestAddedSlider from "../Components/LatestAddedSlider/LatestAddedSlider"
+import ProfileHeader from "../Components (presentational)/ProfileHeader/ProfileHeader"
+import LatestAddedSlider from "../Components (presentational)/LatestAddedSlider/LatestAddedSlider"
 import Loader from "react-loader-spinner"
 import model from './../Model.js'
-import Navbar from "../Components/Navbar/Navbar"
+import Navbar from "../Components (presentational)/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 
 class ProfilePage extends Component {
@@ -58,8 +58,8 @@ class ProfilePage extends Component {
                 {!this.state.loadingSliders && !this.state.loadingHeader &&
                 <div>
                     <ProfileHeader userName={this.state.username} img={this.state.userImg} watched={this.state.watchedCount} toWatch={this.state.toWatchCount}/>
-                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={false} handleClick={this.handleClick}/>}
-                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={false} handleClick={this.handleClick}/>}
                 </div>}
             </div>
 

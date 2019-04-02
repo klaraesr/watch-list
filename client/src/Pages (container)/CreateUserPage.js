@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import model from './../Model.js'
-import CreateUser from "../Components/CreateUser/CreateUser";
+import CreateUser from "../Components (presentational)/CreateUser/CreateUser";
 import Redirect from "react-router-dom/es/Redirect";
 
 class CreateUserPage extends Component {

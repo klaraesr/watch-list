@@ -36,6 +36,11 @@ code {
   color: white;
 }
 
+.active {
+  background-color: #ffc069;
+  color: white;
+}
+
 a {
   color: orange;
 }

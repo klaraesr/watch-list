@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Navbar from "../Components/Navbar/Navbar";
-import MovieList from "../Components/MovieList/MovieList";
+import Navbar from "../Components (presentational)/Navbar/Navbar";
+import MovieList from "../Components (presentational)/MovieList/MovieList";
 
 class MovieListPage extends Component {
 
@@ -12,7 +12,7 @@ class MovieListPage extends Component {
         return (
             <div className="container appContainer">
                 <Navbar/>
-                <MovieList fullList={watchedList}/>
+                <MovieList fullList={watchedList} list={this.props.list}/>
             </div>
         );
     }

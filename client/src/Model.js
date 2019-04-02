@@ -128,19 +128,20 @@ class Model extends ObservableModel {
         }).then(this.processResponse)
     }
 
-    addMovieToWatchList(userId, movieId, movieTitle, moviePoster) {
+    addMovieToWatchList(movieId, movieTitle, moviePoster) {
       const path = '/api/addToWatch'
-      return this.addMovieToList(path, userId, movieId, movieTitle, moviePoster)
+      return this.addMovieToList(path, movieId, movieTitle, moviePoster)
         .then(this.processResponse)
     }
 
-    addMovieToWatchedList(userId, movieId, movieTitle, moviePoster) {
+    addMovieToWatchedList(movieId, movieTitle, moviePoster) {
       const path = '/api/addWatched'
-      return this.addMovieToList(path, userId, movieId, movieTitle, moviePoster)
+      return this.addMovieToList(path, movieId, movieTitle, moviePoster)
         .then(this.processResponse)
     }
 
-    addMovieToList(path, userId, movieId, movieTitle, moviePoster) {
+    addMovieToList(path, movieId, movieTitle, moviePoster) {
+      const userId = this.getCurrentUser()
       return fetch(path, {
         method: 'POST',
         headers: {
@@ -156,19 +157,20 @@ class Model extends ObservableModel {
       })
     }
 
-    deleteMovieFromToWatchList(userId, movieId) {
+    deleteMovieFromToWatchList(movieId) {
       const path = '/api/deleteFromToWatch'
-      return this.deleteMovieFromList(path, userId, movieId)
+      return this.deleteMovieFromList(path, movieId)
         .then(this.processResponse)
     }
 
-    deleteMovieFromWatchedList(userId, movieId) {
+    deleteMovieFromWatchedList(movieId) {
       const path = '/api/deleteFromWatched'
-      return this.deleteMovieFromList(path, userId, movieId)
+      return this.deleteMovieFromList(path, movieId)
         .then(this.processResponse)
     }
 
-    deleteMovieFromList(path, userId, movieId) {
+    deleteMovieFromList(path, movieId) {
+      const userId = this.getCurrentUser()
       return fetch(path, {
           method: 'POST',
           headers: {
