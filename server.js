@@ -23,17 +23,6 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-
-// Setup session
-const session = expressSession({
-    secret: `
-        `,
-    resave: true,
-    saveUninitialized: true,
-});
-app.use(session);
-io.use(sharedSession(session));
-
 // Bind REST controller to /api/*
 const router = require('./rest.controller.js')
 app.use('/api', router);
