@@ -92,41 +92,41 @@ exports.getWatchedList = (userId) => { //Returnerar en användares watched-list 
 }
 
 exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
-    return Movie.create({
-        id: movieId,
-        name: movieName,
-        image: imgSrc,
-        watchlist_id: listId
-    }).then(movie => { //Returns a movie that is connected to a watchlist
-        return movie
-    })
-        .catch(error => {
-            if(error.name === 'SequelizeUniqueConstraintError') {
-                console.log('contraint error')
-                return error.errors[0].message
-            } else {
-
-            }
-        })
+    return addMovieToList(true, listId, movieId, movieName, imgSrc)
 }
 
 exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
-    return Movie.create({
-        id: movieId,
-        name: movieName,
-        image: imgSrc,
-        watchedlist_id: listId
-    }).then(movie => { //Returns a movie that is connected to a watchedlist
-        return movie
-    })
-        .catch(error => {
-            if(error.name === 'SequelizeUniqueConstraintError') {
-                console.log('contraint error')
-                return error.errors[0]
-            } else {
-                //console.log(error)
-            }
-        })
+    return addMovieToList(false, listId, movieId, movieName, imgSrc)
+}
+
+function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
+  let WATCHID, WATCHEDID
+  console.log('movie id in backendModel: ', movieId)
+  if(toWatch) {
+    WATCHID = listId
+    WATCHEDID = null
+  } else {
+    WATCHID = null
+    WATCHEDID = listId
+  }
+
+  return Movie.create({
+      id: movieId,
+      name: movieName,
+      image: imgSrc,
+      watchlist_id: WATCHID,
+      watchedlist_id: WATCHEDID
+  }).then(movie => { //Returns a movie that is connected to a watchedlist
+      return movie
+  })
+      .catch(error => {
+          if(error.name === 'SequelizeUniqueConstraintError') {
+              console.log('contraint error')
+              return error.errors[0]
+          } else {
+              //console.log(error)
+          }
+      })
 }
 
 exports.deleteMovieFromToWatchList = (movieId, listId) => {
