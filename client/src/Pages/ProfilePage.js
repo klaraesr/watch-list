@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner"
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
-const REPLACEMENT_IMG_LARGE = 'https://i.imgur.com/SVCKd7y.png'
+const REPLACEMENT_IMG_LARGE = 'https://i.imgur.com/4aUT01r.png'
 
 class ProfilePage extends Component {
     constructor(props) {

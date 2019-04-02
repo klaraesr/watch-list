@@ -16,8 +16,8 @@ class MovieList extends Component {
                                     <img className="miniature-img" src={movie.image}/>
                                 </Link>
                                 <div className="title-movie-list">{movie.title}</div>
-                                <button className={'btn watchlistBtn list-add-btn' + (movie.watchlist_id !== null ? ' active' : '')}>{(movie.watchlist_id === null) ? 'Add to To Watch List' : 'Remove from To Watch List'}</button>
-                                <button className={'btn watchlistBtn list-add-btn' + (movie.watchedlist_id !== null ? ' active' : '')}>{(movie.watchedlist_id === null) ? 'Add to Watched List' : 'Remove from Watched List'}</button>
+                                <button onClick={() => {this.props.handleToWatchListBtn(movie.id, movie.title, movie.image, movie.watchlist_id === null ? 'add' : 'remove')}} className={'btn watchlistBtn list-add-btn' + (movie.watchlist_id !== null ? ' active' : '')}>{(movie.watchlist_id === null) ? 'Add to To Watch List' : 'Remove from To Watch List'}</button>
+                                <button onClick={() => {this.props.handleWatchedListBtn(movie.id, movie.title, movie.image, movie.watchlist_id === null ? 'add' : 'remove')}} className={'btn watchlistBtn list-add-btn' + (movie.watchedlist_id !== null ? ' active' : '')}>{(movie.watchedlist_id === null) ? 'Add to Watched List' : 'Remove from Watched List'}</button>
                             </div>
                     ))}
                 </div>

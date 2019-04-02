@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import { DragSource } from "react-dnd"
 import './GridItem.css'
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w342/'
-const NO_IMAGE_TMDB = 'https://www.themoviedb.org/assets/2/v4/logos/208x226-stacked-blue-e6df1ff1a41c48555a15336ae8a6b3c6f77dfae41d2a50b78e4794c1ce048792.png'
+const REPLACEMENT_IMG_POSTER = 'https://i.imgur.com/M1gUEMQ.png'
 
 /**
  * Specifies which props to inject into your component.
@@ -27,7 +27,7 @@ class GridItem extends Component {
                         { image ?
                             <img className='movie-img' alt={title} src={IMG_BASE_URL_SMALL + image}/> :
                             <div className='no-image'>
-                              <img className='tmdb-img' alt={title} src={NO_IMAGE_TMDB}/>
+                              <img className='movie-img' alt={title} src={REPLACEMENT_IMG_POSTER}/>
                             </div>
                         }
                           <div className="hover-overlay">

@@ -51,6 +51,19 @@ class MovieListPage extends Component {
             .catch(e => console.log(e))
     }
 
+    handleToWatchListBtn = (movieId, title, image, action) => {
+        if(action === 'add'){
+            model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
+        } else if(action === 'remove') {
+            model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
+        }
+    }
+
+    handleWatchedListBtn = (movieId, action) => {
+        console.log("id: ", movieId)
+        console.log("action is: ", action)
+    }
+
     handleLoadMore = () => {
         this.loadContent(this.state.offset)
     }
@@ -61,8 +74,13 @@ class MovieListPage extends Component {
                 <Navbar/>
                 {!this.state.loading &&
                 <div>
-                    <MovieList movieList={this.state.movieList} listType={this.props.listType}/>
-                    <MovieListFooter handleLoadMore={this.handleLoadMore} noMoreEntries={this.state.noMoreEntries}/>
+                    <MovieList movieList={this.state.movieList}
+                               listType={this.props.listType}
+                               handleToWatchListBtn={this.handleToWatchListBtn}
+                               handleWatchedListBtn={this.handleWatchedListBtn}/>
+
+                    <MovieListFooter handleLoadMore={this.handleLoadMore}
+                                     noMoreEntries={this.state.noMoreEntries}/>
                 </div>}
             </div>
         );

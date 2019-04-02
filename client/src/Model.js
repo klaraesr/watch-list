@@ -66,6 +66,7 @@ class Model extends ObservableModel {
         })
             .then(res => res.json())
             .then(data => {
+                console.log("The movie the rec will be based upon:", data)
                 if(data.movieId !== null) {
                     const MOVIE = data.movieId
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
