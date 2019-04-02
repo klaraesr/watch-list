@@ -93,7 +93,7 @@ class SearchPage extends Component {
   }
 
     render() {
-      const {droppedItem, movies, numberOfPages, currentPage, loading, error} = this.state
+      const {droppedItem, movies, numberOfPages, currentPage, loading} = this.state
 
         return (
             <div className="container appContainer">

@@ -61,7 +61,6 @@ class MovieDetailsPage extends Component {
     getMovie = (movieId) => {
         model.getMovie(movieId)
             .then(data => {
-                console.log(data.poster_path === null)
                 this.setState({
                     loading: false,
                     movie: ({

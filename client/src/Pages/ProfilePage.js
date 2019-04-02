@@ -35,12 +35,12 @@ class ProfilePage extends Component {
                     toWatchMovies: data.toWatchMovies.map(movie => ({
                         original: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_LARGE ),
                         originalTitle: movie.name,
-                        originalAlt: movie.id
+                        originalAlt: movie.movie_id
                     })),
                     watchedMovies: data.watchedMovies.map(movie => ({
                         original: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_LARGE ),
                         originalTitle: movie.name,
-                        originalAlt: movie.id
+                        originalAlt: movie.movie_id
                     }))
                 })
             })

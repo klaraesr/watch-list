@@ -11,7 +11,7 @@ class MovieDetails extends Component {
             <div id="movie-details-row" className="row no-gutters">
                 <div className="col-xs-6 col-sm-5 col-md-6">
                     <div className="container">
-                    <img className="poster" src={poster}/>
+                    <img className="poster" src={poster} alt={title}/>
                     </div>
                 </div>
                 <div className="col-xs-8 col-sm-7 col-md-6 right">
