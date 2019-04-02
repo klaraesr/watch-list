@@ -12,7 +12,7 @@ class MovieDetails extends Component {
             <div id="movie-details-row" className="row no-gutters">
                 <div className="col-xs-6 col-sm-5 col-md-6">
                     <div className="container">
-                    <img className="poster" src={IMG_BASE_URL_LARGE + poster}/>
+                    <img className="poster" src={IMG_BASE_URL_LARGE + poster} alt={title}/>
                     </div>
                 </div>
                 <div className="col-xs-8 col-sm-7 col-md-6 right">
@@ -28,8 +28,8 @@ class MovieDetails extends Component {
                         <p className="movie-desc">Runtime: {runtime} minutes.</p>
                         <p className="movie-desc">{description}</p>
                         {status !== 'Released' && <p className="movie-desc"><b>Release date is {release}.</b></p>}
-                        {budget !== 0 && revenue !== 0 && <p className="movie-desc"><i>{title} had an estimated budget of ${budget} and a world wide gross of ${revenue}.</i></p>}
-                        {budget === 0 || revenue === 0 && <p className="movie-desc"><i>Check in later to find out the budget and the world wide gross of {title}.</i></p>}
+                        {(budget !== 0 && revenue !== 0) && <p className="movie-desc"><i>{title} had an estimated budget of ${budget} and a world wide gross of ${revenue}.</i></p>}
+                        {(budget === 0 || revenue === 0) && <p className="movie-desc"><i>Check in later to find out the budget and the world wide gross of {title}.</i></p>}
 
                         <button onClick={handleSetWatched} type="button" className={'btn watchlistBtn add-btn' + (inWatchedList ? ' active' : '')}>{inWatchedList ? 'This movie is in your watched list, click to remove it' : 'This movie is not in your watched list, click to add it'}</button>
                         <button onClick={handleSetToWatch} type="button" className={'btn watchlistBtn add-btn' + (inToWatchList ? ' active' : '')}>{inToWatchList ? 'This movie is in your to-watch list, click to remove it' : 'This movie is not in your to-watch list, click to add it'}</button>

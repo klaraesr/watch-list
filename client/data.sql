@@ -31,6 +31,7 @@ insert into watchedList values ('1','1');
 
 create table movie (
 id varchar(36) NOT NULL UNIQUE,
+movie_id varchar(36),
 name varchar(128),
 image varchar(128),
 watchlist_id varchar(36),
@@ -39,7 +40,7 @@ updated_at datetime,
 created_at datetime
 );
 
-insert into movie values ('424783','Bumblebee','/fw02ONlDhrYjTSZV8XO6hhU3ds3.jpg','1','1', null, null);
+insert into movie values ('1', '424783','Bumblebee','/fw02ONlDhrYjTSZV8XO6hhU3ds3.jpg','1','1', null, null);
 
 SELECT * FROM user;
 SELECT * FROM toWatchList;

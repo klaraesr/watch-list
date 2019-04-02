@@ -26,6 +26,4 @@ class LatestAddedSlider extends Component {
 }
 
 
-const items = ['https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all', 'https://boygeniusreport.files.wordpress.com/2018/04/avengers-infinity-war3.jpg?quality=98&strip=all']
-const labelsArr = ['hej', 'hej2', 'hej3']
 export default LatestAddedSlider;

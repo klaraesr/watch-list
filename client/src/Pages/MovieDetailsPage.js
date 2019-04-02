@@ -3,7 +3,6 @@ import MovieDetails from "../Components/MovieDetails/MovieDetails"
 import model from './../Model.js'
 import Loader from "react-loader-spinner"
 import Navbar from "../Components/Navbar/Navbar";
-const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // statefull component
 class MovieDetailsPage extends Component {
@@ -28,12 +27,12 @@ class MovieDetailsPage extends Component {
         if(this.state.inWatchedList){
             model.deleteMovieFromWatchedList(movie.id)
               .then(data => {
-                console.log(data)
+                // check success / remove message?
               })
         } else {
-            model.addMovieToWatchedList(movie.id, movie.title, movie.poster)
+            model.addMovieToWatchedList(movie.id, movie.title, movie.backdrop)
               .then(data => {
-                console.log(data)
+                // check if success?
               })
         }
 
@@ -45,12 +44,12 @@ class MovieDetailsPage extends Component {
         if(this.state.inToWatchList){
             model.deleteMovieFromToWatchList(movie.id)
                 .then(data => {
-                  console.log(data)
+                  // check success / remove message?
                 })
         } else {
-            model.addMovieToWatchList(movie.id, movie.title, movie.poster)
+            model.addMovieToWatchList(movie.id, movie.title, movie.backdrop)
               .then(data => {
-                console.log(data)
+                // check if success?
               })
         }
 
@@ -73,6 +72,7 @@ class MovieDetailsPage extends Component {
                         voteCount: data.vote_count,
                         voteAverage: data.vote_average,
                         poster: data.poster_path,
+                        backdrop: data.backdrop_path,
                         IMDBId: data.imdb_id,
                         release: data.release_date
                     }
