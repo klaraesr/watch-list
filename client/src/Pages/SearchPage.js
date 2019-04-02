@@ -50,21 +50,32 @@ class SearchPage extends Component {
     this.loadMovies(queryString)
   }
 
-  onDrop = (item) => {
-    this.setState({
-      droppedItem: item
-    })
+  onDrop = async (item) => {
+
     const { movieId, movieTitle, moviePoster } = item
-    if(item.toWatch) {
+    const inList = await model.checkMovieInLists(movieId)
+    if(item.toWatch && !inList.inToWatchList) {
       model.addMovieToWatchList(movieId, movieTitle, moviePoster)
-        .then(data => {
-          // added message?
+        .then( () => {
+          this.setState({
+            droppedItem: item
+          })
+        })
+    } else if(!item.toWatch && !inList.inWatchedList) {
+      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
+        .then( () => {
+          this.setState({
+            droppedItem: item
+          })
         })
     } else {
-      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
-        .then(data => {
-          // added message?
-        })
+      this.setState({
+        droppedItem: {
+          error: 'Movie already in list',
+          toWatch: item.toWatch,
+          movieTitle: item.movieTitle
+        }
+      })
     }
   }
 
@@ -86,7 +97,7 @@ class SearchPage extends Component {
   }
 
     render() {
-      const {droppedItem, movies, numberOfPages, currentPage, loading} = this.state
+      const {droppedItem, movies, numberOfPages, currentPage, loading, error} = this.state
 
         return (
             <div className="container appContainer">

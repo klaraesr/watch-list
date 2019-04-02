@@ -36,10 +36,22 @@ class Target extends Component {
   render() {
       const { toWatch, isOver, canDrop, connectDropTarget, droppedItem } = this.props
       let dropState = ''
+      let msg
+
       if(isOver) {
         dropState = 'over'
       } else if (!isOver && canDrop) {
         dropState = 'droppable'
+      }
+
+      if(droppedItem && droppedItem.error) {
+        msg = (
+          JSON.stringify(droppedItem.movieTitle) + ' is already in'
+        )
+      } else if(droppedItem){
+        msg = (
+          'You added ' + JSON.stringify(droppedItem.movieTitle) + ' to'
+        )
       }
 
       return connectDropTarget(
@@ -47,25 +59,28 @@ class Target extends Component {
                 <div className={`target ${dropState}`}>
                   <span className='dropTitle'>
                     <div>
-                      { droppedItem && droppedItem.toWatch &&
-                        'You added ' + JSON.stringify(droppedItem.title) + ' to watch later'
-                      }
-                      { droppedItem && !droppedItem.toWatch &&
-                        'You added ' + JSON.stringify(droppedItem.title) + ' to watched'
-                      }
-                      { !droppedItem &&
+
                         <div>
                           { toWatch ?
-                              <div className="drag-container">
+                            <div  className="drag-container">
+                            { droppedItem && droppedItem.toWatch ?
+                              msg + ' to your watch list' :
+                              <div>
                                   Add to watch list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
                               </div>
+                            }
+                            </div>
                               :
-                              <div className="drag-container">
+                            <div className="drag-container">
+                            { droppedItem && !droppedItem.toWatch ?
+                                msg + ' to your watched list' :
+                              <div>
                                   Add to watched list <img className="drag-drop-img" alt="drag and drop" src="/drag.png"/>
                               </div>
+                            }
+                            </div>
                           }
                         </div>
-                      }
                     </div>
                   </span>
                 </div>
