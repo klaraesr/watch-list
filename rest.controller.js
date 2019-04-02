@@ -51,6 +51,27 @@ router.get('/checkMovieInLists/:movieid/:userid', async function (req, res){
     })
 })
 
+router.get('/getMoviesFromToWatchList/:userid', async function (req, res){
+    const userId = req.params.userid
+    const toWatchList = await model.getToWatchList(userId)
+    const movies = await model.getAllMoviesFromToWatchList(toWatchList[0].dataValues.id)
+
+    res.json({
+        movies
+    })
+})
+
+router.get('/getMoviesFromWatchedList/:userid', async function (req, res){
+    const userId = req.params.userid
+    const watchedList = await model.getWatchedList(userId)
+    const movies = await model.getAllMoviesFromWatchedList(watchedList[0].dataValues.id)
+
+    res.json({
+        movies
+    })
+})
+
+
 router.get('/getLatestMoviesFromList/:userid', async function (req, res){
     const userId = req.params.userid
     const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id')
@@ -123,11 +144,6 @@ router.post('/validateuser', async function (req, res) {
     else res.json({
         userId : null
     })
-})
-
-router.post('/logOut', async function (req, res) {
-    req.session.destroy();
-    return res.json({data: "loggedOut"});
 })
 
 module.exports = router;

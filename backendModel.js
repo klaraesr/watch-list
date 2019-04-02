@@ -189,7 +189,9 @@ exports.getAllMoviesFromWatchedList = (id) => {
         .catch(error => {console.log(error)})
 }
 
-//Tar ut dom 5 senaste filmerna från någon lista
+
+
+//Tar ut dom 5 senaste filmerna från en lista
 exports.getMoviesFromList = (id, idName) => {
     return User.findByPk(id)
         .then(async (user) => {

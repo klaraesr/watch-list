@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import model from "./Model"
 import './App.css'
-import LoginPage from "./Pages (container)/LoginPage"
-import ProfilePage from "./Pages (container)/ProfilePage"
-import MovieDetailsPage from "./Pages (container)/MovieDetailsPage"
-import SearchPage from "./Pages (container)/SearchPage"
+import LoginPage from "./Pages/LoginPage"
+import ProfilePage from "./Pages/ProfilePage"
+import MovieDetailsPage from "./Pages/MovieDetailsPage"
+import SearchPage from "./Pages/SearchPage"
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom"
-import LandingPage from "./Pages (container)/LandingPage"
+import LandingPage from "./Pages/LandingPage"
 import Header from "./Components (presentational)/Header/Header"
-import MovieListPage from "./Pages (container)/MovieListPage"
-import CreateUserPage from "./Pages (container)/CreateUserPage"
+import MovieListPage from "./Pages/MovieListPage"
+import CreateUserPage from "./Pages/CreateUserPage"
 
 // Different settings for routes
 const LoginRoute = ({ component: Component, ...rest }) => (
