@@ -20,24 +20,38 @@ class MovieDetailsPage extends Component {
     componentDidMount() {
         const movieId = this.props.params.id
         this.getMovie(movieId)
-        model.checkMovieInLists(movieId).then(res => this.setState({inWatchList: res.inWatchList, inToWatchList: res.inToWatchList}))
+        model.checkMovieInLists(movieId).then(res => this.setState({inWatchedList: res.inWatchedList, inToWatchList: res.inToWatchList}))
     }
 
     handleSetWatched = () => {
+        const { movie } = this.state
         if(this.state.inWatchedList){
-            //TODO: Ta bort film från watchedlist i databasen
+            model.deleteMovieFromWatchedList(movie.id)
+              .then(data => {
+                console.log(data)
+              })
         } else {
-            //TODO: Lägg till film i watchedlist i databasen
+            model.addMovieToWatchedList(movie.id, movie.title, movie.poster)
+              .then(data => {
+                console.log(data)
+              })
         }
 
         this.setState({inWatchedList: !this.state.inWatchedList})
     }
 
     handleSetToWatch = () => {
+        const { movie } = this.state
         if(this.state.inToWatchList){
-            //TODO: Ta bort film från towatchlist i databasen
+            model.deleteMovieFromToWatchList(movie.id)
+                .then(data => {
+                  console.log(data)
+                })
         } else {
-            //TODO: Lägg till film till towatchlist i databasen
+            model.addMovieToWatchList(movie.id, movie.title, movie.poster)
+              .then(data => {
+                console.log(data)
+              })
         }
 
         this.setState({inToWatchList: !this.state.inToWatchList})
@@ -58,7 +72,7 @@ class MovieDetailsPage extends Component {
                         runtime: data.runtime,
                         voteCount: data.vote_count,
                         voteAverage: data.vote_average,
-                        poster: IMG_BASE_URL_LARGE + data.poster_path,
+                        poster: data.poster_path,
                         IMDBId: data.imdb_id,
                         release: data.release_date
                     }

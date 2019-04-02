@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import './Login.css'
 import {Link} from "react-router-dom";
+import Popup from "reactjs-popup";
+
 
 
 // stateless component
@@ -9,7 +11,13 @@ class Login extends Component {
     render() {
         return (
             <div className="container" id="loginContainer">
-                {this.props.createdAccount && <p>Your account has been created. You can now log in!</p>}
+                {this.props.createdAccount && <Popup id="popupId"
+                    closeOnDocumentClick
+                    open = {true}
+                    position={"right center"}
+                >
+                    <div id="popupDiv"><span id="popupSpan"> Your account has been created. You can now log in! </span></div>
+                </Popup>}
                 <h3 id="loginHeader">LOGIN</h3>
                 <form onSubmit={this.props.handleForm}>
                     <div className="form-group">

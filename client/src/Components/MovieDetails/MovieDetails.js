@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './MovieDetails.css'
 import StarRatings from "react-star-ratings"
+const IMG_BASE_URL_LARGE = 'http://image.tmdb.org/t/p/w780'
 
 // stateless column
 class MovieDetails extends Component {
@@ -11,7 +12,7 @@ class MovieDetails extends Component {
             <div id="movie-details-row" className="row no-gutters">
                 <div className="col-xs-6 col-sm-5 col-md-6">
                     <div className="container">
-                    <img className="poster" src={poster}/>
+                    <img className="poster" src={IMG_BASE_URL_LARGE + poster}/>
                     </div>
                 </div>
                 <div className="col-xs-8 col-sm-7 col-md-6 right">

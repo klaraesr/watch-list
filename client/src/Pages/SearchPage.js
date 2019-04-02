@@ -7,14 +7,12 @@ import DragDrop from "../Components/DragDrop/DragDrop"
 import Loader from "react-loader-spinner"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
-import modelInstance from "../Model"
 
 class SearchPage extends Component {
   constructor(props) {
       super(props)
 
       this.state = {
-          userId: null,
           loading: true,
           currentPage: 1,
           numberOfPages: 0,
@@ -62,14 +60,14 @@ class SearchPage extends Component {
     this.setState({
       droppedItem: item
     })
-    console.log(item)
+    const { movieId, movieTitle, moviePoster } = item
     if(item.toWatch) {
-      modelInstance.addToList(true, item.id, item.title, item.image)
+      model.addMovieToWatchList(movieId, movieTitle, moviePoster)
         .then(data => {
           console.log(data)
         })
     } else {
-      modelInstance.addToList(false, item.id, item.title, item.image)
+      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
         .then(data => {
           console.log(data)
         })

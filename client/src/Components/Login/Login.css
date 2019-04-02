@@ -9,6 +9,7 @@
     padding: 20px;
     text-align: left;
     border-radius: 20px;
+    display: block;
 }
 
 #loginHeader {
@@ -19,9 +20,26 @@
     margin-top: 10px;
 }
 
+.popup-content {
+    width: 40% !important;
+}
+
+#popupSpan {
+    font-size: 18px;
+    text-align: center;
+    color: orange;
+}
+
+#popupDiv {
+    text-align: center;
+}
+
 @media only screen and (min-width: 800px) and (max-width: 1200px){
     #loginContainer {
         width: 40% !important;
+    }
+    .popup-content{
+        width: 50% !important;
     }
 }
 
@@ -29,10 +47,16 @@
     #loginContainer {
         width: 60% !important;
     }
+    .popup-content{
+        width: 70% !important;
+    }
 }
 
 @media only screen and (max-width: 500px) {
     #loginContainer {
         width: 90% !important;
+    }
+    .popup-content{
+        width: 95% !important;
     }
 }

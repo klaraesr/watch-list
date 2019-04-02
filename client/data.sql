@@ -31,7 +31,7 @@ insert into watchedList values ('1','1');
 
 create table movie (
 id varchar(36) NOT NULL UNIQUE,
-name varchar(64),
+name varchar(128),
 image varchar(128),
 watchlist_id varchar(36),
 watchedlist_id varchar(36),
