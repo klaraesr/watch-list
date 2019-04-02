@@ -7,7 +7,7 @@ const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/v8ND5Ui.png'
 
 
-//TODO: Fix states for all movie buttons so that they show changes directly instead of onload
+//TODO: Fix states for all add/remove movie from list buttons so that they show changes directly instead of on reload
 
 class MovieListPage extends Component {
     constructor() {
@@ -45,6 +45,7 @@ class MovieListPage extends Component {
                             key: movie.id, 
                             id: movie.movie_id,
                             image: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_SMALL ),
+                            imgPath: movie.image,
                             title: (movie.name.length < 18) ? movie.name : movie.name.slice(0, 15) + '...',
                             watchedlist_id: movie.watchedlist_id,
                             watchlist_id: movie.watchlist_id
@@ -56,7 +57,7 @@ class MovieListPage extends Component {
     }
 
     handleToWatchListBtn = (movieId, title, image, action) => {
-        console.log(action)
+        console.log("id: ", movieId)
         if(action === 'add'){
             console.log("Lets add movie with id to TOWATCHLIST: ", movieId)
             model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
@@ -67,7 +68,7 @@ class MovieListPage extends Component {
     }
 
     handleWatchedListBtn = (movieId, title, image, action) => {
-        console.log(action)
+        console.log("id: ", movieId)
         if(action === 'add'){
             console.log("Lets add movie with id to WATCHEDLIST: ", movieId)
             model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
