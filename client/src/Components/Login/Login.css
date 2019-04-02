@@ -21,7 +21,9 @@
 }
 
 .popup-content {
-    width: 40% !important;
+    border: none !important;
+    padding: 20px !important;
+    width: 25% !important;
 }
 
 #popupSpan {

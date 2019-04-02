@@ -49,7 +49,6 @@ class Model extends ObservableModel {
     // Hämta filmer från lista med limit och offset och userId (från get current user)
     getMoviesFromList(list, offset, limit) {
         const URL = '/api/getMoviesFromList/' + this.getCurrentUser() + '/' + list + '/' + offset + '/' + limit
-        console.log("models url: ", URL)
         return fetch(URL).then(this.processResponse)
     }
 

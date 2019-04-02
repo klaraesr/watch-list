@@ -45,7 +45,6 @@ router.get('/getCurrentUser', async function (req, res){
 router.post('/getLatestAddedMovie', async function (req, res){
     const userId = req.body.id
     const movieId = await model.getLatestMovie(userId)
-    console.log(movieId)
     res.json({
         movieId
     })
@@ -57,10 +56,6 @@ router.get('/checkMovieInLists/:movieid/:userid', async function (req, res){
 
     const inWatchedList = await model.checkMovieInList(movieId, userId, 'watchedList')
     const inToWatchList = await model.checkMovieInList(movieId, userId, 'toWatchList')
-
-    console.log('backend checkMovieInList')
-    console.log('inWatched: ', inWatchedList)
-
 
     res.json({
         inWatchedList,
@@ -94,7 +89,6 @@ router.get('/getLatestMoviesFromList/:userid', async function (req, res){
     const toWatchMovies = await model.getMoviesFromList(userId, 'watchlist_id', 0, 5)
     const watchedMovies = await model.getMoviesFromList(userId, 'watchedlist_id', 0, 5)
 
-    console.log("latest movies, profile page: ", toWatchMovies.length)
     res.json({
         toWatchMovies,
         watchedMovies
@@ -127,7 +121,6 @@ router.get('/getUser/:userid', async function (req, res){
 })
 
 router.post('/addToWatch', async function (req, res) {
-    console.log('doing add to watch')
     const { userId, movieId, movieTitle, moviePoster } = req.body
     const list = await model.getToWatchList(userId)
     const movie = await model.addMovieToWatchList(list.dataValues.id, movieId, movieTitle, moviePoster)
@@ -137,7 +130,6 @@ router.post('/addToWatch', async function (req, res) {
 })
 
 router.post('/addWatched', async function (req, res) {
-    console.log('doing add watched')
     const { userId, movieId, movieTitle, moviePoster } = req.body
     const list = await model.getWatchedList(userId)
     const movie = await model.addMovieToWatchedList(list.dataValues.id, movieId, movieTitle, moviePoster)
@@ -147,7 +139,6 @@ router.post('/addWatched', async function (req, res) {
 })
 
 router.post('/deleteFromToWatch', async function (req, res) {
-  console.log('doing delete to watch')
     const { userId, movieId } = req.body
     const list = await model.getToWatchList(userId)
     const deletedMovie = await model.deleteMovieFromToWatchList(movieId, list.dataValues.id)
@@ -157,7 +148,6 @@ router.post('/deleteFromToWatch', async function (req, res) {
 })
 
 router.post('/deleteFromWatched', async function (req, res) {
-    console.log('doing delete watched')
     const { userId, movieId } = req.body
     const list = await model.getWatchedList(userId)
     const deletedMovie = await model.deleteMovieFromWatchedList(movieId, list.dataValues.id)

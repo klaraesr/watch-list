@@ -11,12 +11,8 @@ class Login extends Component {
     render() {
         return (
             <div className="container" id="loginContainer">
-                {this.props.createdAccount && <Popup id="popupId"
-                    closeOnDocumentClick
-                    open = {true}
-                    position={"right center"}
-                >
-                    <div id="popupDiv"><span id="popupSpan"> Your account has been created. You can now log in! </span></div>
+                {this.props.createdAccount && <Popup id="popupId" closeOnDocumentClick open = {true} position={"right center"}>
+                    <div id="popupDiv"><span id="popupSpan"> Your account has been created. <br /> You can now log in! </span></div>
                 </Popup>}
                 <h3 id="loginHeader">LOGIN</h3>
                 <form onSubmit={this.props.handleForm}>
