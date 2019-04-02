@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import Navbar from "../Components (presentational)/Navbar/Navbar"
-import MovieList from "../Components (presentational)/MovieList/MovieList"
+import Navbar from "../Components/Navbar/Navbar"
+import MovieList from "../Components/MovieList/MovieList"
 import model from './../Model.js'
-import MovieListFooter from "../Components (presentational)/MovieListFooter/MovieListFooter";
+import MovieListFooter from "../Components/MovieListFooter/MovieListFooter";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/v8ND5Ui.png'
 

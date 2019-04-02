@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import ProfileHeader from "../Components (presentational)/ProfileHeader/ProfileHeader"
-import LatestAddedSlider from "../Components (presentational)/LatestAddedSlider/LatestAddedSlider"
+import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
+import LatestAddedSlider from "../Components/LatestAddedSlider/LatestAddedSlider"
 import Loader from "react-loader-spinner"
 import model from './../Model.js'
-import Navbar from "../Components (presentational)/Navbar/Navbar"
+import Navbar from "../Components/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_LARGE = 'https://i.imgur.com/SVCKd7y.png'
 
