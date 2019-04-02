@@ -39,7 +39,8 @@ class MovieListPage extends Component {
                         loading: false,
                         offset: offset + 10,
                         movieList: this.state.movieList.concat(data.movies.map(movie => ({
-                            id: movie.id,
+                            key: movie.id, 
+                            id: movie.movie_id,
                             image: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_SMALL ),
                             title: (movie.name.length < 18) ? movie.name : movie.name.slice(0, 15) + '...',
                             watchedlist_id: movie.watchedlist_id,

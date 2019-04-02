@@ -49,7 +49,7 @@ class GridItem extends Component {
 
 const cardSource = {
   beginDrag(props, monitor, component) {
-    const item = { movieId: props.id, movieTitle: props.title, moviePoster: props.image }
+    const item = { movieId: props.id, movieTitle: props.title, moviePoster: props.image_backdrop }
     return item
   }
 }

@@ -101,7 +101,6 @@ exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
 
 function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
   let WATCHID, WATCHEDID
-  console.log('movie id in backendModel: ', movieId)
   if(toWatch) {
     WATCHID = listId
     WATCHEDID = null
@@ -111,7 +110,7 @@ function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
   }
 
   return Movie.create({
-      id: movieId,
+      movie_id: movieId,
       name: movieName,
       image: imgSrc,
       watchlist_id: WATCHID,
@@ -132,7 +131,7 @@ function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
 exports.deleteMovieFromToWatchList = (movieId, listId) => {
     return Movie.destroy({
         where:{
-            id: movieId,
+            movie_id: movieId,
             watchlist_id: listId
         }
     })
@@ -141,7 +140,7 @@ exports.deleteMovieFromToWatchList = (movieId, listId) => {
 exports.deleteMovieFromWatchedList = (movieId, listId) => {
     return Movie.destroy({
         where:{
-            id: movieId,
+            movie_id: movieId,
             watchedlist_id: listId
         }
     })
@@ -153,7 +152,7 @@ exports.checkMovieInList = (movieId, userId, list) => {
             if(list === 'toWatchList') {
                 return user.getToWatchList()
                     .then(toWatchList => {
-                        return Movie.count({where: {id: movieId, watchlist_id: toWatchList.dataValues.id}})
+                        return Movie.count({where: {movie_id: movieId, watchlist_id: toWatchList.dataValues.id}})
                             .then(count => {
                                 return count !== 0; // return true if not 0
                             })
@@ -161,7 +160,7 @@ exports.checkMovieInList = (movieId, userId, list) => {
             } else if(list === 'watchedList') {
                 return user.getWatchedList()
                     .then(watchedList => {
-                        return Movie.count({where: {id: movieId, watchedlist_id: watchedList.dataValues.id}})
+                        return Movie.count({where: {movie_id: movieId, watchedlist_id: watchedList.dataValues.id}})
                             .then(count => {
                                 return count !== 0; // return true if not 0
                             })
@@ -171,7 +170,9 @@ exports.checkMovieInList = (movieId, userId, list) => {
 }
 
 exports.getAllMoviesFromToWatchList = (id) => {
-    return ToWatchList.findByPk(id)
+    return WatchedListMovie.findAll({
+        where: {movie_id: id}
+    })
         .then( list => {
             return list.getMovies()
                 .then(movies => {
@@ -182,7 +183,9 @@ exports.getAllMoviesFromToWatchList = (id) => {
 }
 
 exports.getAllMoviesFromWatchedList = (id) => {
-    return WatchedList.findByPk(id)
+    return WatchedListMovie.findAll({
+        where: {movie_id: id}
+    })
         .then(list => {
             return list.getMovies()
         })
@@ -218,7 +221,7 @@ exports.getLatestMovie  = async (userId) => {
     })
         .then(movie => {
             if(movie.length !== 0){
-                return movie[0].dataValues.id
+                return movie[0].dataValues.movie_id
             } else {
                 return null
             }

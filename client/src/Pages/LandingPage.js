@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import Gallery from '../Components/RecommendedGallery/RecommendedGallery.js'
 import ImageSlider from "../Components/LandingSlider/LandingSlider"
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"

@@ -29,12 +29,12 @@ class MovieDetailsPage extends Component {
         if(this.state.inWatchedList){
             model.deleteMovieFromWatchedList(movie.id)
               .then(data => {
-                console.log(data)
+                // check success / remove message?
               })
         } else {
-            model.addMovieToWatchedList(movie.id, movie.title, movie.poster)
+            model.addMovieToWatchedList(movie.id, movie.title, movie.backdrop)
               .then(data => {
-                console.log(data)
+                // check if success?
               })
         }
 
@@ -46,12 +46,12 @@ class MovieDetailsPage extends Component {
         if(this.state.inToWatchList){
             model.deleteMovieFromToWatchList(movie.id)
                 .then(data => {
-                  console.log(data)
+                  // check success / remove message?
                 })
         } else {
-            model.addMovieToWatchList(movie.id, movie.title, movie.poster)
+            model.addMovieToWatchList(movie.id, movie.title, movie.backdrop)
               .then(data => {
-                console.log(data)
+                // check if success?
               })
         }
 
@@ -75,6 +75,7 @@ class MovieDetailsPage extends Component {
                         voteCount: data.vote_count,
                         voteAverage: data.vote_average,
                         poster: (data.poster_path === null ? REPLACEMENT_IMG_POSTER : IMG_BASE_URL_LARGE + data.poster_path),
+                        backdrop: data.backdrop_path,
                         IMDBId: data.imdb_id,
                         release: data.release_date
                     })

@@ -45,11 +45,6 @@ const RedirectPath = () => (
 )
 
 class App extends Component {
-    constructor() {
-        super()
-
-        console.log(model.getCurrentUser())
-    }
 
     componentDidMount() {
         model.addObserver(this)

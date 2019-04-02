@@ -50,13 +50,7 @@ class SearchPage extends Component {
     this.loadMovies(queryString)
   }
 
-  addToListCallback = (id, list) => {
-    console.log('id: ', id)
-    console.log('list: ', list)
-  }
-
   onDrop = (item) => {
-    console.log('Dropped movie:', item)
     this.setState({
       droppedItem: item
     })
@@ -64,12 +58,12 @@ class SearchPage extends Component {
     if(item.toWatch) {
       model.addMovieToWatchList(movieId, movieTitle, moviePoster)
         .then(data => {
-          console.log(data)
+          // added message?
         })
     } else {
       model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
         .then(data => {
-          console.log(data)
+          // added message?
         })
     }
   }
@@ -88,7 +82,7 @@ class SearchPage extends Component {
   }
 
     render() {
-      const {droppedItem, movies, numberOfPages, currentPage, addMsg, loading} = this.state
+      const {droppedItem, movies, numberOfPages, currentPage, loading} = this.state
 
         return (
             <div className="container appContainer">
