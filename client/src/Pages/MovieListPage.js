@@ -6,6 +6,9 @@ import MovieListFooter from "../Components/MovieListFooter/MovieListFooter";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/v8ND5Ui.png'
 
+
+//TODO: Fix states for all movie buttons so that they show changes directly instead of onload
+
 class MovieListPage extends Component {
     constructor() {
         super()
@@ -60,9 +63,12 @@ class MovieListPage extends Component {
         }
     }
 
-    handleWatchedListBtn = (movieId, action) => {
-        console.log("id: ", movieId)
-        console.log("action is: ", action)
+    handleWatchedListBtn = (movieId, title, image, action) => {
+        if(action === 'add'){
+            model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
+        } else if(action === 'remove') {
+            model.deleteMovieFromWatchedList(movieId).then(data => console.log(data))
+        }
     }
 
     handleLoadMore = () => {

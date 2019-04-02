@@ -52,24 +52,19 @@ class LandingPage extends Component {
        model.getRecommendedMovies()
             .then(data => {
                 if(data !== null) {
-                    console.log(data)
-                    if(data.results.length === 0){
-                        console.log("its []")
-                        this.setState({noMovies: true})
-                    } else {
-                        const movies = data.results.slice(0, 9)
-                        this.setState({
-                            loadingRec: false,
-                            recommended: movies.map(movie => ({
-                                src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : REPLACEMENT_IMG_SMALL),
-                                title: movie.title,
-                                id: movie.id,
-                                release: movie.release_date
-                            }))
-                        })
-                    }
-                }
-            })
+                    const movies = data.results.slice(0, 9)
+                    this.setState({
+                        loadingRec: false,
+                        recommended: movies.map(movie => ({
+                            src: (movie.backdrop_path !== null ? IMG_BASE_URL_SMALL + movie.backdrop_path : REPLACEMENT_IMG_SMALL),
+                            title: movie.title,
+                            id: movie.id,
+                            release: movie.release_date
+                        }))
+                    })
+                } else {
+                    this.setState({noMovies: true})
+                }})
     }
 
     handleClick = (e) => {
