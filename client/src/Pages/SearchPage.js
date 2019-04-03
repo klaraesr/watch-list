@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import model from './../Model.js'
-import Navbar from "../Components (presentational)/Navbar/Navbar"
-import SearchGrid from "../Components (presentational)/SearchGrid/SearchGrid"
-import SearchFooter from "../Components (presentational)/SearchFooter/SearchFooter"
-import DragDrop from "../Components (presentational)/DragDrop/DragDrop"
+import Navbar from "../Components/Navbar/Navbar"
+import SearchGrid from "../Components/SearchGrid/SearchGrid"
+import SearchFooter from "../Components/SearchFooter/SearchFooter"
+import DragDrop from "../Components/DragDrop/DragDrop"
 import Loader from "react-loader-spinner"
 import { DragDropContext } from "react-dnd"
 import HTML5Backend from "react-dnd-html5-backend";
@@ -50,34 +50,35 @@ class SearchPage extends Component {
     this.loadMovies(queryString)
   }
 
-  addToListCallback = (id, list) => {
-    console.log('id: ', id)
-    console.log('list: ', list)
-  }
+  onDrop = async (item) => {
 
-  onDrop = (item) => {
-    console.log('Dropped movie:', item)
-    this.setState({
-      droppedItem: item
-    })
     const { movieId, movieTitle, moviePoster } = item
-    if(item.toWatch) {
+    const inList = await model.checkMovieInLists(movieId)
+    if(item.toWatch && !inList.inToWatchList) {
       model.addMovieToWatchList(movieId, movieTitle, moviePoster)
-        .then(data => {
-          console.log(data)
+        .then( () => {
+          this.setState({
+            droppedItem: item
+          })
+        })
+    } else if(!item.toWatch && !inList.inWatchedList) {
+      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
+        .then( () => {
+          this.setState({
+            droppedItem: item
+          })
         })
     } else {
-      model.addMovieToWatchedList(movieId, movieTitle, moviePoster)
-        .then(data => {
-          console.log(data)
-        })
+      this.setState({
+        droppedItem: {
+          error: 'Movie already in list',
+          toWatch: item.toWatch,
+          movieTitle: item.movieTitle
+        }
+      })
     }
   }
 
-  /**
-  Currently loads new movies each time, even if they have been loaded before...
-  Optimally saves movies loaded previously
-  **/
   loadNextPage = async() => {
     let alreadyLoadedMovies = this.state.movies
     let query = this.state.currentQuery
@@ -89,11 +90,10 @@ class SearchPage extends Component {
       movies: alreadyLoadedMovies.concat(data.results),
       currentPage: data.page
     })
-    console.log("movies: ", this.state.movies)
   }
 
     render() {
-      const {droppedItem, movies, numberOfPages, currentPage, addMsg, loading} = this.state
+      const {droppedItem, movies, numberOfPages, currentPage, loading} = this.state
 
         return (
             <div className="container appContainer">

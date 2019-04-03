@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import ProfileHeader from "../Components (presentational)/ProfileHeader/ProfileHeader"
-import LatestAddedSlider from "../Components (presentational)/LatestAddedSlider/LatestAddedSlider"
+import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
+import LatestAddedSlider from "../Components/LatestAddedSlider/LatestAddedSlider"
 import Loader from "react-loader-spinner"
 import model from './../Model.js'
-import Navbar from "../Components (presentational)/Navbar/Navbar"
+import Navbar from "../Components/Navbar/Navbar"
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
+const REPLACEMENT_IMG_LARGE = 'https://i.imgur.com/4aUT01r.png'
 
 class ProfilePage extends Component {
     constructor(props) {
@@ -32,14 +33,14 @@ class ProfilePage extends Component {
                 this.setState({
                     loadingSliders: false,
                     toWatchMovies: data.toWatchMovies.map(movie => ({
-                        original: IMG_BASE_URL_SMALL + movie.image,
+                        original: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_LARGE ),
                         originalTitle: movie.name,
-                        originalAlt: movie.id
+                        originalAlt: movie.movie_id
                     })),
                     watchedMovies: data.watchedMovies.map(movie => ({
-                        original: IMG_BASE_URL_SMALL + movie.image,
+                        original: (movie.image !== null ? IMG_BASE_URL_SMALL + movie.image : REPLACEMENT_IMG_LARGE ),
                         originalTitle: movie.name,
-                        originalAlt: movie.id
+                        originalAlt: movie.movie_id
                     }))
                 })
             })

@@ -1,19 +1,13 @@
-import React, {Component} from 'react'
 import ObservableModel from "./ObservableModel";
 import * as config from "./config";
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = process.env.REACT_APP_API_KEY
-const HEADER =  {
-  method: 'POST',
-  headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-  }}
+const JSON_HEADERS =  {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+}
 
 class Model extends ObservableModel {
-    constructor(props) {
-        super(props);
-    }
 
     setCurrentUser(value) {
         if(value === null){
@@ -46,18 +40,16 @@ class Model extends ObservableModel {
         return fetch(URL).then(this.processResponse)
     }
 
+    // Hämta filmer från lista med limit och offset och userId (från get current user)
+    getMoviesFromList(list, offset, limit) {
+        const URL = '/api/getMoviesFromList/' + this.getCurrentUser() + '/' + list + '/' + offset + '/' + limit
+        return fetch(URL).then(this.processResponse)
+    }
+
     // Returns 20 movies based upon a the latest movie added to the current user's watched-list
     getRecommendedMovies() {
-        return fetch('api/getLatestAddedMovie', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: this.getCurrentUser()
-            })
-        })
+        const URL = 'api/getLatestAddedMovie/' + this.getCurrentUser()
+        return fetch(URL)
             .then(res => res.json())
             .then(data => {
                 if(data.movieId !== null) {
@@ -65,14 +57,13 @@ class Model extends ObservableModel {
                     const URL = `${BASE_URL}/movie/${MOVIE}/recommendations?api_key=${API_KEY}&language=en-US`
                     return fetch(URL).then(this.processResponse)
                 } else {
-                    console.log("model got null")
                     return null
                 }
             })
     }
 
     getMoviesFromToWatchList(){
-        const URL = '/api/getMoviesFromToWatchList/' + this.getCurrentUser();
+        const URL = '/api/getMoviesFromToWatchList/' + this.getCurrentUser()
         fetch(URL)
             .then(res => res.json())
             .then(movies => {
@@ -107,10 +98,7 @@ class Model extends ObservableModel {
     validateUser(username, password) {
         return fetch('/api/validateuser', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: JSON_HEADERS,
             body: JSON.stringify({
                 username,
                 password
@@ -122,10 +110,7 @@ class Model extends ObservableModel {
     createUser(username, password, link, deletehash) {
         return fetch('/api/createuser', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: JSON_HEADERS,
             body: JSON.stringify({
                 username,
                 password,
@@ -164,10 +149,7 @@ class Model extends ObservableModel {
       const userId = this.getCurrentUser()
       return fetch(path, {
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
+        headers: JSON_HEADERS,
         body: JSON.stringify({
           userId,
           movieId,
@@ -193,10 +175,7 @@ class Model extends ObservableModel {
       const userId = this.getCurrentUser()
       return fetch(path, {
           method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-          },
+          headers: JSON_HEADERS,
           body: JSON.stringify({
             userId,
             movieId
@@ -211,7 +190,6 @@ class Model extends ObservableModel {
         PAGE = pageNr
       }
       const URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${QUERY}&page=${PAGE}&include_adult=false`;
-      console.log(URL)
       return fetch(URL).then(this.processResponse)
     }
 

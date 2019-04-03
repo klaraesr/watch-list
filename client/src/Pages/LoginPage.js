@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Login from "../Components (presentational)/Login/Login"
+import Login from "../Components/Login/Login"
 import model from './../Model.js'
 
 

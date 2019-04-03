@@ -15,7 +15,6 @@ if (process.env.DATABASE_URL) {
         //host: 'mysql-vt2019.csc.kth.se',
         host: '2001:6b0:1:1300:250:56ff:fe01:25a',
         dialect: 'mysql',
-        operatorsAliases: false,
         logging: false,
 
         pool: {
@@ -87,10 +86,12 @@ module.exports = () => {
 
     const Movie = sequelize.define('movie', {
         id: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.UUID,
             primaryKey: true,
-            defaultValue: Sequelize.UUIDV1,
-            unique: {args: true, msg: "Movie already in list"}
+            defaultValue: Sequelize.UUIDV1
+        },
+        movie_id: {
+            type: Sequelize.INTEGER
         },
         name: {
             type: Sequelize.STRING
