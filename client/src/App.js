@@ -51,11 +51,10 @@ class App extends Component {
     }
 
     updateUser() {
-        this.forceUpdate()
+        //this.forceUpdate()
     }
 
     render() {
-
         return (
             <div className="App">
                 <BrowserRouter>

@@ -30,8 +30,8 @@ class MovieDetails extends Component {
                         {(budget !== 0 && revenue !== 0) && <p className="movie-desc"><i>{title} had an estimated budget of ${budget} and a world wide gross of ${revenue}.</i></p>}
                         {(budget === 0 || revenue === 0) && <p className="movie-desc"><i>Check in later to find out the budget and the world wide gross of {title}.</i></p>}
 
-                        <button onClick={handleSetWatched} type="button" className={'btn watchlistBtn add-btn' + (inWatchedList ? ' active' : '')}>{inWatchedList ? 'This movie is in your watched list, click to remove it' : 'This movie is not in your watched list, click to add it'}</button>
-                        <button onClick={handleSetToWatch} type="button" className={'btn watchlistBtn add-btn' + (inToWatchList ? ' active' : '')}>{inToWatchList ? 'This movie is in your to-watch list, click to remove it' : 'This movie is not in your to-watch list, click to add it'}</button>
+                        <button onClick={handleSetWatched} type="button" className={'btn watchlistBtn add-btn' + (inWatchedList ? ' active' : '')}>{inWatchedList ? 'Remove from Watched List' : 'Add to Watched List'}</button>
+                        <button onClick={handleSetToWatch} type="button" className={'btn watchlistBtn add-btn' + (inToWatchList ? ' active' : '')}>{inToWatchList ? 'Remove from To Watch List' : 'Add to To Watch List'}</button>
                     </div>
                 </div>
             </div>
