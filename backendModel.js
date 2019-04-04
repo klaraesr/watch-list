@@ -248,6 +248,7 @@ exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
 //Returnerar id till användarens senast tillagda film
 exports.getLatestMovie  = async (userId) => {
     const watchedList = await this.getWatchedList(userId)
+    const toWatchList = await this.getToWatchList(userId)
     return Movie.findAll({
         where: {watchedlist_id: watchedList.dataValues.id},
         limit: 1,
@@ -256,8 +257,19 @@ exports.getLatestMovie  = async (userId) => {
         .then(movie => {
             if(movie.length !== 0){
                 return movie[0].dataValues.movie_id
-            } else {
-                return null
+            } else { //Om det inte finns något i watchedList, rekommendera baserat på to-watch istället
+                return Movie.findAll({
+                    where: {watchlist_id: toWatchList.dataValues.id},
+                    limit: 1,
+                    order: [['created_at', 'DESC']]
+                })
+                    .then(movie => {
+                        if(movie.length !== 0){
+                            return movie[0].dataValues.movie_id
+                        } else {
+                            return null
+                        }
+                    })
             }
         })
 }
