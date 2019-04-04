@@ -49,7 +49,7 @@ class Navbar extends Component {
                             <Link className="nav-link" to="/profile">Profile</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to='/' onClick={this.handleLogOut}>Log out</Link>
+                            <Link id="logout" className="nav-link" to='/' onClick={this.handleLogOut}>Log out</Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0" onSubmit={this.handleForm}>

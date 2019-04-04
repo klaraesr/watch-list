@@ -2,6 +2,14 @@
     width: 140px;
 }
 
+#logout {
+    color: rgba(143, 0, 0, 0.8);
+}
+
+#logout:hover {
+    color: red;
+}
+
 .navbar-collapse {
     text-align: left;
 }

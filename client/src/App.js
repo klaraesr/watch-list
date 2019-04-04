@@ -51,7 +51,7 @@ class App extends Component {
     }
 
     updateUser() {
-        //this.forceUpdate()
+        this.forceUpdate()
     }
 
     render() {

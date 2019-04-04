@@ -6,9 +6,6 @@ import MovieListFooter from "../Components/MovieListFooter/MovieListFooter";
 const IMG_BASE_URL_SMALL = 'http://image.tmdb.org/t/p/w780/'
 const REPLACEMENT_IMG_SMALL = 'https://i.imgur.com/v8ND5Ui.png'
 
-
-//TODO: Fix states for all add/remove movie from list buttons so that they show changes directly instead of on reload
-
 class MovieListPage extends Component {
     constructor() {
         super()
@@ -37,11 +34,23 @@ class MovieListPage extends Component {
         }
         model.getMoviesFromList(idType, offset, 10)
             .then(data => {
+                console.log(data)
                 if(data.movies.length < 10){
                     this.setState({noMoreEntries: true})
                 }
                 if(data.movies.length !== 0){
-                    this.setState(prevstate => ({
+                    data.movies.forEach((movie) => {
+                        let inWatchedList = false
+                        let inToWatchList = false
+                        if(movie.watchedlist_id !== null){inWatchedList = true}
+                        if(movie.watchlist_id !== null){inToWatchList = true}
+
+                        this.setState(prevState => ({inWatchedList: {...prevState.inWatchedList, [movie.id]: inWatchedList}}))
+                        this.setState(prevState => ({inToWatchList: {...prevState.inToWatchList, [movie.id]: inToWatchList}}))
+                    })
+                    console.log(this.state.inToWatchList)
+                    console.log(this.state.inWatchedList)
+                    this.setState({
                         loading: false,
                         offset: offset + 10,
                         movieList: this.state.movieList.concat(data.movies.map(movie => ({
@@ -52,40 +61,20 @@ class MovieListPage extends Component {
                             title: (movie.name.length < 18) ? movie.name : movie.name.slice(0, 15) + '...',
                             watchedlist_id: movie.watchedlist_id,
                             watchlist_id: movie.watchlist_id
-                        }))),
-                        inToWatchList: data.movies.forEach((movie) => {
-                            let inList = false
-                            if(movie.watchlist_id !== null){inList = true}
-                            return {...prevstate.inToWatchList, [movie.id]: inList}
-                        }),
-                        inWatchedList: data.movies.forEach((movie) => {
-                            let inList = false
-                            if(movie.watchedlist_id !== null){inList = true}
-                            return {...prevstate.inWatchedList, [movie.id]: inList}
-                        })
-                    }))
+                        })))
+                    })
                 }
             })
             .catch(e => console.log(e))
     }
 
-    handleToWatchListBtn = (movieId, title, image, action) => {
+    handleBtn = (movieId, id, list, title, image, action) => {
         if(action === 'add'){
-            this.setState(prevState => ({inToWatchList: {...prevState.inToWatchList, [movieId]: true}}))
-            model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
+            this.setState(prevState => ({[list]: {...prevState[list], [id]: true}}))
+            //model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
         } else if(action === 'remove') {
-            this.setState(prevState => ({inToWatchList: {...prevState.inLists, [movieId]: false}}))
-            model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
-        }
-    }
-
-    handleWatchedListBtn = (movieId, title, image, action) => {
-        if(action === 'add'){
-            this.setState(prevState => ({inWatchedList: {...prevState.inWatchedList, [movieId]: true}}))
-            model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
-        } else if(action === 'remove') {
-            this.setState(prevState => ({inWatchedList: {...prevState.inWatchedList, [movieId]: false}}))
-            model.deleteMovieFromWatchedList(movieId).then(data => console.log(data))
+            this.setState(prevState => ({[list]: {...prevState[list], [id]: false}}))
+            //model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
         }
     }
 
@@ -101,10 +90,9 @@ class MovieListPage extends Component {
                 <div>
                     <MovieList movieList={this.state.movieList}
                                listType={this.props.listType}
-                               handleToWatchListBtn={this.handleToWatchListBtn}
-                               handleWatchedListBtn={this.handleWatchedListBtn}
-                               inToWatchList={this.state.inToWatchList}
-                               inWatchedList={this.state.inWatchedList}/>
+                               handleBtn={this.handleBtn}
+                               inWatchedList={this.state.inWatchedList}
+                               inToWatchList={this.state.inToWatchList}/>
 
                     <MovieListFooter handleLoadMore={this.handleLoadMore}
                                      noMoreEntries={this.state.noMoreEntries}/>
