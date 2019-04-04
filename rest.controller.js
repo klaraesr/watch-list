@@ -123,7 +123,7 @@ router.get('/getUser/:userid', async function (req, res){
 router.post('/addToWatch', async function (req, res) {
     const { userId, movieId, movieTitle, moviePoster } = req.body
     const list = await model.getToWatchList(userId)
-    const movie = await model.addMovieToWatchList(list.dataValues.id, movieId, movieTitle, moviePoster)
+    const movie = await model.addMovieToWatchList(list.dataValues.id, userId, movieId, movieTitle, moviePoster)
     res.json({
         data: movie
     })
@@ -132,7 +132,7 @@ router.post('/addToWatch', async function (req, res) {
 router.post('/addWatched', async function (req, res) {
     const { userId, movieId, movieTitle, moviePoster } = req.body
     const list = await model.getWatchedList(userId)
-    const movie = await model.addMovieToWatchedList(list.dataValues.id, movieId, movieTitle, moviePoster)
+    const movie = await model.addMovieToWatchedList(list.dataValues.id, userId, movieId, movieTitle, moviePoster)
     res.json({
         data: movie
     })
