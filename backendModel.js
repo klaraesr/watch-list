@@ -162,22 +162,48 @@ function updateMovieWithList(toWatch, listId, otherListId, movieId) {
       })
 }
 
-exports.deleteMovieFromToWatchList = (movieId, listId) => {
-    return Movie.destroy({
-        where:{
-            movie_id: movieId,
-            watchlist_id: listId
-        }
-    })
+exports.deleteMovieFromToWatchList = async (movieId, userId, listId) => {
+    let inWatchedList = await this.checkMovieInList(movieId, userId, 'watchedList')
+    if(inWatchedList) {
+      return Movie.findOne({
+          where: {movie_id: movieId, watchlist_id: listId}
+      })
+        .then(movie => {
+            movie.update({
+              watchlist_id: null
+            }).then(() => {
+              })
+        })
+    } else {
+        return Movie.destroy({
+            where:{
+                movie_id: movieId,
+                watchlist_id: listId
+            }
+        })
+    }
 }
 
-exports.deleteMovieFromWatchedList = (movieId, listId) => {
-    return Movie.destroy({
-        where:{
-            movie_id: movieId,
-            watchedlist_id: listId
-        }
-    })
+exports.deleteMovieFromWatchedList = async (movieId, userId, listId) => {
+    let inToWatchList = await this.checkMovieInList(movieId, userId, 'toWatchList')
+    if(inToWatchList) {
+      return Movie.findOne({
+          where: {movie_id: movieId, watchedlist_id: listId}
+      })
+        .then(movie => {
+            movie.update({
+              watchedlist_id: null
+            }).then(() => {
+              })
+        })
+    } else {
+      return Movie.destroy({
+          where:{
+              movie_id: movieId,
+              watchedlist_id: listId
+          }
+      })
+    }
 }
 
 exports.checkMovieInList = (movieId, userId, list) => {

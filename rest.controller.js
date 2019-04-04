@@ -141,7 +141,7 @@ router.post('/addWatched', async function (req, res) {
 router.post('/deleteFromToWatch', async function (req, res) {
     const { userId, movieId } = req.body
     const list = await model.getToWatchList(userId)
-    const deletedMovie = await model.deleteMovieFromToWatchList(movieId, list.dataValues.id)
+    const deletedMovie = await model.deleteMovieFromToWatchList(movieId, userId, list.dataValues.id)
     res.json({
         data: deletedMovie
     })
@@ -150,7 +150,7 @@ router.post('/deleteFromToWatch', async function (req, res) {
 router.post('/deleteFromWatched', async function (req, res) {
     const { userId, movieId } = req.body
     const list = await model.getWatchedList(userId)
-    const deletedMovie = await model.deleteMovieFromWatchedList(movieId, list.dataValues.id)
+    const deletedMovie = await model.deleteMovieFromWatchedList(movieId, userId, list.dataValues.id)
     res.json({
         data: deletedMovie
     })
