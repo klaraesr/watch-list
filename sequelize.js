@@ -12,8 +12,8 @@ if (process.env.DATABASE_URL) {
 } else {
     console.log('Running on local database..')
     sequelize = new Sequelize('rosquis', 'rosquisadmin', 'upa6fooBie', {
-        host: 'mysql-vt2019.csc.kth.se',
-        //host: '2001:6b0:1:1300:250:56ff:fe01:25a',
+        //host: 'mysql-vt2019.csc.kth.se',
+        host: '2001:6b0:1:1300:250:56ff:fe01:25a',
         dialect: 'mysql',
         logging: false,
 

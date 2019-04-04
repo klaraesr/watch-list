@@ -91,12 +91,24 @@ exports.getWatchedList = (userId) => { //Returnerar en användares watched-list 
         .error(e => console.log(e))
 }
 
-exports.addMovieToWatchList = (listId, movieId, movieName, imgSrc) => {
-    return addMovieToList(true, listId, movieId, movieName, imgSrc)
+exports.addMovieToWatchList = async (listId, userId, movieId, movieName, imgSrc) => {
+    let inWatchedList = await this.checkMovieInList(movieId, userId, 'watchedList')
+    let watchedList = await this.getWatchedList(userId)
+    if(inWatchedList) {
+        return updateMovieWithList(true, listId, watchedList.dataValues.id, movieId)
+    } else {
+        return addMovieToList(true, listId, movieId, movieName, imgSrc)
+    }
 }
 
-exports.addMovieToWatchedList = (listId, movieId, movieName, imgSrc) => {
+exports.addMovieToWatchedList = async (listId, userId, movieId, movieName, imgSrc) => {
+  let inToWatchList = await this.checkMovieInList(movieId, userId, 'toWatchList')
+  let watchList = await this.getToWatchList(userId)
+  if(inToWatchList) {
+    return updateMovieWithList(false, listId, watchList.dataValues.id, movieId)
+  } else {
     return addMovieToList(false, listId, movieId, movieName, imgSrc)
+  }
 }
 
 function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
@@ -125,6 +137,28 @@ function addMovieToList (toWatch, listId, movieId, movieName, imgSrc) {
           } else {
               //console.log(error)
           }
+      })
+}
+
+function updateMovieWithList(toWatch, listId, otherListId, movieId) {
+    let ListNameId
+    let OtherListNameId
+    if(toWatch) {
+      ListNameId = 'watchlist_id'
+      OtherListNameId = 'watchedlist_id'
+    } else {
+      ListNameId = 'watchedlist_id'
+      OtherListNameId = 'watchlist_id'
+    }
+
+    return Movie.findOne({
+        where: {movie_id: movieId, [OtherListNameId]: otherListId}
+    })
+      .then(movie => {
+          movie.update({
+            [ListNameId]: listId
+          }).then(() => {
+            })
       })
 }
 
@@ -214,6 +248,7 @@ exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
 //Returnerar id till användarens senast tillagda film
 exports.getLatestMovie  = async (userId) => {
     const watchedList = await this.getWatchedList(userId)
+    const toWatchList = await this.getToWatchList(userId)
     return Movie.findAll({
         where: {watchedlist_id: watchedList.dataValues.id},
         limit: 1,
@@ -222,8 +257,19 @@ exports.getLatestMovie  = async (userId) => {
         .then(movie => {
             if(movie.length !== 0){
                 return movie[0].dataValues.movie_id
-            } else {
-                return null
+            } else { //Om det inte finns något i watchedList, rekommendera baserat på to-watch istället
+                return Movie.findAll({
+                    where: {watchlist_id: toWatchList.dataValues.id},
+                    limit: 1,
+                    order: [['created_at', 'DESC']]
+                })
+                    .then(movie => {
+                        if(movie.length !== 0){
+                            return movie[0].dataValues.movie_id
+                        } else {
+                            return null
+                        }
+                    })
             }
         })
 }
