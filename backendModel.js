@@ -262,7 +262,7 @@ exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
             } else {
                 listId = await user.getToWatchList()
             }
-            return Movie.findAll({where:{[ListNameId]: listId.dataValues.id}, limit: parseInt(limit), offset: parseInt(offset), order: [['created_at', 'DESC']]})
+            return Movie.findAll({where:{[ListNameId]: listId.dataValues.id}, limit: parseInt(limit), offset: parseInt(offset), order: [['updated_at', 'DESC']]})
                 .then(movies => {
                     return movies
                 })

@@ -69,12 +69,22 @@ class MovieListPage extends Component {
     }
 
     handleBtn = (movieId, id, list, title, image, action) => {
+        let toWatch = null
+        if(list === 'inToWatchList'){toWatch = true}
         if(action === 'add'){
             this.setState(prevState => ({[list]: {...prevState[list], [id]: true}}))
-            //model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
+            if(toWatch) {
+                model.addMovieToWatchList(movieId, title, image).then(data => console.log(data))
+            } else {
+                model.addMovieToWatchedList(movieId, title, image).then(data => console.log(data))
+            }
         } else if(action === 'remove') {
             this.setState(prevState => ({[list]: {...prevState[list], [id]: false}}))
-            //model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
+            if(toWatch){
+                model.deleteMovieFromToWatchList(movieId).then(data => console.log(data))
+            } else {
+                model.deleteMovieFromWatchedList(movieId).then(data => console.log(data))
+            }
         }
     }
 
