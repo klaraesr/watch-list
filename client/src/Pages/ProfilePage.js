@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ProfileHeader from "../Components/ProfileHeader/ProfileHeader"
-import LatestAddedSlider from "../Components/LatestAddedSlider/LatestAddedSlider"
+import ListSlider from "../Components/ListSlider/ListSlider"
 import Loader from "react-loader-spinner"
 import model from './../Model.js'
 import Navbar from "../Components/Navbar/Navbar"
@@ -59,8 +59,8 @@ class ProfilePage extends Component {
                 {!this.state.loadingSliders && !this.state.loadingHeader &&
                 <div>
                     <ProfileHeader userName={this.state.username} img={this.state.userImg} watched={this.state.watchedCount} toWatch={this.state.toWatchCount}/>
-                    {this.state.toWatchMovies !== null && <LatestAddedSlider movies={this.state.toWatchMovies} toWatch={true} handleClick={this.handleClick}/>}
-                    {this.state.watchedMovies !== null && <LatestAddedSlider movies={this.state.watchedMovies} toWatch={false} handleClick={this.handleClick}/>}
+                    {this.state.toWatchMovies !== null && <ListSlider movies={this.state.toWatchMovies} toWatch={true} handleClick={this.handleClick}/>}
+                    {this.state.watchedMovies !== null && <ListSlider movies={this.state.watchedMovies} toWatch={false} handleClick={this.handleClick}/>}
                 </div>}
             </div>
 

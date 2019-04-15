@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import './LatestAddedSlider.css'
+import './ListSlider.css'
 import ImageGallery from "react-image-gallery";
 import {Link} from "react-router-dom";
 
 
 // stateless component
-class LatestAddedSlider extends Component {
+class ListSlider extends Component {
     render() {
         return (
             <div>
-                <h5 className="titles">{this.props.toWatch ? 'The latest movies you\'ve added to your to-watch list' : 'The latest movies you\'ve seen'}</h5>
+                <h5 className="titles">{this.props.toWatch ? 'What\'s on your list to see next?' : 'Movies you\'ve seen before...'}</h5>
 
                 {this.props.movies.length === 0 && <p className="no-movies">You don't have any movies in your {this.props.toWatch ? 'to-watch' : 'watched'} list yet.</p>}
                 {this.props.movies.length !== 0 &&
@@ -26,4 +26,4 @@ class LatestAddedSlider extends Component {
 }
 
 
-export default LatestAddedSlider;
+export default ListSlider;

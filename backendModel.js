@@ -253,7 +253,14 @@ exports.getAllMoviesFromWatchedList = (id) => {
 }
 
 //Tar ut dom limit senaste med en offset på offset, från användare med id och där listnameid = watchlist_id eller watchlisted_id beroende på vilken man ska ha
-exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
+exports.getMoviesFromList = (id, ListNameId, offset, limit, random) => {
+    let order = null
+    if(random) {
+        order = [sequelize.random()]
+    } else {
+        order = [['updated_at', 'DESC']]
+    }
+    console.log(order)
     return User.findByPk(id)
         .then(async (user) => {
             let listId = null
@@ -262,7 +269,7 @@ exports.getMoviesFromList = (id, ListNameId, offset, limit) => {
             } else {
                 listId = await user.getToWatchList()
             }
-            return Movie.findAll({where:{[ListNameId]: listId.dataValues.id}, limit: parseInt(limit), offset: parseInt(offset), order: [['updated_at', 'DESC']]})
+            return Movie.findAll({where:{[ListNameId]: listId.dataValues.id}, limit: parseInt(limit), offset: parseInt(offset), order: order})
                 .then(movies => {
                     return movies
                 })
