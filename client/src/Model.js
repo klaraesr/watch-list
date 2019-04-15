@@ -62,26 +62,6 @@ class Model extends ObservableModel {
             })
     }
 
-    getMoviesFromToWatchList(){
-        const URL = '/api/getMoviesFromToWatchList/' + this.getCurrentUser()
-        fetch(URL)
-            .then(res => res.json())
-            .then(movies => {
-                return movies
-            })
-            .catch(error => console.log(error))
-    }
-
-    getMoviesFromWatchedList(){
-        const URL = '/api/getMoviesFromToWatchedList/' + this.getCurrentUser();
-        fetch(URL)
-            .then(res => res.json())
-            .then(movies => {
-                return movies
-            })
-            .catch(error => console.log(error))
-    }
-
     // Check if movie with id is in lists, returns a json-object with inWatchlist: false/true and inToWatchList: false/true
     checkMovieInLists(movieId) {
         const URL = '/api/checkMovieInLists/' + movieId + '/' + this.getCurrentUser()
