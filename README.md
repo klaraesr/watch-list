@@ -1,3 +1,15 @@
+# SETUP
+
+Clone the project. 
+- Run npm install
+- Run npm client-install
+
+To be able to run your developer database, insert information () about your database for Sequelize in sequelize.js.
+
+To run the database and the react development environment:
+- npm run dev
+
+
 # Watch list
 
 The pages you can go to directly are:
