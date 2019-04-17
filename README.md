@@ -2,7 +2,7 @@
 
 Clone the project. 
 - Run _npm install_
-- Run _npm client-install_
+- Run _npm run client-install_
 
 To be able to run your developer database, insert the necessary information about your database for Sequelize in sequelize.js.
 
